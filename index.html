@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="color-scheme" content="light dark" />
+<title>Anmol Multani — Clearstone Financial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<!-- Inter is only the FALLBACK for non-Apple devices. Apple devices render real SF Pro via the system stack. -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<noscript><style>.reveal{opacity:1 !important; transform:none !important}</style></noscript>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header id="header">
+  <div class="wrap nav">
+    <a href="#home" data-scroll class="logo" aria-label="Back to top">Anmol Multani</a>
+    <ul class="menu">
+      <li class="has-drop">
+        <a href="#services" data-scroll aria-haspopup="true">Services</a>
+        <div class="drop">
+          <a href="#svc-preapproval" data-scroll>Pre-Approval</a>
+          <a href="#svc-purchase" data-scroll>Purchase</a>
+          <a href="#svc-refinance" data-scroll>Refinance</a>
+          <a href="#svc-renewal" data-scroll>Renewal</a>
+          <a href="#svc-debt" data-scroll>Debt Consolidation</a>
+          <!-- DEACTIVATED (re-enable when ready):
+          <a href="#svc-insurance" data-scroll>Insurance</a>
+          <a href="#svc-investment" data-scroll>Investment</a>
+          -->
+        </div>
+      </li>
+      <li class="has-drop">
+        <a href="guides.html" aria-haspopup="true">Guides</a>
+        <div class="drop">
+          <a href="guides/first-time-buyer.html">First Time Home Buyer</a>
+          <a href="guides/newcomer-to-canada.html">Newcomer to Canada</a>
+          <a href="guides/nurses-healthcare.html">Guide for Nurses</a>
+          <a href="guides/self-employed.html">Self-Employed Guide</a>
+        </div>
+      </li>
+      <li class="has-drop">
+        <a href="calculators.html" aria-haspopup="true">Calculators</a>
+        <div class="drop">
+          <a href="calculators.html">Mortgage Payment</a>
+          <a href="land-transfer-tax-calculator.html">Land Transfer Tax</a>
+          <a href="closing-cost-calculator.html">Closing Cost</a>
+        </div>
+      </li>
+      <li><a href="#rates" data-scroll>Rates</a></li>
+      <li><a href="#about" data-scroll>About</a></li>
+      <li><a href="#team" data-scroll>Team</a></li>
+      <li><a href="#reviews" data-scroll>Reviews</a></li>
+      <li><a href="blog.html">Blog</a></li>
+    </ul>
+    <a href="#contact" data-scroll class="btn primary" style="padding:10px 22px">Get in touch</a>
+    <button class="hamb" id="hamb" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services" data-scroll>Services</a>
+  <a href="guides.html">Guides</a>
+  <a href="calculators.html">Calculators</a>
+  <a href="#rates" data-scroll>Rates</a>
+  <a href="#about" data-scroll>About</a>
+  <a href="#team" data-scroll>Team</a>
+  <a href="#reviews" data-scroll>Reviews</a>
+  <a href="blog.html">Blog</a>
+  <a href="#careers" data-scroll>Careers</a>
+  <a href="feedback.html">Feedback</a>
+  <a href="#contact" data-scroll>Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero wrap" id="home">
+  <div class="hero-glow"></div>
+  <div class="eyebrow hero-eyebrow">Atlantic Canada · Mortgages, nationwide</div>
+  <h1 class="hero-title">
+    <span class="line">The mortgage,</span>
+    <span class="line">made effortless.</span>
+  </h1>
+  <!-- DEACTIVATED sentence (re-enable when insurance/investment return): Plus insurance and investment solutions to protect what matters. -->
+  <p class="hero-sub">Expert guidance, sharp rates, and a process built around you — from pre-approval to your final renewal.</p>
+  <div class="hero-cta">
+    <a class="btn primary" data-apply>Start your application</a>
+  </div>
+</section>
+
+<!-- STATS -->
+<section style="padding:0"><div class="wrap"><div class="stats">
+  <div class="stat reveal"><div class="num" data-count="10" data-prefix="$" data-suffix="M+">$0</div><div class="lbl">Funded so far in 2026</div></div>
+  <div class="stat reveal"><div class="num" data-count="15" data-suffix="+">0</div><div class="lbl">Families helped home</div></div>
+  <div class="stat reveal"><div class="num" data-count="50" data-suffix="+">0</div><div class="lbl">Lending partners</div></div>
+</div></div></section>
+
+<!-- STATEMENT (pinned) -->
+<section class="stmt" id="stmt"><div class="wrap">
+  <p class="big">
+    <span class="w">We&nbsp;believe</span> <span class="w">a&nbsp;mortgage</span> <span class="w">should&nbsp;feel</span>
+    <span class="w">less&nbsp;like</span> <span class="w">paperwork</span> <span class="w">—&nbsp;and</span>
+    <span class="w">more&nbsp;like</span> <span class="w">someone</span> <span class="w">handing&nbsp;you</span> <span class="w">the&nbsp;keys.</span>
+  </p>
+</div></section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="glow" style="width:460px; height:460px; top:80px; left:-160px"></div>
+  <div class="wrap">
+  <div class="eyebrow reveal">What we do</div>
+  <h2 class="reveal">Built for every stage.</h2>
+  <div class="grid3">
+    <div class="card glass reveal" id="svc-preapproval"><div class="k">Mortgage</div><h3>Pre-Approval</h3><p>Know your budget before you shop. We confirm what you qualify for and hold a rate so you can make offers with confidence.</p></div>
+    <div class="card glass reveal" id="svc-purchase"><div class="k">Mortgage</div><h3>Purchase</h3><p>From first home to next. We line up the right lender and the sharpest rate across our partner network.</p></div>
+    <div class="card glass reveal" id="svc-refinance"><div class="k">Mortgage</div><h3>Refinance</h3><p>Unlock equity, consolidate debt, or lower your payment by restructuring your existing mortgage.</p></div>
+    <div class="card glass reveal" id="svc-renewal"><div class="k">Mortgage</div><h3>Renewal</h3><p>Don&rsquo;t auto-sign with your bank. We shop your renewal across our lenders to keep you on the best terms.</p></div>
+    <div class="card glass reveal" id="svc-debt"><div class="k">Mortgage</div><h3>Debt Consolidation</h3><p>Roll high-interest debt into your mortgage and simplify everything into one lower monthly payment.</p></div>
+    <!-- DEACTIVATED (re-enable when ready):
+    <div class="card glass reveal" id="svc-insurance"><div class="k">Protection</div><h3>Insurance</h3><p>Life, critical illness, and disability coverage to protect your family and your mortgage if life takes a turn.</p></div>
+    <div class="card glass reveal" id="svc-investment"><div class="k">Growth</div><h3>Investment</h3><p>Tax-advantaged, insurance-based investment solutions such as segregated funds, built around your goals.</p></div>
+    -->
+  </div>
+  </div>
+</section>
+
+<!-- CALCULATORS TEASER -->
+<section id="calculator" class="alt"><div class="wrap">
+  <div class="eyebrow reveal">Plan ahead</div>
+  <h2 class="reveal">Calculators built for Canadian borrowers.</h2>
+  <p class="lead reveal">Estimate your monthly payment, land transfer tax, and closing costs — free, no sign-up required.</p>
+  <div class="grid3">
+    <div class="card glass reveal"><div class="k">Mortgage</div><h3>Payment Calculator</h3><p>Estimate your monthly payment, CMHC insurance, and how renting compares to owning.</p><a class="dl-btn" href="calculators.html" style="margin-top:14px">Open calculator →</a></div>
+    <div class="card glass reveal"><div class="k">Closing</div><h3>Land Transfer Tax</h3><p>See what you&rsquo;ll owe in provincial land transfer tax on your purchase.</p><a class="dl-btn" href="land-transfer-tax-calculator.html" style="margin-top:14px">Open calculator →</a></div>
+    <div class="card glass reveal"><div class="k">Closing</div><h3>Closing Cost Estimator</h3><p>Legal fees, title insurance, inspection, and more — all in one estimate.</p><a class="dl-btn" href="closing-cost-calculator.html" style="margin-top:14px">Open calculator →</a></div>
+  </div>
+</div></section>
+
+<!-- RATES -->
+<section id="rates"><div class="wrap">
+  <div class="eyebrow reveal">Today&rsquo;s posted rates</div>
+  <h2 class="reveal">Rates worth switching for.</h2>
+  <div class="rate-tabs reveal" id="rateTabs">
+    <button class="rtab active" data-tab="fixed">Fixed Rates</button>
+    <button class="rtab" data-tab="variable">Variable Rates</button>
+  </div>
+  <div class="rate-tbl-wrap reveal">
+    <table class="rate-tbl" aria-live="polite">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Rate</th>
+          <th>~Monthly on $400k &middot; 25 yrs</th>
+          <th>Best for</th>
+        </tr>
+      </thead>
+      <tbody id="rateBody"></tbody>
+    </table>
+  </div>
+  <p class="note">To update rates: find the <b>BROKER SETTINGS</b> block at the top of the script, edit the <b>RATES</b> array, save, and refresh. For discussion only — actual rates depend on lender, product, and your profile.</p>
+</div></section>
+
+<!-- ABOUT -->
+<section id="about" class="alt"><div class="wrap about">
+  <div class="reveal">
+    <div class="eyebrow">Our story</div>
+    <h2>Independent. On your side.</h2>
+    <div id="aboutText"></div>
+  </div>
+  <div class="img reveal"><img src="anmol.jpg" alt="Anmol Multani" onerror="this.style.display='none'"></div>
+</div></section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="glow" style="width:420px; height:420px; bottom:0; right:-150px"></div>
+  <div class="wrap">
+  <div class="eyebrow reveal">The people</div>
+  <h2 class="reveal">Meet the team.</h2>
+  <div class="grid-team reveal" id="teamGrid"></div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews" class="alt">
+  <div class="glow" style="width:440px; height:440px; top:40px; left:-150px"></div>
+  <div class="wrap">
+  <div class="eyebrow reveal">Client stories</div>
+  <h2 class="reveal">What clients say.</h2>
+  <div class="reviews-grid reveal" id="reviewsGrid"></div>
+  <p class="note">Shared with clients&rsquo; permission. To edit or add a review, open the <b>REVIEWS</b> list in the BROKER SETTINGS block at the top of the script.</p>
+  </div>
+</section>
+
+<!-- GUIDES -->
+<section id="guides"><div class="wrap">
+  <div class="glow" style="width:420px; height:420px; top:60px; right:-160px"></div>
+  <div class="eyebrow reveal">Free resources</div>
+  <h2 class="reveal">Guides for every situation.</h2>
+  <p class="lead reveal">Plain-language guides built for Canadian borrowers, with an FAQ and a free PDF for each.</p>
+  <div class="guide-grid">
+
+    <div class="guide-card glass reveal" id="guide-ftb">
+      <div class="k">Mortgage</div>
+      <h3>First Time Home Buyer Guide</h3>
+      <p>From FHSA and the RRSP Home Buyers&rsquo; Plan to closing costs and what lenders actually look for — everything you need before you sign.</p>
+      <a href="guides/first-time-buyer.html" class="dl-btn">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Read the guide
+      </a>
+    </div>
+
+    <div class="guide-card glass reveal" id="guide-newcomer">
+      <div class="k">Newcomer</div>
+      <h3>Newcomer to Canada Guide</h3>
+      <p>Which programs you qualify for, what lenders accept as proof of income, and how to build your borrower file quickly as a newcomer.</p>
+      <a href="guides/newcomer-to-canada.html" class="dl-btn">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Read the guide
+      </a>
+    </div>
+
+    <div class="guide-card glass reveal" id="guide-nurses">
+      <div class="k">Healthcare</div>
+      <h3>Guide for Nurses</h3>
+      <p>Shift differentials, agency work, part-time arrangements — we know how your income is structured and which lenders recognise it properly.</p>
+      <a href="guides/nurses-healthcare.html" class="dl-btn">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Read the guide
+      </a>
+    </div>
+
+    <div class="guide-card glass reveal" id="guide-selfemployed">
+      <div class="k">Self-Employed</div>
+      <h3>Self-Employed Mortgage Guide</h3>
+      <p>T1 generals, stated income, two years of NOAs — stop being told no by the banks. There are lenders built for how you earn.</p>
+      <a href="guides/self-employed.html" class="dl-btn">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Read the guide
+      </a>
+    </div>
+
+  </div>
+</div></section>
+
+<!-- CAREERS (subtle, no listings) -->
+<section id="careers" class="careers"><div class="wrap">
+  <div class="eyebrow reveal">Careers</div>
+  <h2 class="reveal" style="max-width:680px">Good people, building something rare.</h2>
+  <p class="lead reveal" style="max-width:640px">No open roles right now — but we&rsquo;re growing, and we&rsquo;re always glad to meet sharp brokers and operations people. Send your details and résumé and we&rsquo;ll keep you in mind.</p>
+  <form class="career-form glass reveal" id="careerForm" action="https://formsubmit.co/info@anmolmultani.ca" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="_subject" value="New career application — website">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+    <div class="cf-row">
+      <input type="text" name="Name" placeholder="Full name" required>
+      <input type="email" name="Email" placeholder="Email" required>
+    </div>
+    <label class="cf-file">
+      <span>Attach your résumé — PDF or Word, up to 10&nbsp;MB</span>
+      <input type="file" id="resume" name="Resume" accept=".pdf,.doc,.docx" required>
+    </label>
+    <button class="btn primary" type="submit">Send application</button>
+  </form>
+</div></section>
+
+<!-- CONTACT -->
+<section id="contact"><div class="wrap">
+  <div class="eyebrow reveal">Get in touch</div>
+  <h2 class="reveal">Let&rsquo;s talk.</h2>
+  <p class="lead reveal">Tell us where you&rsquo;re at and we&rsquo;ll map out your options — no pressure, no jargon.</p>
+
+  <div class="contact-details reveal">
+    <a class="cdetail glass" href="tel:+19029199487">
+      <span class="ck">Call or text</span>
+      <span class="cv">(902) 919-9487</span>
+    </a>
+    <a class="cdetail glass" href="mailto:info@anmolmultani.ca">
+      <span class="ck">Email</span>
+      <span class="cv">info@anmolmultani.ca</span>
+    </a>
+  </div>
+
+  <div class="reveal" style="margin-top:30px">
+    <a class="btn primary" data-apply>Start your mortgage application</a>
+  </div>
+
+  <div class="reveal">
+    <label class="topics-label" for="svcSelect">What would you like to talk about?</label>
+    <div class="bookselect">
+      <select id="svcSelect">
+        <option value="" selected disabled>Choose a topic&hellip;</option>
+        <option>Pre-approval</option>
+        <option>Purchase</option>
+        <option>Renewal</option>
+        <option>Refinance</option>
+        <!-- DEACTIVATED (re-enable when ready): <option>Insurance</option><option>Investment</option> -->
+        <option>Other</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form reveal" id="contactForm">
+    <input type="text" id="cName" placeholder="Full name" />
+    <input type="email" id="cEmail" placeholder="Email" />
+    <input type="text" id="cCity" placeholder="City" />
+    <div class="bookselect" style="max-width:none"><select id="cTime">
+      <option value="" selected disabled>Best time to reach you (Atlantic Time)</option>
+      <option>Morning &middot; 9am&ndash;12pm AT</option>
+      <option>Afternoon &middot; 12&ndash;4pm AT</option>
+      <option>Evening &middot; 4&ndash;7pm AT</option>
+      <option>Anytime</option>
+    </select></div>
+    <textarea class="full" id="cMsg" placeholder="Your message"></textarea>
+    <div class="full"><button class="btn primary" id="submitBtn" type="button">Send message</button></div>
+  </div>
+  <div class="thanks" id="thanks"><b>Thanks — your message is on its way.</b><br><span style="color:var(--muted)">I&rsquo;ll get back to you shortly. For anything urgent, call or text (902) 919-9487.</span></div>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="fcols">
+    <div><a href="#home" data-scroll class="logo" style="color:#fff; margin-bottom:18px">Anmol Multani</a><a href="#home" data-scroll>Clearstone Financial · Atlantic Canada</a></div>
+    <div><a href="#services" data-scroll>Services</a><a href="calculators.html">Calculators</a><a href="#rates" data-scroll>Rates</a><a href="guides.html">Guides</a></div>
+    <div><a href="#about" data-scroll>About</a><a href="#team" data-scroll>Team</a><a href="blog.html">Blog</a><a href="feedback.html">Feedback</a><a href="#contact" data-scroll>Contact</a></div>
+    <div><a href="tel:+19029199487">(902) 919-9487</a><a href="mailto:info@anmolmultani.ca">info@anmolmultani.ca</a></div>
+  </div>
+  <div class="powered">
+    <span>Powered by</span>
+    <img src="vine-group.png" alt="Vine Group" class="plogo" onerror="this.style.display='none'" />
+    <img src="clearstone-logo.png" alt="Clearstone Financial" class="plogo" onerror="this.style.display='none'" />
+    <span class="ptext"><b>Vine Group</b> · <b>Clearstone Financial</b> — locally owned &amp; operated.</span>
+  </div>
+  <div class="fbottom">© 2026 Anmol Multani. All rights reserved.</div>
+</div></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lenis/1.1.13/lenis.min.js"></script>
+<script src="settings.js"></script>
+<script src="site.js"></script>
+<script>
+  // contact submit — emails you directly via Web3Forms if a key is set; otherwise opens the visitor's email app
+  document.getElementById('submitBtn').addEventListener('click', function(){
+    var btn   = this;
+    var topic = document.getElementById('svcSelect').value || 'General enquiry';
+    var name  = document.getElementById('cName').value.trim();
+    var email = document.getElementById('cEmail').value.trim();
+    var city  = document.getElementById('cCity').value.trim();
+    var time  = document.getElementById('cTime').value.trim();
+    var msg   = document.getElementById('cMsg').value.trim();
+
+    if(!name || !email){ alert('Please add your name and email so I can get back to you.'); return; }
+
+    function mailtoFallback(){
+      var body = 'Name: '+name+'\r\nEmail: '+email+'\r\nCity: '+city+'\r\nBest time: '+time+'\r\nTopic: '+topic+'\r\n\r\nMessage:\r\n'+msg;
+      window.location.href = 'mailto:'+CONTACT.email+'?subject='+encodeURIComponent(topic+' enquiry')+'&body='+encodeURIComponent(body);
+    }
+    function showThanks(){
+      document.getElementById('contactForm').style.display = 'none';
+      document.getElementById('thanks').style.display = 'block';
+    }
+
+    if(FORM_ACCESS_KEY && FORM_ACCESS_KEY.trim()){
+      btn.disabled = true; btn.textContent = 'Sending…';
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          access_key: FORM_ACCESS_KEY.trim(),
+          subject: topic + ' enquiry — website',
+          from_name: name,
+          name: name, email: email, city: city, best_time: time, topic: topic, message: msg,
+          botcheck: false
+        })
+      })
+      .then(function(res){ return res.json(); })
+      .then(function(data){
+        if(data && data.success){ showThanks(); }
+        else { btn.disabled = false; btn.textContent = 'Send message'; mailtoFallback(); }
+      })
+      .catch(function(){ btn.disabled = false; btn.textContent = 'Send message'; mailtoFallback(); });
+    } else {
+      mailtoFallback();
+    }
+  });
+
+  // career application form (FormSubmit) — return to page after send, cap file size
+  (function(){
+    var cf = document.getElementById('careerForm');
+    if(!cf) return;
+    var next = document.createElement('input');
+    next.type = 'hidden'; next.name = '_next';
+    next.value = window.location.href.split('#')[0] + '#careers';
+    cf.appendChild(next);
+    cf.addEventListener('submit', function(e){
+      var f = document.getElementById('resume');
+      if(f && f.files && f.files[0] && f.files[0].size > 10 * 1024 * 1024){
+        e.preventDefault();
+        alert('Please keep your résumé under 10 MB.');
+      }
+    });
+  })();
+</script>
+</body>
+</html>

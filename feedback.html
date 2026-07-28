@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="color-scheme" content="light dark" />
+<title>Feedback — Anmol Multani</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<noscript><style>.reveal{opacity:1 !important; transform:none !important}</style></noscript>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header id="header">
+  <div class="wrap nav">
+    <a href="index.html" class="logo" aria-label="Home">Anmol Multani</a>
+    <ul class="menu">
+      <li class="has-drop">
+        <a href="index.html#services" aria-haspopup="true">Services</a>
+        <div class="drop">
+          <a href="index.html#svc-preapproval">Pre-Approval</a>
+          <a href="index.html#svc-purchase">Purchase</a>
+          <a href="index.html#svc-refinance">Refinance</a>
+          <a href="index.html#svc-renewal">Renewal</a>
+          <a href="index.html#svc-debt">Debt Consolidation</a>
+        </div>
+      </li>
+      <li class="has-drop">
+        <a href="guides.html" aria-haspopup="true">Guides</a>
+        <div class="drop">
+          <a href="guides/first-time-buyer.html">First Time Home Buyer</a>
+          <a href="guides/newcomer-to-canada.html">Newcomer to Canada</a>
+          <a href="guides/nurses-healthcare.html">Guide for Nurses</a>
+          <a href="guides/self-employed.html">Self-Employed Guide</a>
+        </div>
+      </li>
+      <li class="has-drop">
+        <a href="calculators.html" aria-haspopup="true">Calculators</a>
+        <div class="drop">
+          <a href="calculators.html">Mortgage Payment</a>
+          <a href="land-transfer-tax-calculator.html">Land Transfer Tax</a>
+          <a href="closing-cost-calculator.html">Closing Cost</a>
+        </div>
+      </li>
+      <li><a href="index.html#rates">Rates</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#team">Team</a></li>
+      <li><a href="index.html#reviews">Reviews</a></li>
+      <li><a href="blog.html">Blog</a></li>
+    </ul>
+    <a href="index.html#contact" class="btn primary" style="padding:10px 22px">Get in touch</a>
+    <button class="hamb" id="hamb" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#services">Services</a>
+  <a href="guides.html">Guides</a>
+  <a href="calculators.html">Calculators</a>
+  <a href="index.html#rates">Rates</a>
+  <a href="index.html#about">About</a>
+  <a href="index.html#team">Team</a>
+  <a href="index.html#reviews">Reviews</a>
+  <a href="blog.html">Blog</a>
+  <a href="index.html#careers">Careers</a>
+  <a href="feedback.html">Feedback</a>
+  <a href="index.html#contact">Contact</a>
+</div>
+
+<section class="page-hero wrap">
+  <div class="hero-glow"></div>
+  <span class="k-badge">Feedback</span>
+  <h1 class="hero-title" style="font-size:clamp(2.2rem,5.5vw,4rem)">Help me make this better.</h1>
+  <p class="hero-sub" style="max-width:620px">Found a bug on the site, have an idea, or want to tell me how the service went? It comes straight to me — no forms disappearing into a black hole.</p>
+</section>
+
+<section style="padding-top:0"><div class="wrap" style="max-width:760px">
+  <div class="reveal">
+    <label class="topics-label" for="fType" style="margin-top:0">What&rsquo;s this about?</label>
+    <div class="bookselect">
+      <select id="fType">
+        <option value="Service feedback">Service feedback</option>
+        <option value="Website bug">Website bug</option>
+        <option value="Improvement idea">Improvement idea</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form reveal" id="feedbackForm">
+    <input type="text" id="fName" placeholder="Full name (optional)" />
+    <input type="email" id="fEmail" placeholder="Email (so I can follow up)" />
+    <textarea class="full" id="fMsg" placeholder="What's on your mind?" required></textarea>
+    <div class="full"><button class="btn primary" id="fSubmit" type="button">Send feedback</button></div>
+  </div>
+  <div class="thanks" id="fThanks"><b>Thank you — feedback sent.</b><br><span style="color:var(--muted)">I read every message myself. If you left an email, I&rsquo;ll follow up if needed.</span></div>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="fcols">
+    <div><a href="index.html" class="logo" style="color:#fff; margin-bottom:18px">Anmol Multani</a><a href="index.html">Clearstone Financial · Atlantic Canada</a></div>
+    <div><a href="index.html#services">Services</a><a href="calculators.html">Calculators</a><a href="index.html#rates">Rates</a><a href="guides.html">Guides</a></div>
+    <div><a href="index.html#about">About</a><a href="index.html#team">Team</a><a href="blog.html">Blog</a><a href="feedback.html">Feedback</a><a href="index.html#contact">Contact</a></div>
+    <div><a href="tel:+19029199487">(902) 919-9487</a><a href="mailto:info@anmolmultani.ca">info@anmolmultani.ca</a></div>
+  </div>
+  <div class="powered">
+    <span>Powered by</span>
+    <img src="vine-group.png" alt="Vine Group" class="plogo" onerror="this.style.display='none'" />
+    <img src="clearstone-logo.png" alt="Clearstone Financial" class="plogo" onerror="this.style.display='none'" />
+    <span class="ptext"><b>Vine Group</b> · <b>Clearstone Financial</b> — locally owned &amp; operated.</span>
+  </div>
+  <div class="fbottom">© 2026 Anmol Multani. All rights reserved.</div>
+</div></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lenis/1.1.13/lenis.min.js"></script>
+<script src="settings.js"></script>
+<script src="site.js"></script>
+<script>
+  document.getElementById('fSubmit').addEventListener('click', function(){
+    var btn  = this;
+    var type = document.getElementById('fType').value;
+    var name = document.getElementById('fName').value.trim();
+    var email= document.getElementById('fEmail').value.trim();
+    var msg  = document.getElementById('fMsg').value.trim();
+
+    if(!msg){ alert('Please add a quick note so I know what you\'re seeing or thinking.'); return; }
+
+    function showThanks(){
+      document.getElementById('feedbackForm').style.display = 'none';
+      document.getElementById('fThanks').style.display = 'block';
+    }
+    function mailtoFallback(){
+      var body = 'Type: '+type+'\r\nName: '+(name||'(not provided)')+'\r\nEmail: '+(email||'(not provided)')+'\r\n\r\nMessage:\r\n'+msg;
+      window.location.href = 'mailto:'+CONTACT.email+'?subject='+encodeURIComponent(type+' — website feedback')+'&body='+encodeURIComponent(body);
+    }
+
+    btn.disabled = true; btn.textContent = 'Sending…';
+    fetch('https://formsubmit.co/ajax/' + CONTACT.email, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _subject: type + ' — website feedback',
+        type: type,
+        name: name || '(not provided)',
+        email: email || '(not provided)',
+        message: msg,
+        _autoresponse: email ? ('Hi,\n\nThanks for the feedback — it landed straight in my inbox and I read every one.\n\nYour note:\n' + msg + '\n\n— Anmol Multani, Clearstone Financial') : undefined
+      })
+    })
+    .then(function(){ showThanks(); })
+    .catch(function(){ btn.disabled = false; btn.textContent = 'Send feedback'; mailtoFallback(); });
+  });
+</script>
+</body>
+</html>
