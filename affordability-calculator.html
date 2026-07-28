@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="color-scheme" content="light dark" />
+<title>Mortgage Affordability Calculator — Anmol Multani</title>
+<meta name="description" content="See roughly how much mortgage you may qualify for based on your income and debts, using the same GDS/TDS ratios and stress test lenders use in Canada." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<noscript><style>.reveal{opacity:1 !important; transform:none !important}</style></noscript>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header id="header">
+  <div class="wrap nav">
+    <a href="index.html" class="logo" aria-label="Home">Anmol Multani</a>
+    <ul class="menu">
+      <li class="has-drop">
+        <a href="index.html#services" aria-haspopup="true">Services</a>
+        <div class="drop">
+          <a href="index.html#svc-preapproval">Pre-Approval</a>
+          <a href="index.html#svc-purchase">Purchase</a>
+          <a href="index.html#svc-refinance">Refinance</a>
+          <a href="index.html#svc-renewal">Renewal</a>
+          <a href="index.html#svc-debt">Debt Consolidation</a>
+        </div>
+      </li>
+      <li class="has-drop">
+        <a href="guides.html" aria-haspopup="true">Guides</a>
+        <div class="drop">
+          <a href="guides/first-time-buyer.html">First Time Home Buyer</a>
+          <a href="guides/newcomer-to-canada.html">Newcomer to Canada</a>
+          <a href="guides/nurses-healthcare.html">Guide for Nurses</a>
+          <a href="guides/self-employed.html">Self-Employed Guide</a>
+        </div>
+      </li>
+      <li class="has-drop">
+        <a href="calculators.html" aria-haspopup="true">Calculators</a>
+        <div class="drop">
+          <a href="calculators.html">Mortgage Payment</a>
+          <a href="affordability-calculator.html">Affordability</a>
+          <a href="land-transfer-tax-calculator.html">Land Transfer Tax</a>
+          <a href="closing-cost-calculator.html">Closing Cost</a>
+        </div>
+      </li>
+      <li><a href="index.html#rates">Rates</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#team">Team</a></li>
+      <li><a href="index.html#reviews">Reviews</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="book.html">Book a Call</a></li>
+    </ul>
+    <a href="index.html#contact" class="btn primary" style="padding:10px 22px">Get in touch</a>
+    <button class="hamb" id="hamb" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#services">Services</a>
+  <a href="guides.html">Guides</a>
+  <a href="calculators.html">Calculators</a>
+  <a href="index.html#rates">Rates</a>
+  <a href="index.html#about">About</a>
+  <a href="index.html#team">Team</a>
+  <a href="index.html#reviews">Reviews</a>
+  <a href="blog.html">Blog</a>
+  <a href="book.html">Book a Call</a>
+  <a href="index.html#careers">Careers</a>
+  <a href="feedback.html">Feedback</a>
+  <a href="index.html#contact">Contact</a>
+</div>
+
+<section class="page-hero wrap">
+  <div class="hero-glow"></div>
+  <span class="k-badge">Plan ahead</span>
+  <h1 class="hero-title" style="font-size:clamp(2.2rem,5.5vw,4rem)">How much might you qualify for?</h1>
+  <p class="hero-sub" style="max-width:620px">Enter your income and debts to see a rough estimate — using the same GDS/TDS ratios and stress test Canadian lenders actually use.</p>
+  <div class="calc-tabs reveal">
+    <a href="calculators.html">Mortgage Payment</a>
+    <a href="affordability-calculator.html" class="active">Affordability</a>
+    <a href="land-transfer-tax-calculator.html">Land Transfer Tax</a>
+    <a href="closing-cost-calculator.html">Closing Cost</a>
+  </div>
+</section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="calc">
+    <div class="reveal">
+      <div class="field">
+        <label for="income">Annual household income (before tax)</label>
+        <div class="inwrap"><span class="pre">$</span><input type="text" id="income" value="90,000" inputmode="numeric" autocomplete="off" /></div>
+        <div class="hint">Combine incomes if you&rsquo;re applying with a partner.</div>
+      </div>
+      <div class="field">
+        <label for="debts">Your monthly debt payments</label>
+        <div class="inwrap"><span class="pre">$</span><input type="text" id="debts" value="350" inputmode="numeric" autocomplete="off" /></div>
+        <div class="hint">Car loans, credit card minimums, student loans, support payments, etc.</div>
+      </div>
+      <div class="field">
+        <label for="down">Down payment available</label>
+        <div class="inwrap"><span class="pre">$</span><input type="text" id="down" value="25,000" inputmode="numeric" autocomplete="off" /></div>
+      </div>
+      <div class="field">
+        <label for="credit">Credit score range</label>
+        <div class="bookselect" style="max-width:none"><select id="credit">
+          <option value="good">680 and up (good to excellent)</option>
+          <option value="building">Under 680 (building credit)</option>
+        </select></div>
+      </div>
+      <div class="field">
+        <label for="rate">Interest rate (your actual rate)</label>
+        <div class="inwrap"><input type="number" id="rate" value="4.29" min="0" max="25" step="0.05" inputmode="decimal" style="padding-left:18px" /><span class="suf">%</span></div>
+        <div class="hint">We qualify you at a higher &ldquo;stress test&rdquo; rate, but your real payment estimate uses this one.</div>
+      </div>
+      <div class="field">
+        <label for="amort">Amortization</label>
+        <div class="inwrap"><input type="number" id="amort" value="25" min="1" max="35" step="1" inputmode="numeric" style="padding-left:18px" /><span class="suf">years</span></div>
+      </div>
+      <div class="field">
+        <label for="tax">Estimated annual property tax</label>
+        <div class="inwrap"><span class="pre">$</span><input type="text" id="tax" value="3,600" inputmode="numeric" autocomplete="off" /></div>
+        <div class="hint">Rough guess is fine — about 1&ndash;1.5% of home price is typical.</div>
+      </div>
+      <div class="field" style="margin-bottom:0">
+        <label for="heat">Estimated monthly heating cost</label>
+        <div class="inwrap"><span class="pre">$</span><input type="text" id="heat" value="125" inputmode="numeric" autocomplete="off" /></div>
+      </div>
+    </div>
+    <div class="result reveal">
+      <div class="sm">Estimated qualifying mortgage</div>
+      <div class="pay" id="qualAmt">$0</div>
+      <div class="line2"><span>Estimated max home price</span><b id="maxPrice">$0</b></div>
+      <div class="line2"><span>Est. real monthly payment</span><b id="realPay">$0</b></div>
+      <div class="line2"><span>GDS ratio (housing costs)</span><b id="gdsOut">0%</b></div>
+      <div class="line2"><span>TDS ratio (all debts)</span><b id="tdsOut">0%</b></div>
+      <div class="line2"><span>Qualifying (stress test) rate</span><b id="stressOut">0%</b></div>
+    </div>
+  </div>
+
+  <p class="note" id="bindingNote">&nbsp;</p>
+  <p class="note">Estimate only, based on standard GDS/TDS qualification ratios and the federal mortgage stress test — not a pre-approval. Actual qualifying amount depends on the lender, your full credit picture, property type, and other factors. For planning and discussion only. Not legal, tax, or accounting advice.</p>
+
+  <div class="book-card glass reveal">
+    <div>
+      <h3>Want the real number?</h3>
+      <p>A free pre-approval locks your rate and gives you the exact figure, not an estimate.</p>
+    </div>
+    <a class="btn primary" data-apply>Get pre-approved</a>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="fcols">
+    <div><a href="index.html" class="logo" style="color:#fff; margin-bottom:18px">Anmol Multani</a><a href="index.html">Clearstone Financial · Atlantic Canada</a></div>
+    <div><a href="index.html#services">Services</a><a href="calculators.html">Calculators</a><a href="index.html#rates">Rates</a><a href="guides.html">Guides</a></div>
+    <div><a href="index.html#about">About</a><a href="index.html#team">Team</a><a href="blog.html">Blog</a><a href="feedback.html">Feedback</a><a href="index.html#contact">Contact</a></div>
+    <div><a href="tel:+19029199487">(902) 919-9487</a><a href="mailto:info@anmolmultani.ca">info@anmolmultani.ca</a></div>
+  </div>
+  <div class="powered">
+    <span>Powered by</span>
+    <img src="vine-group.png" alt="Vine Group" class="plogo" onerror="this.style.display='none'" />
+    <img src="clearstone-logo.png" alt="Clearstone Financial" class="plogo" onerror="this.style.display='none'" />
+    <span class="ptext"><b>Vine Group</b> · <b>Clearstone Financial</b> — locally owned &amp; operated.</span>
+  </div>
+  <div class="fbottom">© 2026 Anmol Multani. All rights reserved.</div>
+</div></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lenis/1.1.13/lenis.min.js"></script>
+<script src="settings.js"></script>
+<script src="site.js"></script>
+<script>
+  // ===================== AFFORDABILITY / PRE-QUALIFICATION CALCULATOR =====================
+  var incomeEl = document.getElementById('income'),
+      debtsEl  = document.getElementById('debts'),
+      downEl   = document.getElementById('down'),
+      creditEl = document.getElementById('credit'),
+      rateEl   = document.getElementById('rate'),
+      amortEl  = document.getElementById('amort'),
+      taxEl    = document.getElementById('tax'),
+      heatEl   = document.getElementById('heat');
+
+  function money(n){ if(!isFinite(n)) n = 0; return '$' + Math.round(n).toLocaleString(); }
+  function numEl(el){ var v = parseFloat(String(el.value).replace(/[^0-9.]/g,'')); return isNaN(v) ? 0 : v; }
+  function fmtThousands(el){ var raw = String(el.value).replace(/[^0-9]/g,''); el.value = raw === '' ? '' : parseInt(raw,10).toLocaleString('en-US'); }
+  function effMonthlyRate(r){ if(r <= 0) return 0; return Math.pow(1 + (r/100)/2, 1/6) - 1; }
+  function monthlyPayment(loan, mr, n){ if(n <= 0) return 0; return mr === 0 ? loan/n : loan * mr * Math.pow(1+mr,n) / (Math.pow(1+mr,n)-1); }
+  function loanFromPayment(pay, mr, n){ if(n <= 0 || pay <= 0) return 0; return mr === 0 ? pay*n : pay * (1 - Math.pow(1+mr,-n)) / mr; }
+
+  function calc(){
+    var income = numEl(incomeEl);
+    var debts  = numEl(debtsEl);
+    var down   = numEl(downEl);
+    var rate   = numEl(rateEl);
+    var years  = numEl(amortEl) || 25;
+    var tax    = numEl(taxEl);
+    var heat   = numEl(heatEl);
+    var goodCredit = creditEl.value === 'good';
+
+    var gdsLimit = goodCredit ? 0.39 : 0.35;
+    var tdsLimit = goodCredit ? 0.44 : 0.42;
+
+    var stressRate = Math.max(rate + 2, 5.25);
+    var mrStress = effMonthlyRate(stressRate);
+    var mrReal   = effMonthlyRate(rate);
+    var n = years * 12;
+    var grossMonthly = income / 12;
+
+    var maxFromGDS = grossMonthly * gdsLimit;
+    var maxFromTDS = (grossMonthly * tdsLimit) - debts;
+    var maxHousing = Math.max(0, Math.min(maxFromGDS, maxFromTDS));
+    var binding = maxFromGDS <= maxFromTDS ? 'GDS (housing costs)' : 'TDS (total debts)';
+
+    // Property tax scales with price, and price depends on the loan we're solving for —
+    // a few passes converge fast since tax is a small share of the total.
+    var price = down > 0 ? down / 0.05 : 400000;
+    var loan = 0, monthlyTax = tax / 12;
+    for (var i = 0; i < 20; i++){
+      monthlyTax = price > 0 ? (tax / 12) : monthlyTax; // tax input is already annual $ — held constant unless user edits it
+      var maxMortgagePay = Math.max(0, maxHousing - monthlyTax - heat);
+      loan = loanFromPayment(maxMortgagePay, mrStress, n);
+      price = loan + down;
+    }
+
+    var realPay = monthlyPayment(loan, mrReal, n);
+    var gdsActual = grossMonthly > 0 ? ((monthlyPayment(loan, mrStress, n) + monthlyTax + heat) / grossMonthly * 100) : 0;
+    var tdsActual = grossMonthly > 0 ? ((monthlyPayment(loan, mrStress, n) + monthlyTax + heat + debts) / grossMonthly * 100) : 0;
+
+    document.getElementById('qualAmt').textContent = money(loan);
+    document.getElementById('maxPrice').textContent = money(price);
+    document.getElementById('realPay').textContent = money(realPay) + '/mo';
+    document.getElementById('gdsOut').textContent = gdsActual.toFixed(1) + '%';
+    document.getElementById('tdsOut').textContent = tdsActual.toFixed(1) + '%';
+    document.getElementById('stressOut').textContent = stressRate.toFixed(2) + '%';
+    document.getElementById('bindingNote').textContent = 'Your estimate is limited by the ' + binding + ' ratio — the more restrictive of the two lenders check.';
+  }
+
+  incomeEl.addEventListener('input', function(){ fmtThousands(incomeEl); calc(); });
+  debtsEl.addEventListener('input', function(){ fmtThousands(debtsEl); calc(); });
+  downEl.addEventListener('input', function(){ fmtThousands(downEl); calc(); });
+  taxEl.addEventListener('input', function(){ fmtThousands(taxEl); calc(); });
+  heatEl.addEventListener('input', function(){ fmtThousands(heatEl); calc(); });
+  creditEl.addEventListener('change', calc);
+  rateEl.addEventListener('input', calc);
+  amortEl.addEventListener('input', calc);
+  calc();
+</script>
+</body>
+</html>

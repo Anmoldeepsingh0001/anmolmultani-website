@@ -360,6 +360,18 @@
   .calc-tabs a:hover{border-color:var(--accent); color:var(--accent)}
   .calc-tabs a.active{background:var(--accent); color:#fff; border-color:var(--accent)}
 
+  /* ===================== LENDERS MARQUEE ===================== */
+  .lenders{padding:70px 0; overflow:hidden}
+  .lenders .eyebrow{text-align:center}
+  .lenders h2{text-align:center; margin-bottom:10px}
+  .lenders-track-wrap{position:relative; margin-top:50px; -webkit-mask-image:linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%); mask-image:linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%)}
+  .lenders-track{display:flex; width:max-content; gap:56px; animation:lenders-scroll 32s linear infinite}
+  .lenders-track:hover{animation-play-state:paused}
+  .lenders-track span{flex:none; font-size:1.5rem; font-weight:600; letter-spacing:-.01em; color:var(--muted); opacity:.7; white-space:nowrap; transition:opacity .25s, color .25s}
+  .lenders-track span:hover{opacity:1; color:var(--ink)}
+  @keyframes lenders-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @media (prefers-reduced-motion: reduce){.lenders-track{animation:none; flex-wrap:wrap; justify-content:center}}
+
   @media (prefers-reduced-motion: reduce){
     html{scroll-behavior:auto}
     *{animation:none !important; transition:none !important}

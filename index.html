@@ -4,14 +4,51 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="color-scheme" content="light dark" />
-<title>Anmol Multani — Clearstone Financial</title>
-<meta name="description" content="Expert mortgage guidance in Atlantic Canada — pre-approval, purchase, refinance, and renewal. Sharp rates, honest advice, and a process built around you." />
+<title>Anmol Multani | Mortgage Broker in Atlantic Canada — Clearstone Financial</title>
+<meta name="description" content="Experienced mortgage broker serving Prince Edward Island, Nova Scotia & New Brunswick. Sharp rates, honest advice, and a smooth process from pre-approval to renewal — backed by a wide lender network. Get pre-approved free." />
+<meta name="keywords" content="mortgage broker Atlantic Canada, mortgage broker PEI, mortgage broker Prince Edward Island, mortgage broker Nova Scotia, mortgage broker New Brunswick, Charlottetown mortgage broker, best mortgage broker, first time home buyer mortgage, mortgage renewal, mortgage refinance, Anmol Multani, Clearstone Financial" />
+<link rel="canonical" href="https://anmolmultani.ca/" />
+
+<!-- Open Graph / social sharing -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Clearstone Financial" />
+<meta property="og:title" content="Anmol Multani | Mortgage Broker in Atlantic Canada" />
+<meta property="og:description" content="Experienced mortgage broker serving PEI, Nova Scotia & New Brunswick. Sharp rates, honest advice, and a smooth process from pre-approval to renewal." />
+<meta property="og:url" content="https://anmolmultani.ca/" />
+<meta property="og:image" content="https://anmolmultani.ca/anmol-headshot.jpg" />
+<meta property="og:locale" content="en_CA" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Anmol Multani | Mortgage Broker in Atlantic Canada" />
+<meta name="twitter:description" content="Experienced mortgage broker serving PEI, Nova Scotia & New Brunswick. Sharp rates, honest advice, and a smooth process from pre-approval to renewal." />
+<meta name="twitter:image" content="https://anmolmultani.ca/anmol-headshot.jpg" />
+
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <!-- Inter is only the FALLBACK for non-Apple devices. Apple devices render real SF Pro via the system stack. -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 <noscript><style>.reveal{opacity:1 !important; transform:none !important}</style></noscript>
 <link rel="stylesheet" href="styles.css" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FinancialService",
+  "name": "Anmol Multani — Clearstone Financial",
+  "description": "Mortgage broker serving Prince Edward Island, Nova Scotia, and New Brunswick — pre-approval, purchase, refinance, renewal, and debt consolidation, backed by Vine Mortgage Group's lender network.",
+  "url": "https://anmolmultani.ca/",
+  "telephone": "+1-902-919-9487",
+  "email": "info@anmolmultani.ca",
+  "image": "https://anmolmultani.ca/anmol-headshot.jpg",
+  "priceRange": "$$",
+  "address": { "@type": "PostalAddress", "addressLocality": "Charlottetown", "addressRegion": "PE", "addressCountry": "CA" },
+  "areaServed": [
+    { "@type": "State", "name": "Prince Edward Island" },
+    { "@type": "State", "name": "Nova Scotia" },
+    { "@type": "State", "name": "New Brunswick" }
+  ],
+  "founder": { "@type": "Person", "name": "Anmol Multani", "jobTitle": "Mortgage Broker" },
+  "sameAs": []
+}
+</script>
 </head>
 <body>
 
@@ -46,6 +83,7 @@
         <a href="calculators.html" aria-haspopup="true">Calculators</a>
         <div class="drop">
           <a href="calculators.html">Mortgage Payment</a>
+          <a href="affordability-calculator.html">Affordability</a>
           <a href="land-transfer-tax-calculator.html">Land Transfer Tax</a>
           <a href="closing-cost-calculator.html">Closing Cost</a>
         </div>
@@ -55,6 +93,7 @@
       <li><a href="#team" data-scroll>Team</a></li>
       <li><a href="#reviews" data-scroll>Reviews</a></li>
       <li><a href="blog.html">Blog</a></li>
+      <li><a href="book.html">Book a Call</a></li>
     </ul>
     <a href="#contact" data-scroll class="btn primary" style="padding:10px 22px">Get in touch</a>
     <button class="hamb" id="hamb" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
@@ -70,6 +109,7 @@
   <a href="#team" data-scroll>Team</a>
   <a href="#reviews" data-scroll>Reviews</a>
   <a href="blog.html">Blog</a>
+  <a href="book.html">Book a Call</a>
   <a href="#careers" data-scroll>Careers</a>
   <a href="feedback.html">Feedback</a>
   <a href="#contact" data-scroll>Contact</a>
@@ -96,6 +136,17 @@
   <div class="stat reveal"><div class="num" data-count="15" data-suffix="+">0</div><div class="lbl">Families helped home</div></div>
   <div class="stat reveal"><div class="num" data-count="50" data-suffix="+">0</div><div class="lbl">Lending partners</div></div>
 </div></div></section>
+
+<!-- LENDERS -->
+<section class="lenders alt">
+  <div class="wrap">
+    <div class="eyebrow reveal">Our network</div>
+    <h2 class="reveal">We work with lenders across Canada.</h2>
+  </div>
+  <div class="lenders-track-wrap reveal">
+    <div class="lenders-track" id="lendersTrack"></div>
+  </div>
+</section>
 
 <!-- STATEMENT (pinned) -->
 <section class="stmt" id="stmt"><div class="wrap">
@@ -130,9 +181,10 @@
 <section id="calculator" class="alt"><div class="wrap">
   <div class="eyebrow reveal">Plan ahead</div>
   <h2 class="reveal">Calculators built for Canadian borrowers.</h2>
-  <p class="lead reveal">Estimate your monthly payment, land transfer tax, and closing costs — free, no sign-up required.</p>
+  <p class="lead reveal">Estimate your monthly payment, what you may qualify for, land transfer tax, and closing costs — free, no sign-up required.</p>
   <div class="grid3">
     <div class="card glass reveal"><div class="k">Mortgage</div><h3>Payment Calculator</h3><p>Estimate your monthly payment, CMHC insurance, and how renting compares to owning.</p><a class="dl-btn" href="calculators.html" style="margin-top:14px">Open calculator →</a></div>
+    <div class="card glass reveal"><div class="k">Pre-Qualify</div><h3>Affordability Calculator</h3><p>Enter your income and debts to see roughly what you may qualify for.</p><a class="dl-btn" href="affordability-calculator.html" style="margin-top:14px">Open calculator →</a></div>
     <div class="card glass reveal"><div class="k">Closing</div><h3>Land Transfer Tax</h3><p>See what you&rsquo;ll owe in provincial land transfer tax on your purchase.</p><a class="dl-btn" href="land-transfer-tax-calculator.html" style="margin-top:14px">Open calculator →</a></div>
     <div class="card glass reveal"><div class="k">Closing</div><h3>Closing Cost Estimator</h3><p>Legal fees, title insurance, inspection, and more — all in one estimate.</p><a class="dl-btn" href="closing-cost-calculator.html" style="margin-top:14px">Open calculator →</a></div>
   </div>

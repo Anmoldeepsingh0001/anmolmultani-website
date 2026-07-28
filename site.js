@@ -70,6 +70,15 @@ var lenis = null;
   }).join('');
 })();
 
+/* ---- Lenders marquee (homepage only — no-ops elsewhere) ---- */
+(function(){
+  var track = document.getElementById('lendersTrack');
+  if(!track || typeof LENDERS === 'undefined') return;
+  // duplicated once so the -50% scroll animation loops seamlessly
+  var doubled = LENDERS.concat(LENDERS);
+  track.innerHTML = doubled.map(function(name){ return '<span>'+name+'</span>'; }).join('');
+})();
+
 /* ---- Reviews (homepage only — no-ops elsewhere) ---- */
 (function(){
   var grid = document.getElementById('reviewsGrid');
