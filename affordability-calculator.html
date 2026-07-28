@@ -127,10 +127,11 @@
         <div class="inwrap"><span class="pre">$</span><input type="text" id="heat" value="125" inputmode="numeric" autocomplete="off" /></div>
       </div>
     </div>
-    <div class="result reveal">
-      <div class="sm">Estimated qualifying mortgage</div>
-      <div class="pay" id="qualAmt">$0</div>
-      <div class="line2"><span>Estimated max home price</span><b id="maxPrice">$0</b></div>
+    <div class="result reveal" id="resultCard">
+      <div class="sm">Estimated max home price</div>
+      <div class="pay" id="maxPrice">$0</div>
+      <div class="line2"><span>Estimated qualifying mortgage</span><b id="qualAmt">$0</b></div>
+      <div class="line2"><span>Down payment</span><b id="downOut">$0</b></div>
       <div class="line2"><span>Est. real monthly payment</span><b id="realPay">$0</b></div>
       <div class="line2"><span>GDS ratio (housing costs)</span><b id="gdsOut">0%</b></div>
       <div class="line2"><span>TDS ratio (all debts)</span><b id="tdsOut">0%</b></div>
@@ -222,13 +223,18 @@
     var gdsActual = grossMonthly > 0 ? ((monthlyPayment(loan, mrStress, n) + monthlyTax + heat) / grossMonthly * 100) : 0;
     var tdsActual = grossMonthly > 0 ? ((monthlyPayment(loan, mrStress, n) + monthlyTax + heat + debts) / grossMonthly * 100) : 0;
 
-    document.getElementById('qualAmt').textContent = money(loan);
     document.getElementById('maxPrice').textContent = money(price);
+    document.getElementById('qualAmt').textContent = money(loan);
+    document.getElementById('downOut').textContent = money(down);
     document.getElementById('realPay').textContent = money(realPay) + '/mo';
     document.getElementById('gdsOut').textContent = gdsActual.toFixed(1) + '%';
     document.getElementById('tdsOut').textContent = tdsActual.toFixed(1) + '%';
     document.getElementById('stressOut').textContent = stressRate.toFixed(2) + '%';
     document.getElementById('bindingNote').textContent = 'Your estimate is limited by the ' + binding + ' ratio — the more restrictive of the two lenders check.';
+
+    // Brief highlight flash so it's obvious the numbers just updated.
+    var card = document.getElementById('resultCard');
+    card.classList.remove('flash'); void card.offsetWidth; card.classList.add('flash');
   }
 
   incomeEl.addEventListener('input', function(){ fmtThousands(incomeEl); calc(); });

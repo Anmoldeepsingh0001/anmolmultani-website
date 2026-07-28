@@ -70,16 +70,19 @@ var lenis = null;
   }).join('');
 })();
 
-/* ---- Booking embed (homepage only — no-ops elsewhere) ---- */
+/* ---- Book-a-call buttons (any page). Google doesn't allow its booking
+   page to be embedded in an iframe, so this opens it in a new tab instead. ---- */
 (function(){
-  var wrap = document.getElementById('bookingEmbed');
-  if(!wrap) return;
-  if (typeof BOOKING_LINK !== 'undefined' && BOOKING_LINK.trim()) {
-    wrap.innerHTML = '<div class="booking-frame"><iframe src="' + BOOKING_LINK.trim() + '" title="Book a call with Anmol Multani"></iframe></div>';
-  } else {
-    wrap.innerHTML =
-      '<div class="booking-fallback glass"><p>Online booking is coming soon — call, text, or email using the details above and I&rsquo;ll find a time that works for you.</p></div>';
-  }
+  var links = document.querySelectorAll('[data-book]');
+  if(!links.length) return;
+  var hasLink = typeof BOOKING_LINK !== 'undefined' && BOOKING_LINK.trim();
+  links.forEach(function(a){
+    if (hasLink) {
+      a.setAttribute('href', BOOKING_LINK.trim());
+    } else {
+      a.style.display = 'none';
+    }
+  });
 })();
 
 /* ---- Lenders marquee (homepage only — no-ops elsewhere) ---- */
@@ -88,7 +91,16 @@ var lenis = null;
   if(!track || typeof LENDERS === 'undefined') return;
   // duplicated once so the -50% scroll animation loops seamlessly
   var doubled = LENDERS.concat(LENDERS);
-  track.innerHTML = doubled.map(function(name){ return '<span>'+name+'</span>'; }).join('');
+  track.innerHTML = doubled.map(function(l){
+    var name = typeof l === 'string' ? l : l.name;
+    var logo = typeof l === 'object' && l.logo ? l.logo : '';
+    if (logo) {
+      // falls back to the plain name if the logo file isn't there yet
+      return '<span class="has-logo"><img src="'+logo+'" alt="'+name+'" ' +
+        'onerror="this.parentNode.classList.remove(\'has-logo\'); this.parentNode.textContent=\''+name+'\'"></span>';
+    }
+    return '<span>'+name+'</span>';
+  }).join('');
 })();
 
 /* ---- Reviews (homepage only — no-ops elsewhere) ---- */

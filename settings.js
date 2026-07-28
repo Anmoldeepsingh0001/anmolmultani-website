@@ -54,10 +54,22 @@ var TEAM = [
     bio: 'President & CEO of Clearstone Financial, guiding clients through every step of their mortgage. Off the clock, he’s a history major at heart who’s rarely without a good book.' }
 ];
 
-// 9) LENDERS YOU WORK WITH — add, remove, or edit names here. Shown as a
-//    scrolling strip on the homepage. Plain text names, not logo images —
-//    if you'd like real logos instead, send the image files and we'll swap them in.
+// 9) LENDERS YOU WORK WITH — shown as a scrolling strip on the homepage.
+//    Each one shows its logo automatically once you drop a matching PNG
+//    into the lender-logos/ folder (see lender-logos/README.txt for exact
+//    filenames) — until then, or if a file is missing, the name shows as
+//    plain text instead. Add, remove, or rename entries here anytime.
 var LENDERS = [
-  'TD', 'Scotiabank', 'BMO', 'Strive', 'Home Trust', 'CMI', 'Keystone',
-  'First National', 'MCAP', 'RMG', 'Merix Financial', 'B2B Bank'
+  { name: 'TD',              logo: 'lender-logos/td.png' },
+  { name: 'Scotiabank',      logo: 'lender-logos/scotiabank.png' },
+  { name: 'BMO',             logo: 'lender-logos/bmo.png' },
+  { name: 'Strive',          logo: 'lender-logos/strive.png' },
+  { name: 'Home Trust',      logo: 'lender-logos/home-trust.png' },
+  { name: 'CMI',             logo: 'lender-logos/cmi.png' },
+  { name: 'Keystone',        logo: 'lender-logos/keystone.png' },
+  { name: 'First National',  logo: 'lender-logos/first-national.png' },
+  { name: 'MCAP',            logo: 'lender-logos/mcap.png' },
+  { name: 'RMG',             logo: 'lender-logos/rmg.png' },
+  { name: 'Merix Financial', logo: 'lender-logos/merix.png' },
+  { name: 'B2B Bank',        logo: 'lender-logos/b2b-bank.png' }
 ];
