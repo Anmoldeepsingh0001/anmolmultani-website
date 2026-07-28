@@ -362,6 +362,14 @@
   .blog-card h3{font-size:1.15rem; font-weight:600; letter-spacing:-.01em}
   .blog-card p{color:var(--muted); font-size:.93rem; font-weight:300; line-height:1.6; flex:1}
 
+  /* ===================== INSTAGRAM FEED (auto-refreshed via GitHub Actions) ===================== */
+  .ig-feed-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:20px}
+  @media(max-width:900px){.ig-feed-grid{grid-template-columns:repeat(2,1fr)}}
+  .ig-feed-grid .ig-post{display:block; border-radius:16px; overflow:hidden; text-decoration:none; background:var(--card); border:1px solid var(--line); transition:.25s}
+  .ig-feed-grid .ig-post:hover{transform:translateY(-4px)}
+  .ig-feed-grid .ig-post img{width:100%; aspect-ratio:1/1; object-fit:cover; display:block}
+  .ig-feed-grid .ig-post span{display:block; padding:10px 12px; font-size:.82rem; color:var(--muted); line-height:1.4}
+
   /* ===================== CALCULATOR TABS (multi-calculator pages) ===================== */
   .calc-tabs{display:flex; gap:8px; margin-top:44px; flex-wrap:wrap}
   .calc-tabs a{padding:10px 22px; border-radius:30px; border:1px solid var(--line); color:var(--ink); text-decoration:none; font-size:.9rem; font-weight:500; transition:.25s}
