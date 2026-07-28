@@ -112,6 +112,7 @@
   .hero-title .line{display:block; overflow:hidden}
   .hero-sub{font-size:clamp(1.05rem,1.8vw,1.4rem); color:var(--muted); max-width:540px; font-weight:300; margin-bottom:40px}
   .hero-cta{display:flex; gap:14px; flex-wrap:wrap}
+  .cta-row{display:flex; gap:14px; flex-wrap:wrap}
 
   /* ===================== STATS ===================== */
   .stats{display:grid; grid-template-columns:repeat(3,1fr); gap:30px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:50px 0}
