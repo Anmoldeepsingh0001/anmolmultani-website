@@ -37,7 +37,8 @@ jobs:
         env:
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
         run: |
-          curl -s "https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,permalink,thumbnail_url,timestamp&access_token=${IG_ACCESS_TOKEN}&limit=4" -o instagram-posts.json
+          curl -s "https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,permalink,thumbnail_url,timestamp&access_token=${IG_ACCESS_TOKEN}&limit=4" \
+            | python3 -c "import sys,json; d=json.load(sys.stdin); print(json.dumps({'data': d.get('data', [])}))" > instagram-posts.json
           cat instagram-posts.json
 
       - name: Commit updated feed
