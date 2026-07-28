@@ -51,7 +51,6 @@
       <li><a href="index.html#team">Team</a></li>
       <li><a href="index.html#reviews">Reviews</a></li>
       <li><a href="blog.html">Blog</a></li>
-      <li><a href="book.html">Book a Call</a></li>
     </ul>
     <a href="index.html#contact" class="btn primary" style="padding:10px 22px">Get in touch</a>
     <button class="hamb" id="hamb" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
@@ -67,7 +66,6 @@
   <a href="index.html#team">Team</a>
   <a href="index.html#reviews">Reviews</a>
   <a href="blog.html">Blog</a>
-  <a href="book.html">Book a Call</a>
   <a href="index.html#careers">Careers</a>
   <a href="feedback.html">Feedback</a>
   <a href="index.html#contact">Contact</a>
@@ -96,7 +94,7 @@
       </div>
       <div class="field">
         <label for="debts">Your monthly debt payments</label>
-        <div class="inwrap"><span class="pre">$</span><input type="text" id="debts" value="350" inputmode="numeric" autocomplete="off" /></div>
+        <div class="inwrap"><span class="pre">$</span><input type="text" id="debts" value="600" inputmode="numeric" autocomplete="off" /></div>
         <div class="hint">Car loans, credit card minimums, student loans, support payments, etc.</div>
       </div>
       <div class="field">
@@ -215,16 +213,10 @@
     var maxHousing = Math.max(0, Math.min(maxFromGDS, maxFromTDS));
     var binding = maxFromGDS <= maxFromTDS ? 'GDS (housing costs)' : 'TDS (total debts)';
 
-    // Property tax scales with price, and price depends on the loan we're solving for —
-    // a few passes converge fast since tax is a small share of the total.
-    var price = down > 0 ? down / 0.05 : 400000;
-    var loan = 0, monthlyTax = tax / 12;
-    for (var i = 0; i < 20; i++){
-      monthlyTax = price > 0 ? (tax / 12) : monthlyTax; // tax input is already annual $ — held constant unless user edits it
-      var maxMortgagePay = Math.max(0, maxHousing - monthlyTax - heat);
-      loan = loanFromPayment(maxMortgagePay, mrStress, n);
-      price = loan + down;
-    }
+    var monthlyTax = tax / 12;
+    var maxMortgagePay = Math.max(0, maxHousing - monthlyTax - heat);
+    var loan = loanFromPayment(maxMortgagePay, mrStress, n);
+    var price = loan + down;
 
     var realPay = monthlyPayment(loan, mrReal, n);
     var gdsActual = grossMonthly > 0 ? ((monthlyPayment(loan, mrStress, n) + monthlyTax + heat) / grossMonthly * 100) : 0;

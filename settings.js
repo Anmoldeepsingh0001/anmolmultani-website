@@ -37,7 +37,7 @@ var APPLICATION_LINK = 'https://r.mtg-app.com/anmol';
 //    To create one: Google Calendar → Create → Appointment schedule → set your
 //    availability → click "Booking page" → copy that URL and paste it below.
 //    Leave '' and the booking page shows your phone/email instead of a calendar.
-var BOOKING_LINK = '';
+var BOOKING_LINK = 'https://calendar.app.google/tehVhbYwSrSFsF5w7';
 
 // 7) YOUR STORY — add or edit paragraphs here anytime, save, refresh.
 //    Each entry becomes its own paragraph in the "Our story" section.

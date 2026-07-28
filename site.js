@@ -70,6 +70,18 @@ var lenis = null;
   }).join('');
 })();
 
+/* ---- Booking embed (homepage only — no-ops elsewhere) ---- */
+(function(){
+  var wrap = document.getElementById('bookingEmbed');
+  if(!wrap) return;
+  if (typeof BOOKING_LINK !== 'undefined' && BOOKING_LINK.trim()) {
+    wrap.innerHTML = '<div class="booking-frame"><iframe src="' + BOOKING_LINK.trim() + '" title="Book a call with Anmol Multani"></iframe></div>';
+  } else {
+    wrap.innerHTML =
+      '<div class="booking-fallback glass"><p>Online booking is coming soon — call, text, or email using the details above and I&rsquo;ll find a time that works for you.</p></div>';
+  }
+})();
+
 /* ---- Lenders marquee (homepage only — no-ops elsewhere) ---- */
 (function(){
   var track = document.getElementById('lendersTrack');
