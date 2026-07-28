@@ -241,6 +241,10 @@
   .fcols{display:flex; justify-content:space-between; flex-wrap:wrap; gap:40px}
   .fcols a{color:var(--panel-muted); text-decoration:none; display:block; margin-bottom:10px; font-size:.92rem; font-weight:300}
   .fcols a:hover{color:#fff}
+  .social-icons{display:flex; gap:14px; margin-top:6px}
+  .social-icons a{color:var(--panel-muted); transition:.25s ease; display:flex; margin-bottom:0}
+  .social-icons a:hover{color:#fff; transform:translateY(-2px)}
+  .social-icons svg{width:20px; height:20px}
   .powered{margin-top:44px; padding-top:24px; border-top:1px solid var(--panel-line); display:flex; align-items:center; gap:16px; flex-wrap:wrap; font-size:.9rem; color:var(--panel-muted); font-weight:300}
   .powered .plogo{height:26px; width:auto; opacity:.95}
   .powered .ptext b{color:#fff; font-weight:600}

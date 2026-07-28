@@ -70,6 +70,25 @@ var lenis = null;
   }).join('');
 })();
 
+/* ---- Social icons in the footer (any page) ---- */
+(function(){
+  var el = document.getElementById('socialIcons');
+  if(!el || typeof SOCIAL === 'undefined') return;
+  var ICONS = {
+    instagram: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 3.3.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8 0 3.2 0 3.6-.1 4.8-.1 3.2-1.6 4.8-4.9 4.9-1.3.1-1.6.1-4.9.1-3.2 0-3.6 0-4.8-.1-3.3-.1-4.8-1.7-4.9-4.9-.1-1.3-.1-1.6-.1-4.8 0-3.2 0-3.6.1-4.8.1-3.3 1.7-4.8 4.9-4.9 1.3-.1 1.6-.1 4.8-.1M12 0C8.7 0 8.3 0 7 .1 2.7.3.3 2.7.1 7 0 8.3 0 8.7 0 12s0 3.7.1 5c.2 4.3 2.6 6.7 6.9 6.9 1.3.1 1.7.1 5 .1s3.7 0 5-.1c4.3-.2 6.7-2.6 6.9-6.9.1-1.3.1-1.7.1-5s0-3.7-.1-5C23.7 2.7 21.3.3 17 .1 15.7 0 15.3 0 12 0zm0 5.8A6.2 6.2 0 1 0 18.2 12 6.2 6.2 0 0 0 12 5.8zm0 10.2A4 4 0 1 1 16 12a4 4 0 0 1-4 4zm6.4-10.4a1.4 1.4 0 1 1-1.4-1.4 1.4 1.4 0 0 1 1.4 1.4z"/></svg>',
+    tiktok: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.82c-.9-.8-1.4-2-1.5-3.32h-3.1v12.6c0 1.4-1.1 2.6-2.6 2.6-1.4 0-2.6-1.2-2.6-2.6 0-1.7 1.7-3 3.4-2.5V9.7c-3.5-.5-6.5 2.2-6.5 5.6 0 3.3 2.8 5.7 5.7 5.7 3.1 0 5.7-2.6 5.7-5.7V9c1.2.9 2.7 1.4 4.3 1.4V7.3s-1.9.1-3.2-1.48z"/></svg>',
+    youtube: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2s-.2-1.6-.9-2.4c-.9-.9-1.9-.9-2.3-1C17.1 2.5 12 2.5 12 2.5h0s-5.1 0-8.3.3c-.4 0-1.4.1-2.3 1-.7.7-.9 2.4-.9 2.4S.2 8.1.2 10v1.9c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.4c.9.9 2 .9 2.5 1 1.8.2 7.7.3 7.7.3s5.1 0 8.3-.3c.4 0 1.4-.1 2.3-1 .7-.7.9-2.4.9-2.4s.2-1.9.2-3.8V10c0-1.9-.2-3.8-.2-3.8zM9.7 14.6V7.9l6.4 3.4-6.4 3.3z"/></svg>'
+  };
+  var labels = { instagram: 'Instagram', tiktok: 'TikTok', youtube: 'YouTube' };
+  var html = '';
+  ['instagram', 'tiktok', 'youtube'].forEach(function(key){
+    if (SOCIAL[key] && SOCIAL[key].trim()) {
+      html += '<a href="'+SOCIAL[key].trim()+'" target="_blank" rel="noopener" aria-label="'+labels[key]+'">'+ICONS[key]+'</a>';
+    }
+  });
+  el.innerHTML = html;
+})();
+
 /* ---- Book-a-call buttons (any page). Google doesn't allow its booking
    page to be embedded in an iframe, so this opens it in a new tab instead. ---- */
 (function(){

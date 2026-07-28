@@ -73,3 +73,16 @@ var LENDERS = [
   { name: 'Merix Financial', logo: 'lender-logos/merix.png' },
   { name: 'B2B Bank',        logo: 'lender-logos/b2b-bank.png' }
 ];
+
+// 10) SOCIAL LINKS — shown as icons in the footer. Leave any value '' to
+//     hide that icon entirely.
+var SOCIAL = {
+  instagram: 'https://www.instagram.com/anmolmultani.ca/',
+  tiktok: 'https://www.tiktok.com/@anmolmultani.ca',
+  youtube: 'https://www.youtube.com/@anmol.finance'
+};
+
+// 11) FEATURED VIDEO — paste a YouTube link here to feature it on the
+//     Blog page (e.g. https://www.youtube.com/watch?v=XXXXXXXXXXX or a
+//     youtu.be link). Leave '' and that section stays hidden.
+var FEATURED_VIDEO = '';
