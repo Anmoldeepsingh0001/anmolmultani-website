@@ -385,8 +385,10 @@
   .lenders-track:hover{animation-play-state:paused}
   .lenders-track span{flex:none; font-size:1.5rem; font-weight:600; letter-spacing:-.01em; color:var(--muted); opacity:.7; white-space:nowrap; transition:opacity .25s, color .25s; display:flex; align-items:center}
   .lenders-track span:hover{opacity:1; color:var(--ink)}
-  .lenders-track span.has-logo{opacity:1}
-  .lenders-track span.has-logo img{height:40px; width:auto; max-width:140px; object-fit:contain; display:block}
+  .lenders-track span.has-logo{opacity:1; width:158px; height:64px; justify-content:center; background:#fff; border:1px solid var(--line); border-radius:14px; padding:10px 18px; box-sizing:border-box; transition:transform .25s, box-shadow .25s}
+  .lenders-track span.has-logo:hover{transform:translateY(-3px); box-shadow:0 10px 24px rgba(0,0,0,.08)}
+  .lenders-track span.has-logo img{max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; display:block}
+  .lenders-track span.has-logo.dark-chip{background:#15161a; border-color:#15161a}
   @keyframes lenders-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
   @media (prefers-reduced-motion: reduce){.lenders-track{animation:none; flex-wrap:wrap; justify-content:center}}
 

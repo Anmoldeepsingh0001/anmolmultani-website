@@ -59,17 +59,19 @@ var TEAM = [
 //    into the lender-logos/ folder (see lender-logos/README.txt for exact
 //    filenames) — until then, or if a file is missing, the name shows as
 //    plain text instead. Add, remove, or rename entries here anytime.
+//    Add `dark: true` to an entry if its logo file is white/light-colored
+//    and needs a dark chip behind it to stay visible (e.g. Strive).
 var LENDERS = [
   { name: 'TD',              logo: 'lender-logos/td.png' },
   { name: 'Scotiabank',      logo: 'lender-logos/scotiabank.png' },
   { name: 'BMO',             logo: 'lender-logos/bmo.png' },
-  { name: 'Strive',          logo: 'lender-logos/strive.png' },
+  { name: 'Strive',          logo: 'lender-logos/strive.png', dark: true },
   { name: 'Home Trust',      logo: 'lender-logos/home-trust.png' },
   { name: 'CMI',             logo: 'lender-logos/cmi.png' },
   { name: 'Keystone',        logo: 'lender-logos/keystone.png' },
   { name: 'First National',  logo: 'lender-logos/first-national.png' },
   { name: 'MCAP',            logo: 'lender-logos/mcap.png' },
-  { name: 'RMG',             logo: 'lender-logos/rmg.png' },
+  { name: 'RMG',             logo: 'lender-logos/rmg.svg', dark: true },
   { name: 'Merix Financial', logo: 'lender-logos/merix.png' },
   { name: 'B2B Bank',        logo: 'lender-logos/b2b-bank.png' }
 ];

@@ -113,10 +113,11 @@ var lenis = null;
   track.innerHTML = doubled.map(function(l){
     var name = typeof l === 'string' ? l : l.name;
     var logo = typeof l === 'object' && l.logo ? l.logo : '';
+    var dark = typeof l === 'object' && l.dark ? ' dark-chip' : '';
     if (logo) {
       // falls back to the plain name if the logo file isn't there yet
-      return '<span class="has-logo"><img src="'+logo+'" alt="'+name+'" ' +
-        'onerror="this.parentNode.classList.remove(\'has-logo\'); this.parentNode.textContent=\''+name+'\'"></span>';
+      return '<span class="has-logo'+dark+'"><img src="'+logo+'" alt="'+name+'" ' +
+        'onerror="this.parentNode.classList.remove(\'has-logo\',\'dark-chip\'); this.parentNode.textContent=\''+name+'\'"></span>';
     }
     return '<span>'+name+'</span>';
   }).join('');
