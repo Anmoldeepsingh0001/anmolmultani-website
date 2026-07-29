@@ -8,6 +8,21 @@ var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 var hasGsap = (typeof gsap !== 'undefined') && !reduceMotion;
 var lenis = null;
 
+/* ---- Theme toggle (sun/moon button) — the early inline script in <head> already
+   applies any saved theme before first paint; this just wires the click. ---- */
+(function(){
+  var btn = document.getElementById('themeToggle');
+  if(!btn) return;
+  btn.addEventListener('click', function(){
+    var current = document.documentElement.getAttribute('data-theme');
+    var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var effectiveDark = current === 'dark' || (!current && systemDark);
+    var next = effectiveDark ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch(e) {}
+  });
+})();
+
 /* ---- Reveal + counters: triple-backed (scroll + load + timer). Content can never stay hidden. ---- */
 (function(){
   var reveals = Array.prototype.slice.call(document.querySelectorAll('.reveal'));

@@ -1,5 +1,8 @@
-  /* ===================== THEME TOKENS (follows the visitor's system automatically) ===================== */
-  :root{
+  /* ===================== THEME TOKENS =====================
+     Follows the visitor's system setting by default. The sun/moon button in
+     the nav (see .theme-toggle) sets an explicit html[data-theme="light"|"dark"]
+     attribute (saved to localStorage) that overrides the system setting. */
+  :root, :root[data-theme="light"]{
     /* LIGHT — Apple: White + Athens Gray + Shark + Science Blue */
     --bg:#ffffff;
     --bg-alt:#f5f5f7;
@@ -21,7 +24,7 @@
     --glow:#cfe0ff;
   }
   @media (prefers-color-scheme: dark){
-    :root{
+    :root:not([data-theme="light"]){
       --bg:#000000;
       --bg-alt:#0c0c0d;
       --ink:#f5f5f7;
@@ -41,6 +44,26 @@
       --img-a:#2a2a2c; --img-b:#1d1d1f;
       --glow:#0a2a55;
     }
+  }
+  :root[data-theme="dark"]{
+    --bg:#000000;
+    --bg-alt:#0c0c0d;
+    --ink:#f5f5f7;
+    --muted:#a1a1a6;
+    --line:rgba(255,255,255,.14);
+    --accent:#2997ff;
+    --card:#1d1d1f;
+    --panel:#161617;
+    --panel-ink:#f5f5f7;
+    --panel-muted:rgba(255,255,255,.62);
+    --panel-line:rgba(255,255,255,.16);
+    --header-bg:rgba(0,0,0,.55);
+    --glass:rgba(28,28,30,.5);
+    --glass-border:rgba(255,255,255,.12);
+    --glass-shadow:0 18px 50px rgba(0,0,0,.5);
+    --panel-glass:rgba(22,22,23,.6);
+    --img-a:#2a2a2c; --img-b:#1d1d1f;
+    --glow:#0a2a55;
   }
 
   /* ===================== BASE ===================== */
@@ -289,6 +312,19 @@
 
   .down-row.has-error .inwrap{border-color:#d32f2f; box-shadow:0 0 0 3px rgba(211,47,47,.12)}
 
+  /* ===================== THEME TOGGLE (sun/moon button in nav) ===================== */
+  .theme-toggle{display:flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:50%; border:1px solid var(--line); background:transparent; color:var(--ink); cursor:pointer; transition:.25s; flex:none}
+  .theme-toggle:hover{border-color:var(--accent); color:var(--accent)}
+  .theme-toggle svg{width:18px; height:18px}
+  .theme-toggle .icon-sun{display:none}
+  .theme-toggle .icon-moon{display:block}
+  @media (prefers-color-scheme: dark){
+    html:not([data-theme="light"]) .theme-toggle .icon-sun{display:block}
+    html:not([data-theme="light"]) .theme-toggle .icon-moon{display:none}
+  }
+  html[data-theme="dark"] .theme-toggle .icon-sun{display:block}
+  html[data-theme="dark"] .theme-toggle .icon-moon{display:none}
+
   /* ===================== MOBILE MENU ===================== */
   .hamb{display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:9px}
   .hamb span{width:22px; height:2px; background:var(--ink); border-radius:2px; transition:.3s ease}
@@ -296,6 +332,9 @@
   .hamb.open span:nth-child(2){opacity:0}
   .hamb.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
   @media(max-width:980px){.hamb{display:flex}}
+  /* below this width the nav row (logo + Get in touch + theme toggle + hamburger) doesn't
+     fit — the mobile menu already has its own Contact link, so drop the pill here */
+  @media(max-width:520px){.nav > a.btn.primary{display:none}}
   .mobile-menu{position:fixed; top:66px; left:0; right:0; z-index:150; padding:10px 28px 22px;
     background:var(--glass); backdrop-filter:blur(24px) saturate(180%); -webkit-backdrop-filter:blur(24px) saturate(180%);
     border-bottom:1px solid var(--line); transform:translateY(-14px); opacity:0; visibility:hidden; transition:.3s ease}
