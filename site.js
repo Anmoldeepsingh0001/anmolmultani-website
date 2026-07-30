@@ -256,11 +256,21 @@ if (hasGsap) {
       .from('.hero-cta', { opacity: 0, y: 18, duration: .8 }, '-=.6');
   }
 
+  // Pin + scrub only above tablet width. Below that, min-height:100vh sections and
+  // scroll-pinning both rely on window.innerHeight, which mobile browsers change
+  // mid-scroll (address bar show/hide) — that mismatch is what left a large blank
+  // gap where this section's text should be. A plain fade-in avoids it entirely.
   if (document.querySelector('.stmt')) {
     var words = gsap.utils.toArray('.stmt .w');
-    gsap.set(words, { opacity: .18 });
-    gsap.to(words, { opacity: 1, stagger: 1, ease: 'none',
-      scrollTrigger: { trigger: '.stmt', start: 'top top', end: '+=140%', scrub: true, pin: true } });
+    if (window.matchMedia('(min-width: 781px)').matches) {
+      gsap.set(words, { opacity: .18 });
+      gsap.to(words, { opacity: 1, stagger: 1, ease: 'none',
+        scrollTrigger: { trigger: '.stmt', start: 'top top', end: '+=140%', scrub: true, pin: true } });
+    } else {
+      gsap.set(words, { opacity: 1 });
+      gsap.from('.stmt .big', { opacity: 0, y: 24, duration: .8, ease: 'power3.out',
+        scrollTrigger: { trigger: '.stmt', start: 'top 80%' } });
+    }
   }
 
   // Web fonts and images can finish loading after ScrollTrigger first measures the
