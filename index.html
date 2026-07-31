@@ -94,10 +94,15 @@
         </div>
       </li>
       <li><a href="#rates" data-scroll>Rates</a></li>
-      <li><a href="#about" data-scroll>About</a></li>
-      <li><a href="#team" data-scroll>Team</a></li>
-      <li><a href="#reviews" data-scroll>Reviews</a></li>
-      <li><a href="why-us.html">Why Us</a></li>
+      <li class="has-drop">
+        <a href="#about" data-scroll aria-haspopup="true">Company</a>
+        <div class="drop">
+          <a href="#about" data-scroll>About</a>
+          <a href="#team" data-scroll>Team</a>
+          <a href="#reviews" data-scroll>Reviews</a>
+          <a href="why-us.html">Why Work With Us</a>
+        </div>
+      </li>
       <li><a href="blog.html">Blog</a></li>
     </ul>
     <a href="#contact" data-scroll class="btn primary" style="padding:10px 22px">Get in touch</a>
@@ -117,7 +122,7 @@
   <a href="#about" data-scroll>About</a>
   <a href="#team" data-scroll>Team</a>
   <a href="#reviews" data-scroll>Reviews</a>
-  <a href="why-us.html">Why Us</a>
+  <a href="why-us.html">Why Work With Us</a>
   <a href="blog.html">Blog</a>
   <a href="careers.html">Careers</a>
   <a href="feedback.html">Feedback</a>
@@ -189,18 +194,6 @@
   </div>
 </section>
 
-<!-- CALCULATORS TEASER -->
-<section id="calculator" class="alt"><div class="wrap">
-  <div class="eyebrow reveal">Plan ahead</div>
-  <h2 class="reveal">Calculators built for Canadian borrowers.</h2>
-  <p class="lead reveal">Estimate your monthly payment, what you may qualify for, land transfer tax, and closing costs — free, no sign-up required.</p>
-  <div class="grid3">
-    <div class="card glass reveal"><div class="k">Mortgage</div><h3>Payment Calculator</h3><p>Estimate your monthly payment, CMHC insurance, and how renting compares to owning.</p><a class="dl-btn" href="calculators.html" style="margin-top:14px">Open calculator →</a></div>
-    <div class="card glass reveal"><div class="k">Pre-Qualify</div><h3>Affordability Calculator</h3><p>Enter your income and debts to see roughly what you may qualify for.</p><a class="dl-btn" href="affordability-calculator.html" style="margin-top:14px">Open calculator →</a></div>
-    <div class="card glass reveal"><div class="k">Closing</div><h3>Land Transfer Tax</h3><p>See what you&rsquo;ll owe in provincial land transfer tax on your purchase.</p><a class="dl-btn" href="land-transfer-tax-calculator.html" style="margin-top:14px">Open calculator →</a></div>
-    <div class="card glass reveal"><div class="k">Closing</div><h3>Closing Cost Estimator</h3><p>Legal fees, title insurance, inspection, and more — all in one estimate.</p><a class="dl-btn" href="closing-cost-calculator.html" style="margin-top:14px">Open calculator →</a></div>
-  </div>
-</div></section>
 
 <!-- RATES -->
 <section id="rates"><div class="wrap">
@@ -254,10 +247,12 @@
   <h2 class="reveal">What clients say.</h2>
   <div class="reviews-grid reveal" id="reviewsGrid"></div>
 
+  <!-- DEACTIVATED (re-enable when ready):
   <div class="video-review-frame reveal" id="videoReviewFrame">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
     <span>Video reviews — uploading soon</span>
   </div>
+  -->
 
   <div class="reveal" id="googleReviewsWrap" style="display:none; margin-top:60px">
     <h3 style="font-size:1.2rem; font-weight:600; letter-spacing:-.01em; margin-bottom:20px">From Google</h3>
@@ -266,56 +261,6 @@
   </div>
 </section>
 
-<!-- GUIDES -->
-<section id="guides"><div class="wrap">
-  <div class="glow" style="width:420px; height:420px; top:60px; right:-160px"></div>
-  <div class="eyebrow reveal">Free resources</div>
-  <h2 class="reveal">Guides for every situation.</h2>
-  <p class="lead reveal">Plain-language guides built for Canadian borrowers, with an FAQ and a free PDF for each.</p>
-  <div class="guide-grid">
-
-    <div class="guide-card glass reveal" id="guide-ftb">
-      <div class="k">Mortgage</div>
-      <h3>First Time Home Buyer Guide</h3>
-      <p>From FHSA and the RRSP Home Buyers&rsquo; Plan to closing costs and what lenders actually look for — everything you need before you sign.</p>
-      <a href="guides/first-time-buyer.html" class="dl-btn">
-        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Read the guide
-      </a>
-    </div>
-
-    <div class="guide-card glass reveal" id="guide-newcomer">
-      <div class="k">Newcomer</div>
-      <h3>Newcomer to Canada Guide</h3>
-      <p>Which programs you qualify for, what lenders accept as proof of income, and how to build your borrower file quickly as a newcomer.</p>
-      <a href="guides/newcomer-to-canada.html" class="dl-btn">
-        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Read the guide
-      </a>
-    </div>
-
-    <div class="guide-card glass reveal" id="guide-nurses">
-      <div class="k">Healthcare</div>
-      <h3>Guide for Nurses</h3>
-      <p>Shift differentials, agency work, part-time arrangements — we know how your income is structured and which lenders recognise it properly.</p>
-      <a href="guides/nurses-healthcare.html" class="dl-btn">
-        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Read the guide
-      </a>
-    </div>
-
-    <div class="guide-card glass reveal" id="guide-selfemployed">
-      <div class="k">Self-Employed</div>
-      <h3>Self-Employed Mortgage Guide</h3>
-      <p>T1 generals, stated income, two years of NOAs — stop being told no by the banks. There are lenders built for how you earn.</p>
-      <a href="guides/self-employed.html" class="dl-btn">
-        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Read the guide
-      </a>
-    </div>
-
-  </div>
-</div></section>
 
 <!-- CONTACT -->
 <section id="contact"><div class="wrap">
@@ -375,7 +320,7 @@
   <div class="fcols">
     <div><a href="#home" data-scroll class="logo" style="color:#fff; margin-bottom:18px">Anmol Multani</a><a href="#home" data-scroll>Clearstone Financial · Atlantic Canada</a></div>
     <div><a href="#services" data-scroll>Services</a><a href="calculators.html">Calculators</a><a href="#rates" data-scroll>Rates</a><a href="guides.html">Guides</a></div>
-    <div><a href="#about" data-scroll>About</a><a href="#team" data-scroll>Team</a><a href="blog.html">Blog</a><a href="why-us.html">Why Us</a><a href="careers.html">Careers</a><a href="feedback.html">Feedback</a><a href="#contact" data-scroll>Contact</a></div>
+    <div><a href="#about" data-scroll>About</a><a href="#team" data-scroll>Team</a><a href="blog.html">Blog</a><a href="why-us.html">Why Work With Us</a><a href="careers.html">Careers</a><a href="feedback.html">Feedback</a><a href="#contact" data-scroll>Contact</a></div>
     <div><a href="tel:+19029199487">(902) 919-9487</a><a href="mailto:info@anmolmultani.ca">info@anmolmultani.ca</a><div class="social-icons" id="socialIcons"></div></div>
   </div>
   <div class="powered">

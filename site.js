@@ -144,8 +144,11 @@ if (!reduceMotion && window.matchMedia('(hover: hover) and (pointer: fine)').mat
     var logo = typeof l === 'object' && l.logo ? l.logo : '';
     var dark = typeof l === 'object' && l.dark ? ' dark-chip' : '';
     if (logo) {
-      // falls back to the plain name if the logo file isn't there yet
-      return '<span class="has-logo'+dark+'"><img src="'+logo+'" alt="'+name+'" ' +
+      // falls back to the plain name if the logo file isn't there yet.
+      // loading="lazy" matters more than usual here: this loop renders each logo
+      // twice (for the seamless scroll) and being JS-injected, the browser's HTML
+      // preload scanner can't discover these early like it can static <img> tags.
+      return '<span class="has-logo'+dark+'"><img src="'+logo+'" alt="'+name+'" width="140" height="56" loading="lazy" decoding="async" ' +
         'onerror="this.parentNode.classList.remove(\'has-logo\',\'dark-chip\'); this.parentNode.textContent=\''+name+'\'"></span>';
     }
     return '<span>'+name+'</span>';
