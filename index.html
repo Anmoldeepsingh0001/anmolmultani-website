@@ -276,37 +276,6 @@
     <a class="btn primary" data-apply>Start your mortgage application</a>
     <a class="btn ghost" data-book target="_blank" rel="noopener">Book a call</a>
   </div>
-
-  <div class="reveal" style="margin-top:56px">
-    <label class="topics-label" for="svcSelect" style="margin-top:0">Or send a message — what would you like to talk about?</label>
-    <div class="bookselect">
-      <select id="svcSelect">
-        <option value="" selected disabled>Choose a topic&hellip;</option>
-        <option>Pre-approval</option>
-        <option>Purchase</option>
-        <option>Renewal</option>
-        <option>Refinance</option>
-        <!-- DEACTIVATED (re-enable when ready): <option>Insurance</option><option>Investment</option> -->
-        <option>Other</option>
-      </select>
-    </div>
-  </div>
-
-  <div class="form reveal" id="contactForm">
-    <input type="text" id="cName" placeholder="Full name" />
-    <input type="email" id="cEmail" placeholder="Email" />
-    <input type="text" id="cCity" placeholder="City" />
-    <div class="bookselect" style="max-width:none"><select id="cTime">
-      <option value="" selected disabled>Best time to reach you (Atlantic Time)</option>
-      <option>Morning &middot; 9am&ndash;12pm AT</option>
-      <option>Afternoon &middot; 12&ndash;4pm AT</option>
-      <option>Evening &middot; 4&ndash;7pm AT</option>
-      <option>Anytime</option>
-    </select></div>
-    <textarea class="full" id="cMsg" placeholder="Your message"></textarea>
-    <div class="full"><button class="btn primary" id="submitBtn" type="button">Send message</button></div>
-  </div>
-  <div class="thanks" id="thanks"><b>Thanks — your message is on its way.</b><br><span style="color:var(--muted)">I&rsquo;ll get back to you shortly.</span></div>
 </div></section>
 
 <footer><div class="wrap">
@@ -330,51 +299,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lenis/1.1.13/lenis.min.js"></script>
 <script src="settings.js"></script>
 <script src="site.js"></script>
-<script>
-  // contact submit — emails you directly via Web3Forms if a key is set; otherwise opens the visitor's email app
-  document.getElementById('submitBtn').addEventListener('click', function(){
-    var btn   = this;
-    var topic = document.getElementById('svcSelect').value || 'General enquiry';
-    var name  = document.getElementById('cName').value.trim();
-    var email = document.getElementById('cEmail').value.trim();
-    var city  = document.getElementById('cCity').value.trim();
-    var time  = document.getElementById('cTime').value.trim();
-    var msg   = document.getElementById('cMsg').value.trim();
-
-    if(!name || !email){ alert('Please add your name and email so I can get back to you.'); return; }
-
-    function mailtoFallback(){
-      var body = 'Name: '+name+'\r\nEmail: '+email+'\r\nCity: '+city+'\r\nBest time: '+time+'\r\nTopic: '+topic+'\r\n\r\nMessage:\r\n'+msg;
-      window.location.href = 'mailto:'+CONTACT.email+'?subject='+encodeURIComponent(topic+' enquiry')+'&body='+encodeURIComponent(body);
-    }
-    function showThanks(){
-      document.getElementById('contactForm').style.display = 'none';
-      document.getElementById('thanks').style.display = 'block';
-    }
-
-    if(FORM_ACCESS_KEY && FORM_ACCESS_KEY.trim()){
-      btn.disabled = true; btn.textContent = 'Sending…';
-      fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-          access_key: FORM_ACCESS_KEY.trim(),
-          subject: topic + ' enquiry — website',
-          from_name: name,
-          name: name, email: email, city: city, best_time: time, topic: topic, message: msg,
-          botcheck: false
-        })
-      })
-      .then(function(res){ return res.json(); })
-      .then(function(data){
-        if(data && data.success){ showThanks(); }
-        else { btn.disabled = false; btn.textContent = 'Send message'; mailtoFallback(); }
-      })
-      .catch(function(){ btn.disabled = false; btn.textContent = 'Send message'; mailtoFallback(); });
-    } else {
-      mailtoFallback();
-    }
-  });
-</script>
 </body>
 </html>

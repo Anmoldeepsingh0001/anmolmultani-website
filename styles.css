@@ -260,7 +260,7 @@
 
   /* ===================== CONTACT ===================== */
   .contact-details{display:flex; flex-wrap:wrap; gap:14px; margin-top:46px}
-  .contact-details .cdetail{flex:1; min-width:210px; border-radius:16px; padding:24px 26px; text-decoration:none; color:var(--ink); transition:.35s ease; display:flex; flex-direction:column; gap:9px}
+  .contact-details .cdetail{flex:0 1 280px; min-width:210px; border-radius:16px; padding:24px 26px; text-decoration:none; color:var(--ink); transition:.35s ease; display:flex; flex-direction:column; gap:9px}
   a.cdetail:hover{transform:translateY(-4px)}
   .cdetail .ck{font-size:.72rem; letter-spacing:.18em; text-transform:uppercase; color:var(--accent); font-weight:600}
   .cdetail .cv{font-size:1.1rem; font-weight:600; letter-spacing:-.01em}
