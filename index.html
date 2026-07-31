@@ -36,7 +36,6 @@
   "name": "Anmol Multani — Clearstone Financial",
   "description": "Mortgage broker serving Prince Edward Island, Nova Scotia, and New Brunswick — pre-approval, purchase, refinance, renewal, and debt consolidation, backed by Vine Mortgage Group's lender network.",
   "url": "https://anmolmultani.ca/",
-  "telephone": "+1-902-919-9487",
   "email": "info@anmolmultani.ca",
   "image": "https://anmolmultani.ca/anmol-headshot.jpg",
   "priceRange": "$$",
@@ -98,8 +97,8 @@
         <a href="#about" data-scroll aria-haspopup="true">Company</a>
         <div class="drop">
           <a href="#about" data-scroll>About</a>
-          <a href="#team" data-scroll>Team</a>
-          <a href="#reviews" data-scroll>Reviews</a>
+          <a href="team.html#team">Team</a>
+          <a href="team.html#reviews">Reviews</a>
           <a href="why-us.html">Why Work With Us</a>
         </div>
       </li>
@@ -115,14 +114,44 @@
 </header>
 
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#services" data-scroll>Services</a>
-  <a href="guides.html">Guides</a>
-  <a href="calculators.html">Calculators</a>
+  <div class="mm-group">
+    <button class="mm-group-toggle" type="button" aria-expanded="false">Services<span class="mm-chevron">&rsaquo;</span></button>
+    <div class="mm-group-items">
+      <a href="#svc-preapproval" data-scroll>Pre-Approval</a>
+      <a href="#svc-purchase" data-scroll>Purchase</a>
+      <a href="#svc-refinance" data-scroll>Refinance</a>
+      <a href="#svc-renewal" data-scroll>Renewal</a>
+      <a href="#svc-debt" data-scroll>Debt Consolidation</a>
+    </div>
+  </div>
+  <div class="mm-group">
+    <button class="mm-group-toggle" type="button" aria-expanded="false">Guides<span class="mm-chevron">&rsaquo;</span></button>
+    <div class="mm-group-items">
+      <a href="guides/first-time-buyer.html">First Time Home Buyer</a>
+      <a href="guides/newcomer-to-canada.html">Newcomer to Canada</a>
+      <a href="guides/nurses-healthcare.html">Guide for Nurses</a>
+      <a href="guides/self-employed.html">Self-Employed Guide</a>
+    </div>
+  </div>
+  <div class="mm-group">
+    <button class="mm-group-toggle" type="button" aria-expanded="false">Calculators<span class="mm-chevron">&rsaquo;</span></button>
+    <div class="mm-group-items">
+      <a href="calculators.html">Mortgage Payment</a>
+      <a href="affordability-calculator.html">Affordability</a>
+      <a href="land-transfer-tax-calculator.html">Land Transfer Tax</a>
+      <a href="closing-cost-calculator.html">Closing Cost</a>
+    </div>
+  </div>
   <a href="#rates" data-scroll>Rates</a>
-  <a href="#about" data-scroll>About</a>
-  <a href="#team" data-scroll>Team</a>
-  <a href="#reviews" data-scroll>Reviews</a>
-  <a href="why-us.html">Why Work With Us</a>
+  <div class="mm-group">
+    <button class="mm-group-toggle" type="button" aria-expanded="false">Company<span class="mm-chevron">&rsaquo;</span></button>
+    <div class="mm-group-items">
+      <a href="#about" data-scroll>About</a>
+      <a href="team.html#team">Team</a>
+      <a href="team.html#reviews">Reviews</a>
+      <a href="why-us.html">Why Work With Us</a>
+    </div>
+  </div>
   <a href="blog.html">Blog</a>
   <a href="careers.html">Careers</a>
   <a href="feedback.html">Feedback</a>
@@ -132,7 +161,7 @@
 <!-- HERO -->
 <section class="hero wrap" id="home">
   <div class="hero-glow"></div>
-  <div class="hero-photo reveal"><img src="anmol.jpg" alt="Anmol Multani" onerror="this.parentElement.style.display='none'"></div>
+  <div class="hero-photo reveal"><img src="anmol.jpg" alt="Anmol Multani" loading="eager" onerror="this.remove()"></div>
   <div class="hero-content">
     <div class="eyebrow hero-eyebrow">Atlantic Canada · Mortgages, nationwide</div>
     <h1 class="hero-title">
@@ -229,38 +258,6 @@
   <div class="img reveal"><img src="anmol.jpg" alt="Anmol Multani" onerror="this.style.display='none'"></div>
 </div></section>
 
-<!-- TEAM -->
-<section id="team">
-  <div class="glow" style="width:420px; height:420px; bottom:0; right:-150px"></div>
-  <div class="wrap">
-  <div class="eyebrow reveal">The people</div>
-  <h2 class="reveal">Meet the team.</h2>
-  <div class="grid-team reveal" id="teamGrid"></div>
-  </div>
-</section>
-
-<!-- REVIEWS -->
-<section id="reviews" class="alt">
-  <div class="glow" style="width:440px; height:440px; top:40px; left:-150px"></div>
-  <div class="wrap">
-  <div class="eyebrow reveal">Client stories</div>
-  <h2 class="reveal">What clients say.</h2>
-  <div class="reviews-grid reveal" id="reviewsGrid"></div>
-
-  <!-- DEACTIVATED (re-enable when ready):
-  <div class="video-review-frame reveal" id="videoReviewFrame">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-    <span>Video reviews — uploading soon</span>
-  </div>
-  -->
-
-  <div class="reveal" id="googleReviewsWrap" style="display:none; margin-top:60px">
-    <h3 style="font-size:1.2rem; font-weight:600; letter-spacing:-.01em; margin-bottom:20px">From Google</h3>
-    <div class="reviews-grid" id="googleReviewsGrid"></div>
-  </div>
-  </div>
-</section>
-
 
 <!-- CONTACT -->
 <section id="contact"><div class="wrap">
@@ -269,10 +266,6 @@
   <p class="lead reveal">Tell us where you&rsquo;re at and we&rsquo;ll map out your options — no pressure, no jargon.</p>
 
   <div class="contact-details reveal">
-    <a class="cdetail glass" href="tel:+19029199487">
-      <span class="ck">Call or text</span>
-      <span class="cv">(902) 919-9487</span>
-    </a>
     <a class="cdetail glass" href="mailto:info@anmolmultani.ca">
       <span class="ck">Email</span>
       <span class="cv">info@anmolmultani.ca</span>
@@ -313,15 +306,15 @@
     <textarea class="full" id="cMsg" placeholder="Your message"></textarea>
     <div class="full"><button class="btn primary" id="submitBtn" type="button">Send message</button></div>
   </div>
-  <div class="thanks" id="thanks"><b>Thanks — your message is on its way.</b><br><span style="color:var(--muted)">I&rsquo;ll get back to you shortly. For anything urgent, call or text (902) 919-9487.</span></div>
+  <div class="thanks" id="thanks"><b>Thanks — your message is on its way.</b><br><span style="color:var(--muted)">I&rsquo;ll get back to you shortly.</span></div>
 </div></section>
 
 <footer><div class="wrap">
   <div class="fcols">
     <div><a href="#home" data-scroll class="logo" style="color:#fff; margin-bottom:18px">Anmol Multani</a><a href="#home" data-scroll>Clearstone Financial · Atlantic Canada</a></div>
     <div><a href="#services" data-scroll>Services</a><a href="calculators.html">Calculators</a><a href="#rates" data-scroll>Rates</a><a href="guides.html">Guides</a></div>
-    <div><a href="#about" data-scroll>About</a><a href="#team" data-scroll>Team</a><a href="blog.html">Blog</a><a href="why-us.html">Why Work With Us</a><a href="careers.html">Careers</a><a href="feedback.html">Feedback</a><a href="#contact" data-scroll>Contact</a></div>
-    <div><a href="tel:+19029199487">(902) 919-9487</a><a href="mailto:info@anmolmultani.ca">info@anmolmultani.ca</a><div class="social-icons" id="socialIcons"></div></div>
+    <div><a href="#about" data-scroll>About</a><a href="team.html#team">Team</a><a href="blog.html">Blog</a><a href="why-us.html">Why Work With Us</a><a href="careers.html">Careers</a><a href="feedback.html">Feedback</a><a href="#contact" data-scroll>Contact</a></div>
+    <div><a href="mailto:info@anmolmultani.ca">info@anmolmultani.ca</a><div class="social-icons" id="socialIcons"></div></div>
   </div>
   <div class="powered">
     <span>Powered by</span>

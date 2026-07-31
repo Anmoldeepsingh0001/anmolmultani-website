@@ -144,11 +144,20 @@ if (!reduceMotion && window.matchMedia('(hover: hover) and (pointer: fine)').mat
     var logo = typeof l === 'object' && l.logo ? l.logo : '';
     var dark = typeof l === 'object' && l.dark ? ' dark-chip' : '';
     if (logo) {
+      // Full-resolution file is the default (desktop/retina quality preserved); a
+      // smaller copy in lender-logos/sm/ is offered via srcset so phones download
+      // far fewer pixels — the browser picks whichever actually fits the display,
+      // no JS or media queries needed. SVGs are resolution-independent, skip this.
+      var srcset = '';
+      if (logo.slice(-4) === '.png') {
+        var small = logo.replace(/([^\/]+)$/, 'sm/$1');
+        srcset = ' srcset="' + small + ' 320w, ' + logo + ' 738w" sizes="140px"';
+      }
       // falls back to the plain name if the logo file isn't there yet.
       // loading="lazy" matters more than usual here: this loop renders each logo
       // twice (for the seamless scroll) and being JS-injected, the browser's HTML
       // preload scanner can't discover these early like it can static <img> tags.
-      return '<span class="has-logo'+dark+'"><img src="'+logo+'" alt="'+name+'" width="140" height="56" loading="lazy" decoding="async" ' +
+      return '<span class="has-logo'+dark+'"><img src="'+logo+'"'+srcset+' alt="'+name+'" width="140" height="56" loading="lazy" decoding="async" ' +
         'onerror="this.parentNode.classList.remove(\'has-logo\',\'dark-chip\'); this.parentNode.textContent=\''+name+'\'"></span>';
     }
     return '<span>'+name+'</span>';
@@ -343,4 +352,16 @@ if (hasGsap) {
     hamb.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
   mm.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', close); });
+
+  // accordion groups (Services/Guides/Calculators/Company) — mirror the desktop dropdowns
+  mm.querySelectorAll('.mm-group-toggle').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var group = btn.parentElement;
+      var wasOpen = group.classList.contains('open');
+      mm.querySelectorAll('.mm-group.open').forEach(function(g){
+        g.classList.remove('open'); g.querySelector('.mm-group-toggle').setAttribute('aria-expanded', 'false');
+      });
+      if (!wasOpen) { group.classList.add('open'); btn.setAttribute('aria-expanded', 'true'); }
+    });
+  });
 })();

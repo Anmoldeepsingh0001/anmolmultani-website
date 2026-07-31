@@ -4,7 +4,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="color-scheme" content="light dark" />
-<title>Careers — Anmol Multani</title>
+<title>Team & Reviews — Anmol Multani</title>
+<meta name="description" content="Meet the team behind Anmol Multani's mortgage practice, and read what clients across Atlantic Canada have to say." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -114,34 +115,48 @@
 
 <section class="page-hero wrap">
   <div class="hero-glow"></div>
-  <span class="k-badge">Careers</span>
-  <h1 class="hero-title" style="font-size:clamp(2.2rem,5.5vw,4rem)">Good people, building something rare.</h1>
-  <p class="hero-sub" style="max-width:620px">No open roles right now — but we&rsquo;re growing, and we&rsquo;re always glad to meet sharp brokers and operations people. Send your details and résumé and we&rsquo;ll keep you in mind.</p>
+  <span class="k-badge">Team &amp; Reviews</span>
+  <h1 class="hero-title" style="font-size:clamp(2.2rem,5.5vw,4rem)">The people, and what clients say.</h1>
+  <p class="hero-sub" style="max-width:620px">A small, hands-on team — and honest words from the people we&rsquo;ve helped get into their homes.</p>
 </section>
 
-<section style="padding-top:0"><div class="wrap" style="max-width:760px">
-  <form class="career-form glass reveal" id="careerForm" action="https://formsubmit.co/info@anmolmultani.ca" method="POST" enctype="multipart/form-data">
-    <input type="hidden" name="_subject" value="New career application — website">
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_template" value="table">
-    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
-    <div class="cf-row">
-      <input type="text" name="Name" placeholder="Full name" required>
-      <input type="email" name="Email" placeholder="Email" required>
-    </div>
-    <label class="cf-file">
-      <span>Attach your résumé — PDF or Word, up to 10&nbsp;MB</span>
-      <input type="file" id="resume" name="Resume" accept=".pdf,.doc,.docx" required>
-    </label>
-    <button class="btn primary" type="submit">Send application</button>
-  </form>
-</div></section>
+<!-- TEAM -->
+<section id="team" style="padding-top:0">
+  <div class="glow" style="width:420px; height:420px; bottom:0; right:-150px"></div>
+  <div class="wrap">
+  <div class="eyebrow reveal">The people</div>
+  <h2 class="reveal">Meet the team.</h2>
+  <div class="grid-team reveal" id="teamGrid"></div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews" class="alt">
+  <div class="glow" style="width:440px; height:440px; top:40px; left:-150px"></div>
+  <div class="wrap">
+  <div class="eyebrow reveal">Client stories</div>
+  <h2 class="reveal">What clients say.</h2>
+  <div class="reviews-grid reveal" id="reviewsGrid"></div>
+
+  <!-- DEACTIVATED (re-enable when ready):
+  <div class="video-review-frame reveal" id="videoReviewFrame">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+    <span>Video reviews — uploading soon</span>
+  </div>
+  -->
+
+  <div class="reveal" id="googleReviewsWrap" style="display:none; margin-top:60px">
+    <h3 style="font-size:1.2rem; font-weight:600; letter-spacing:-.01em; margin-bottom:20px">From Google</h3>
+    <div class="reviews-grid" id="googleReviewsGrid"></div>
+  </div>
+  </div>
+</section>
 
 <footer><div class="wrap">
   <div class="fcols">
     <div><a href="index.html" class="logo" style="color:#fff; margin-bottom:18px">Anmol Multani</a><a href="index.html">Clearstone Financial · Atlantic Canada</a></div>
     <div><a href="index.html#services">Services</a><a href="calculators.html">Calculators</a><a href="index.html#rates">Rates</a><a href="guides.html">Guides</a></div>
-    <div><a href="index.html#about">About</a><a href="team.html#team">Team</a><a href="blog.html">Blog</a><a href="why-us.html">Why Work With Us</a><a href="careers.html">Careers</a><a href="feedback.html">Feedback</a><a href="index.html#contact">Contact</a></div>
+    <div><a href="index.html#about">About</a><a href="team.html">Team</a><a href="blog.html">Blog</a><a href="why-us.html">Why Work With Us</a><a href="careers.html">Careers</a><a href="feedback.html">Feedback</a><a href="index.html#contact">Contact</a></div>
     <div><a href="mailto:info@anmolmultani.ca">info@anmolmultani.ca</a><div class="social-icons" id="socialIcons"></div></div>
   </div>
   <div class="powered">
@@ -158,23 +173,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lenis/1.1.13/lenis.min.js"></script>
 <script src="settings.js"></script>
 <script src="site.js"></script>
-<script>
-  // career application form (FormSubmit) — return to this page after send, cap file size
-  (function(){
-    var cf = document.getElementById('careerForm');
-    if(!cf) return;
-    var next = document.createElement('input');
-    next.type = 'hidden'; next.name = '_next';
-    next.value = window.location.href.split('#')[0];
-    cf.appendChild(next);
-    cf.addEventListener('submit', function(e){
-      var f = document.getElementById('resume');
-      if(f && f.files && f.files[0] && f.files[0].size > 10 * 1024 * 1024){
-        e.preventDefault();
-        alert('Please keep your résumé under 10 MB.');
-      }
-    });
-  })();
-</script>
 </body>
 </html>

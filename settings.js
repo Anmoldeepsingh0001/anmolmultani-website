@@ -25,6 +25,8 @@ var REVIEWS = [
 ];
 
 // 3) YOUR CONTACT DETAILS — used across the site and on the downloadable rate sheet.
+//    phone/tel are kept here but temporarily not displayed anywhere on the site
+//    (removed from the footer and Contact section) — re-add the markup when ready.
 var CONTACT = { phone: '(902) 919-9487', tel: '+19029199487', email: 'info@anmolmultani.ca', photo: 'anmol-headshot.jpg' };
 
 // 4) CONTACT FORM DELIVERY — paste your free Web3Forms access key so form

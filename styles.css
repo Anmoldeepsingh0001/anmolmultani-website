@@ -368,12 +368,22 @@
   /* below this width the nav row (logo + Get in touch + theme toggle + hamburger) doesn't
      fit — the mobile menu already has its own Contact link, so drop the pill here */
   @media(max-width:520px){.nav > a.btn.primary{display:none}}
-  .mobile-menu{position:fixed; top:66px; left:0; right:0; z-index:150; padding:10px 28px 22px;
+  .mobile-menu{position:fixed; top:66px; left:0; right:0; z-index:150; padding:10px 28px 22px; max-height:calc(100vh - 66px); overflow-y:auto;
     background:var(--glass); backdrop-filter:blur(24px) saturate(180%); -webkit-backdrop-filter:blur(24px) saturate(180%);
     border-bottom:1px solid var(--line); transform:translateY(-14px); opacity:0; visibility:hidden; transition:.3s ease}
   .mobile-menu.open{transform:translateY(0); opacity:1; visibility:visible}
-  .mobile-menu a{display:block; padding:15px 4px; color:var(--ink); text-decoration:none; font-size:1.05rem; font-weight:500; border-bottom:1px solid var(--line)}
-  .mobile-menu a:last-child{border-bottom:none}
+  .mobile-menu > a{display:block; padding:15px 4px; color:var(--ink); text-decoration:none; font-size:1.05rem; font-weight:500; border-bottom:1px solid var(--line)}
+  .mobile-menu > a:last-child{border-bottom:none}
+  /* accordion groups — mirror the desktop dropdowns (Services, Guides, Calculators, Company) */
+  .mm-group{border-bottom:1px solid var(--line)}
+  .mm-group-toggle{display:flex; align-items:center; justify-content:space-between; width:100%; padding:15px 4px; background:none; border:none;
+    color:var(--ink); font:inherit; font-size:1.05rem; font-weight:500; text-align:left; cursor:pointer}
+  .mm-chevron{transition:transform .25s ease; color:var(--muted); font-size:.9em}
+  .mm-group.open .mm-chevron{transform:rotate(90deg)}
+  .mm-group-items{max-height:0; overflow:hidden; transition:max-height .3s ease}
+  .mm-group.open .mm-group-items{max-height:340px}
+  .mm-group-items a{display:block; padding:12px 4px 12px 18px; color:var(--muted); text-decoration:none; font-size:.95rem; font-weight:400}
+  .mm-group-items a:hover{color:var(--ink)}
   @media(min-width:981px){.mobile-menu{display:none}}
 
   /* ===================== CAREER FORM ===================== */
