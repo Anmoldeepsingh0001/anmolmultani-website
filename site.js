@@ -8,6 +8,20 @@ var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 var hasGsap = (typeof gsap !== 'undefined') && !reduceMotion;
 var lenis = null;
 
+/* ---- Subtle cursor spotlight on dark hero/statement sections — desktop pointer
+   only (skipped on touch devices, which have no hover cursor) and reduced-motion-safe. ---- */
+if (!reduceMotion && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+  Array.prototype.slice.call(document.querySelectorAll('.hero, .stmt')).forEach(function(sec){
+    sec.addEventListener('mouseenter', function(){ sec.classList.add('cursor-active'); });
+    sec.addEventListener('mouseleave', function(){ sec.classList.remove('cursor-active'); });
+    sec.addEventListener('mousemove', function(e){
+      var r = sec.getBoundingClientRect();
+      sec.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%');
+      sec.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100).toFixed(1) + '%');
+    });
+  });
+}
+
 /* ---- Theme toggle (sun/moon button) — the early inline script in <head> already
    applies any saved theme before first paint; this just wires the click. ---- */
 (function(){
@@ -159,6 +173,10 @@ var lenis = null;
       '<div class="who"><b>'+rv.name+'</b><span>'+(rv.detail||'')+'</span></div>'+
       '</div>';
   }).join('');
+
+  // "uploading soon" placeholder hides itself once a real video review exists
+  var frame = document.getElementById('videoReviewFrame');
+  if (frame && REVIEWS.some(function(rv){ return !!rv.video; })) frame.style.display = 'none';
 })();
 
 /* ---- Google reviews — populated weekly by .github/workflows/refresh-google-reviews.yml
