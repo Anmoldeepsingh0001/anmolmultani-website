@@ -13,10 +13,15 @@ var RATES = [
 ];
 
 // 2) YOUR REVIEWS — add or edit here. stars = 1 to 5. Save, refresh.
+//    For a VIDEO review: add a `video` field with a YouTube link (upload the
+//    client's video to YouTube as "Unlisted" first, then paste the link here).
+//    `quote` is optional when a video is present — it shows as a caption if you keep it.
 var REVIEWS = [
   { name: 'Sarah & Dan', detail: 'First-time buyers · Halifax',  stars: 5, quote: 'Anmol made our first purchase feel simple. He explained every step and found us a rate our bank couldn’t match.' },
   { name: 'Priya M.',    detail: 'Newcomer to Canada · Moncton', stars: 5, quote: 'As a newcomer I was nervous about qualifying. He knew exactly which lenders to approach and got us approved.' },
   { name: 'James R.',    detail: 'Refinance · Charlottetown',    stars: 5, quote: 'Consolidated our debt and lowered our monthly payment. Honest advice with zero pressure the whole way.' }
+  // Example video review — uncomment and fill in once you have one:
+  // { name: 'Client Name', detail: 'Purchase · City', stars: 5, video: 'https://www.youtube.com/watch?v=XXXXXXXXXXX' },
 ];
 
 // 3) YOUR CONTACT DETAILS — used across the site and on the downloadable rate sheet.

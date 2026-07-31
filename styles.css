@@ -129,7 +129,19 @@
   .btn.ghost:hover{border-color:var(--ink)}
 
   /* ===================== HERO ===================== */
-  .hero{min-height:100vh; min-height:100dvh; display:flex; flex-direction:column; justify-content:center; padding-top:66px; isolation:isolate; overflow:visible}
+  .hero{min-height:100vh; min-height:100dvh; display:flex; flex-direction:row-reverse; align-items:center; justify-content:space-between; gap:60px; padding-top:66px; isolation:isolate; overflow:visible}
+  .hero-content{flex:1; min-width:0}
+  .hero-photo{flex:none; width:320px; aspect-ratio:4/5; border-radius:24px; overflow:hidden; background:linear-gradient(135deg,var(--img-a),var(--img-b)); box-shadow:var(--glass-shadow)}
+  .hero-photo img{width:100%; height:100%; object-fit:cover; display:block}
+  /* Below tablet width: forcing the hero to fill the full mobile viewport height while
+     vertically centering short content left a large, unexplained-looking blank gap
+     above the text (same root cause as the Statement section fix). Let it flow
+     naturally instead, with the photo up top rather than a large side portrait. */
+  @media(max-width:900px){
+    .hero{flex-direction:column; align-items:stretch; min-height:auto; padding-top:110px; padding-bottom:70px; gap:28px}
+    .hero-content{width:100%}
+    .hero-photo{width:148px; aspect-ratio:1/1; border-radius:50%; align-self:center}
+  }
   .hero > *:not(.glow):not(.hero-glow){position:relative; z-index:1}
   .hero-title{font-size:clamp(2.6rem,8.5vw,7rem); font-weight:600; letter-spacing:-.035em; line-height:1; margin:18px 0 28px}
   .hero-title .line{display:block; overflow:hidden}
@@ -149,7 +161,7 @@
   /* Full-viewport-height + centered text works on desktop, but on a narrow phone
      screen the same short paragraph leaves a huge empty gap above and below it —
      easy to mistake for the page having ended. Let it size to its content instead. */
-  @media(max-width:780px){.stmt{min-height:auto; padding:130px 0}}
+  @media(max-width:780px){.stmt{min-height:auto; padding-top:130px; padding-bottom:130px}}
 
   /* ===================== glass surface helper ===================== */
   .glass{background:var(--glass); backdrop-filter:blur(24px) saturate(170%); -webkit-backdrop-filter:blur(24px) saturate(170%); border:1px solid var(--glass-border); box-shadow:var(--glass-shadow)}
@@ -303,11 +315,18 @@
   /* ===================== REVEAL (IntersectionObserver — fail-safe) ===================== */
   .reveal{opacity:0; transform:translateY(34px); transition:opacity .9s cubic-bezier(.16,.84,.44,1), transform .9s cubic-bezier(.16,.84,.44,1)}
   .reveal.in{opacity:1; transform:none}
+  /* cascading stagger for card grids, so items reveal one after another rather than all at once */
+  .grid3 .reveal:nth-child(2), .guide-grid .reveal:nth-child(2), .grid-team .reveal:nth-child(2), .reviews-grid .reveal:nth-child(2){transition-delay:.1s}
+  .grid3 .reveal:nth-child(3), .guide-grid .reveal:nth-child(3), .grid-team .reveal:nth-child(3), .reviews-grid .reveal:nth-child(3){transition-delay:.2s}
+  .grid3 .reveal:nth-child(4), .guide-grid .reveal:nth-child(4){transition-delay:.3s}
+  .grid3 .reveal:nth-child(5){transition-delay:.4s}
 
   /* ===================== REVIEWS ===================== */
   .reviews-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:60px}
   @media(max-width:900px){.reviews-grid{grid-template-columns:1fr}}
   .review-card{border-radius:20px; padding:34px 30px; display:flex; flex-direction:column; gap:16px}
+  .review-card .review-video{position:relative; padding-top:56.25%; border-radius:14px; overflow:hidden; margin-bottom:-4px}
+  .review-card .review-video iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
   .review-card .stars{color:var(--accent); font-size:1rem; letter-spacing:3px}
   .review-card .quote{font-size:1.02rem; line-height:1.6; flex:1}
   .review-card .who{display:flex; flex-direction:column; gap:2px; border-top:1px solid var(--line); padding-top:16px}

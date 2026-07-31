@@ -145,12 +145,41 @@ var lenis = null;
   grid.innerHTML = REVIEWS.map(function(rv){
     var s = Math.max(0, Math.min(5, rv.stars || 5));
     var stars = '★★★★★'.slice(0, s) + '☆☆☆☆☆'.slice(0, 5 - s);
+    var videoHtml = '';
+    if (rv.video) {
+      var m = rv.video.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([a-zA-Z0-9_-]{6,})/);
+      if (m) {
+        videoHtml = '<div class="review-video"><iframe src="https://www.youtube.com/embed/' + m[1] + '" title="Video review from ' + rv.name + '" allowfullscreen loading="lazy"></iframe></div>';
+      }
+    }
     return '<div class="review-card glass">'+
+      videoHtml +
       '<div class="stars" aria-label="'+s+' out of 5 stars">'+stars+'</div>'+
-      '<p class="quote">“'+rv.quote+'”</p>'+
+      (rv.quote ? '<p class="quote">“'+rv.quote+'”</p>' : '')+
       '<div class="who"><b>'+rv.name+'</b><span>'+(rv.detail||'')+'</span></div>'+
       '</div>';
   }).join('');
+})();
+
+/* ---- Google reviews — populated weekly by .github/workflows/refresh-google-reviews.yml
+   into google-reviews.json. Stays hidden until that secret setup is done and it has data. ---- */
+(function(){
+  var wrap = document.getElementById('googleReviewsWrap'), grid = document.getElementById('googleReviewsGrid');
+  if(!wrap || !grid) return;
+  fetch('google-reviews.json', { cache: 'no-store' }).then(function(r){ return r.json(); }).then(function(data){
+    var reviews = (data && data.reviews) ? data.reviews : [];
+    if(!reviews.length) return;
+    grid.innerHTML = reviews.map(function(rv){
+      var s = Math.max(0, Math.min(5, rv.stars || 5));
+      var stars = '★★★★★'.slice(0, s) + '☆☆☆☆☆'.slice(0, 5 - s);
+      return '<div class="review-card glass">'+
+        '<div class="stars" aria-label="'+s+' out of 5 stars">'+stars+'</div>'+
+        '<p class="quote">“'+rv.quote+'”</p>'+
+        '<div class="who"><b>'+rv.name+'</b><span>'+(rv.time||'')+'</span></div>'+
+        '</div>';
+    }).join('');
+    wrap.style.display = '';
+  }).catch(function(){ /* no data yet — stay hidden */ });
 })();
 
 /* ---- Start-application buttons (any page) ---- */
@@ -250,7 +279,8 @@ if (hasGsap) {
 
   if (document.querySelector('.hero-title')) {
     var tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-    tl.from('.hero-eyebrow', { opacity: 0, y: 18, duration: .7 })
+    tl.from('.hero-photo', { opacity: 0, scale: .92, duration: 1 })
+      .from('.hero-eyebrow', { opacity: 0, y: 18, duration: .7 }, '-=.7')
       .from('.hero-title .line', { opacity: 0, yPercent: 110, duration: 1, stagger: .12 }, '-=.3')
       .from('.hero-sub', { opacity: 0, y: 18, duration: .8 }, '-=.6')
       .from('.hero-cta', { opacity: 0, y: 18, duration: .8 }, '-=.6');

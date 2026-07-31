@@ -1,0 +1,37 @@
+name: Refresh Google reviews
+
+on:
+  schedule:
+    - cron: '0 13 * * 1'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Fetch latest Google reviews
+        env:
+          GOOGLE_PLACES_API_KEY: ${{ secrets.GOOGLE_PLACES_API_KEY }}
+          GOOGLE_PLACE_ID: ${{ secrets.GOOGLE_PLACE_ID }}
+        run: |
+          if [ -z "$GOOGLE_PLACES_API_KEY" ] || [ -z "$GOOGLE_PLACE_ID" ]; then
+            echo "GOOGLE_PLACES_API_KEY or GOOGLE_PLACE_ID not set yet — skipping, leaving google-reviews.json untouched."
+            exit 0
+          fi
+          curl -s "https://maps.googleapis.com/maps/api/place/details/json?place_id=${GOOGLE_PLACE_ID}&fields=reviews&key=${GOOGLE_PLACES_API_KEY}" \
+            | python3 .github/scripts/format_google_reviews.py
+          cat google-reviews.json
+
+      - name: Commit updated reviews
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add google-reviews.json
+          git diff --cached --quiet || git commit -m "Auto-refresh Google reviews [skip ci]"
+          git push
