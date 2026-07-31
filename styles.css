@@ -150,6 +150,17 @@
   .hero.cursor-active::before, .stmt.cursor-active::before{opacity:1}
   .hero > *:not(.glow):not(.hero-glow){position:relative; z-index:1}
   .hero-title{font-size:clamp(2.6rem,8.5vw,7rem); font-weight:600; letter-spacing:-.035em; line-height:1; margin:18px 0 28px}
+  /* gradient shine sweep — homepage headline only ("The mortgage, made effortless.").
+     Targets .line (not .hero-title itself) since the actual text nodes live in those
+     spans — background-clip:text only clips to text painted directly by the element
+     it's set on, and .hero-title has no direct text of its own, just these children. */
+  #home .hero-title .line{
+    background:linear-gradient(100deg, var(--ink) 42%, var(--accent) 50%, var(--ink) 58%);
+    background-size:250% auto; -webkit-background-clip:text; background-clip:text; color:transparent;
+    animation:hero-shine 6s linear infinite;
+  }
+  @keyframes hero-shine{to{background-position:-250% center}}
+  @media(prefers-reduced-motion:reduce){#home .hero-title .line{animation:none; background:none; -webkit-text-fill-color:initial; color:var(--ink)}}
   .hero-title .line{display:block; overflow:hidden}
   .hero-sub{font-size:clamp(1.05rem,1.8vw,1.4rem); color:var(--muted); max-width:540px; font-weight:300; margin-bottom:40px}
   .hero-cta{display:flex; gap:14px; flex-wrap:wrap}
