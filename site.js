@@ -308,12 +308,29 @@ if (hasGsap) {
   gsap.registerPlugin(ScrollTrigger);
 
   if (document.querySelector('.hero-title')) {
-    var tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-    tl.from('.hero-photo', { opacity: 0, scale: .92, duration: 1 })
-      .from('.hero-eyebrow', { opacity: 0, y: 18, duration: .7 }, '-=.7')
-      .from('.hero-title .line', { opacity: 0, yPercent: 110, duration: 1, stagger: .12 }, '-=.3')
-      .from('.hero-sub', { opacity: 0, y: 18, duration: .8 }, '-=.6')
-      .from('.hero-cta', { opacity: 0, y: 18, duration: .8 }, '-=.6');
+    var heroEls = '.hero-photo, .hero-eyebrow, .hero-title .line, .hero-sub, .hero-cta';
+    // Safety net: GSAP's .from() sets these elements to opacity:0 immediately, then
+    // animates them in. If anything ever prevents that animation from completing —
+    // a slow/blocked CDN, a later error in this same script, a backgrounded tab —
+    // they're stuck invisible forever. Confirmed happening on the live site, so this
+    // isn't hypothetical: force full visibility after 2.5s no matter what happened.
+    var heroSafetyTimer = setTimeout(function(){
+      document.querySelectorAll(heroEls).forEach(function(el){
+        el.style.opacity = '1'; el.style.transform = 'none';
+      });
+    }, 2500);
+    try {
+      var tl = gsap.timeline({ defaults: { ease: 'power3.out' }, onComplete: function(){ clearTimeout(heroSafetyTimer); } });
+      tl.from('.hero-photo', { opacity: 0, scale: .92, duration: 1 })
+        .from('.hero-eyebrow', { opacity: 0, y: 18, duration: .7 }, '-=.7')
+        .from('.hero-title .line', { opacity: 0, yPercent: 110, duration: 1, stagger: .12 }, '-=.3')
+        .from('.hero-sub', { opacity: 0, y: 18, duration: .8 }, '-=.6')
+        .from('.hero-cta', { opacity: 0, y: 18, duration: .8 }, '-=.6');
+    } catch (e) {
+      document.querySelectorAll(heroEls).forEach(function(el){
+        el.style.opacity = '1'; el.style.transform = 'none';
+      });
+    }
   }
 
   // Pin + scrub only above tablet width. Below that, min-height:100vh sections and

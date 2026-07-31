@@ -175,6 +175,14 @@
   /* ===================== STATEMENT (dark, pinned) ===================== */
   .stmt{position:relative; background:var(--panel); color:var(--panel-ink); min-height:100vh; min-height:100dvh; display:flex; align-items:center}
   .stmt .big{font-size:clamp(1.8rem,5vw,4rem); font-weight:500; letter-spacing:-.02em; line-height:1.25; max-width:980px}
+  /* same gradient shine treatment as the homepage headline, per-word since each .w
+     span is independently opacity-animated (scroll-scrub on desktop, fade on mobile) */
+  .stmt .w{
+    background:linear-gradient(100deg, var(--panel-ink) 42%, var(--accent) 50%, var(--panel-ink) 58%);
+    background-size:250% auto; -webkit-background-clip:text; background-clip:text; color:transparent;
+    animation:hero-shine 6s linear infinite;
+  }
+  @media(prefers-reduced-motion:reduce){.stmt .w{animation:none; background:none; -webkit-text-fill-color:initial; color:var(--panel-ink)}}
   /* Full-viewport-height + centered text works on desktop, but on a narrow phone
      screen the same short paragraph leaves a huge empty gap above and below it —
      easy to mistake for the page having ended. Let it size to its content instead. */
