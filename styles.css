@@ -283,7 +283,13 @@
   a.cdetail:hover{transform:translateY(-4px)}
   .cdetail .ck{font-size:.72rem; letter-spacing:.18em; text-transform:uppercase; color:var(--accent); font-weight:600}
   .cdetail .cv{font-size:1.1rem; font-weight:600; letter-spacing:-.01em}
-  @media(max-width:600px){.contact-details{flex-direction:column}}
+  @media(max-width:600px){
+    .contact-details{flex-direction:column}
+    /* flex-basis:280px (set above) controls the main axis — which is height once
+       flex-direction switches to column here, forcing a tall card around one line
+       of text. Reset it so the card sizes to its content and spans full width. */
+    .contact-details .cdetail{flex:none; width:100%}
+  }
 
   .topics-label{display:block; font-size:.95rem; font-weight:500; margin:46px 0 14px}
   .bookselect{position:relative; max-width:440px}
