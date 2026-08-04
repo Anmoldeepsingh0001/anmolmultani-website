@@ -272,6 +272,34 @@
   .careers .quiet{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:24px; margin-top:30px; padding:34px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
   .careers .quiet p{color:var(--muted); font-weight:300; max-width:560px}
 
+  /* ===================== SMITH MANOEUVRE CHARTS =====================
+     --viz-* custom properties simply alias the site's own theme tokens, which
+     already switch for light/dark/system — no separate dark-mode block needed. */
+  .sm-charts{display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:44px}
+  @media(max-width:900px){.sm-charts{grid-template-columns:1fr}}
+  .sm-chart-card{border-radius:20px; padding:28px}
+  .sm-chart-card h3{font-size:1.05rem; font-weight:600; letter-spacing:-.01em; margin-bottom:18px}
+  .viz-root{
+    --viz-accent: var(--accent); --viz-muted: var(--muted); --viz-surface: var(--card);
+    --viz-grid: var(--line); --viz-ink: var(--ink); position:relative;
+  }
+  .viz-grid{stroke:var(--viz-grid); stroke-width:1}
+  .viz-axis{stroke:var(--viz-grid); stroke-width:1}
+  .viz-axis-label{fill:var(--viz-muted); font-size:11px; font-family:inherit}
+  .viz-end-label{fill:var(--viz-ink); font-size:11px; font-weight:600; font-family:inherit}
+  .viz-crosshair{stroke:var(--viz-muted); stroke-width:1; stroke-dasharray:3 3; pointer-events:none}
+  .viz-legend{display:flex; gap:18px; flex-wrap:wrap; margin-top:14px}
+  .viz-legend-item{display:flex; align-items:center; gap:7px; font-size:.82rem; color:var(--viz-muted)}
+  .viz-legend-key{width:14px; height:2px; border-radius:1px; display:inline-block}
+  .viz-legend-key.dashed{background:repeating-linear-gradient(to right, currentColor 0 4px, transparent 4px 7px); background-color:transparent !important}
+  .viz-tooltip{position:absolute; z-index:5; pointer-events:none; background:var(--viz-surface); border:1px solid var(--line);
+    border-radius:10px; padding:10px 12px; box-shadow:0 12px 30px rgba(0,0,0,.16); font-size:.8rem; min-width:150px}
+  .viz-tooltip-title{color:var(--viz-muted); font-size:.72rem; margin-bottom:6px}
+  .viz-tooltip-row{display:flex; align-items:center; gap:6px; justify-content:space-between; padding:2px 0}
+  .viz-tooltip-key{width:9px; height:9px; border-radius:50%; flex:none}
+  .viz-tooltip-name{color:var(--viz-muted); flex:1}
+  .viz-tooltip-val{color:var(--viz-ink); font-weight:600; margin-left:10px}
+
   /* ===================== BOOK ===================== */
   .book-card{border-radius:26px; padding:54px 48px; margin-top:56px; display:flex; justify-content:space-between; align-items:center; gap:36px; flex-wrap:wrap}
   .book-card h3{font-size:clamp(1.5rem,3vw,2.1rem); font-weight:600; letter-spacing:-.02em; max-width:520px}
