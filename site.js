@@ -382,3 +382,19 @@ if (hasGsap) {
     });
   });
 })();
+
+// logo mark: click/tap to revolve
+(function(){
+  document.querySelectorAll('.logo-mark').forEach(function(mark){
+    var inner = document.createElement('span');
+    inner.className = 'logo-mark-inner';
+    while (mark.firstChild) inner.appendChild(mark.firstChild);
+    mark.appendChild(inner);
+    function trigger(){
+      if (inner.classList.contains('spin')) return;
+      inner.classList.add('spin');
+    }
+    mark.addEventListener('click', trigger);
+    inner.addEventListener('animationend', function(){ inner.classList.remove('spin'); });
+  });
+})();
