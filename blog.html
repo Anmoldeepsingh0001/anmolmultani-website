@@ -209,7 +209,7 @@
       var posts = (data && data.data) ? data.data.slice(0, 4) : [];
       if(!posts.length) return;
       grid.innerHTML = posts.map(function(p){
-        var img = p.thumbnail_url || p.media_url || '';
+        var img = p.local_thumb || p.thumbnail_url || p.media_url || '';
         var caption = (p.caption || '').split('\n')[0].slice(0, 90);
         return '<a class="ig-post" href="' + p.permalink + '" target="_blank" rel="noopener">' +
           '<img src="' + img + '" alt="" loading="lazy">' +
