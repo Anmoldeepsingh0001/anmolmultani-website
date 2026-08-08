@@ -154,9 +154,15 @@
   /* ===================== HERO ===================== */
   .hero{min-height:100vh; min-height:100dvh; display:flex; flex-direction:row-reverse; align-items:center; justify-content:space-between; gap:60px; padding-top:66px; isolation:isolate; overflow:visible}
   .hero-content{flex:1; min-width:0}
-  .hero-photo{flex:none; width:300px; aspect-ratio:4/5; border-radius:20px; overflow:hidden; background:linear-gradient(135deg,var(--img-a),var(--img-b)); box-shadow:0 40px 90px -20px rgba(0,0,0,.35); border:1px solid var(--glass-border); transition:transform .7s cubic-bezier(.16,.84,.44,1)}
-  .hero-photo:hover{transform:translateY(-4px)}
-  .hero-photo img{width:100%; height:100%; object-fit:cover; display:block}
+  .hero-photo{position:relative; flex:none; width:300px; aspect-ratio:4/5; border-radius:20px; overflow:hidden; background:linear-gradient(135deg,var(--img-a),var(--img-b)); box-shadow:0 40px 90px -20px rgba(0,0,0,.35); border:1px solid var(--glass-border); transition:transform .7s cubic-bezier(.16,.84,.44,1), box-shadow .5s ease}
+  .hero-photo:hover{transform:translateY(-4px); box-shadow:0 40px 90px -20px rgba(0,0,0,.35), 0 0 0 2px var(--accent)}
+  .hero-photo img{width:100%; height:100%; object-fit:cover; display:block; animation:portrait-kenburns 20s ease-in-out infinite alternate}
+  .hero-photo::after{content:''; position:absolute; inset:0; z-index:2; pointer-events:none;
+    background:linear-gradient(115deg, transparent 35%, rgba(255,255,255,.45) 50%, transparent 65%);
+    transform:translateX(-140%) skewX(-10deg)}
+  .hero-photo.in::after{animation:portrait-sheen 1.7s cubic-bezier(.4,0,.2,1) .6s 1 forwards}
+  @keyframes portrait-kenburns{0%{transform:scale(1)} 100%{transform:scale(1.09) translate(-1%,-1%)}}
+  @keyframes portrait-sheen{from{transform:translateX(-140%) skewX(-10deg)} to{transform:translateX(140%) skewX(-10deg)}}
   /* Below tablet width: forcing the hero to fill the full mobile viewport height while
      vertically centering short content left a large, unexplained-looking blank gap
      above the text (same root cause as the Statement section fix). Let it flow
@@ -266,14 +272,24 @@
   /* ===================== ABOUT ===================== */
   .about{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center}
   @media(max-width:900px){.about{grid-template-columns:1fr}}
-  .about .img{aspect-ratio:4/5; border-radius:22px; background:linear-gradient(135deg,var(--img-a),var(--img-b)); overflow:hidden}
-  .about .img img{width:100%; height:100%; object-fit:cover; display:block}
+  .about .img{position:relative; aspect-ratio:4/5; border-radius:22px; background:linear-gradient(135deg,var(--img-a),var(--img-b)); overflow:hidden; box-shadow:0 30px 70px -20px rgba(0,0,0,.3); transition:box-shadow .5s ease}
+  .about .img:hover{box-shadow:0 30px 70px -20px rgba(0,0,0,.3), 0 0 0 2px var(--accent)}
+  .about .img img{width:100%; height:100%; object-fit:cover; display:block; animation:portrait-kenburns 22s ease-in-out infinite alternate-reverse}
+  .about .img::after{content:''; position:absolute; inset:0; z-index:2; pointer-events:none;
+    background:linear-gradient(115deg, transparent 35%, rgba(255,255,255,.45) 50%, transparent 65%);
+    transform:translateX(-140%) skewX(-10deg)}
+  .about .img.in::after{animation:portrait-sheen 1.7s cubic-bezier(.4,0,.2,1) .3s 1 forwards}
+  @media (prefers-reduced-motion: reduce){
+    .hero-photo img, .about .img img{animation:none}
+    .hero-photo::after, .about .img::after{display:none}
+  }
 
   /* ===================== TEAM ===================== */
   .grid-team{display:grid; grid-template-columns:repeat(2,1fr); gap:28px; margin-top:60px; max-width:840px}
   @media(max-width:700px){.grid-team{grid-template-columns:1fr}}
   .member{border-radius:20px; padding:32px; display:flex; gap:22px; align-items:flex-start}
-  .member .av{position:relative; flex:none; width:78px; height:78px; border-radius:50%; overflow:hidden; background:linear-gradient(135deg,var(--img-a),var(--img-b)); display:flex; align-items:center; justify-content:center; font-size:1.6rem; font-weight:600; color:var(--ink)}
+  .member .av{position:relative; flex:none; width:78px; height:78px; border-radius:50%; overflow:hidden; background:linear-gradient(135deg,var(--img-a),var(--img-b)); display:flex; align-items:center; justify-content:center; font-size:1.6rem; font-weight:600; color:var(--ink); transition:box-shadow .35s ease, transform .35s ease}
+  .member:hover .av{transform:scale(1.07); box-shadow:0 0 0 3px var(--accent)}
   .member .av img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
   .member h4{font-size:1.15rem; font-weight:600}
   .member .role{color:var(--accent); font-size:.86rem; font-weight:600; margin:4px 0 12px; text-transform:uppercase; letter-spacing:.05em}
@@ -329,6 +345,14 @@
   .book-card p{color:var(--muted); font-weight:300; margin-top:12px; max-width:520px}
 
   /* ===================== CONTACT ===================== */
+  .signature-badge{display:inline-flex; align-items:center; gap:14px; margin-top:28px; padding:8px 22px 8px 8px; border-radius:50px; background:var(--glass); backdrop-filter:blur(20px) saturate(170%); -webkit-backdrop-filter:blur(20px) saturate(170%); border:1px solid var(--glass-border)}
+  .sig-photo{position:relative; width:52px; height:52px; border-radius:50%; overflow:hidden; flex:none}
+  .sig-photo img{width:100%; height:100%; object-fit:cover; display:block}
+  .sig-photo::after{content:''; position:absolute; inset:-6px; border-radius:50%; border:1px solid var(--accent); opacity:.6; animation:sig-pulse 2.6s ease-out infinite}
+  @keyframes sig-pulse{0%{transform:scale(.82); opacity:.65} 70%{transform:scale(1.28); opacity:0} 100%{opacity:0}}
+  .sig-name{font-weight:600; font-size:.95rem; letter-spacing:-.01em}
+  .sig-role{font-size:.78rem; color:var(--muted); margin-top:2px}
+  @media (prefers-reduced-motion: reduce){.sig-photo::after{animation:none; opacity:.35}}
   .contact-details{display:flex; flex-wrap:wrap; gap:14px; margin-top:46px}
   .contact-details .cdetail{flex:0 1 280px; min-width:210px; border-radius:16px; padding:24px 26px; text-decoration:none; color:var(--ink); transition:.35s ease; display:flex; flex-direction:column; gap:9px}
   a.cdetail:hover{transform:translateY(-4px)}
