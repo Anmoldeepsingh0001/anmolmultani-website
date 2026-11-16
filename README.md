@@ -1,6 +1,6 @@
 # anmolmultani.ca
 
-Personal website for **Anmol Multani**, Mortgage Broker (Clearstone Financial / Vine Mortgage Group), serving PEI, Nova Scotia, and New Brunswick.
+Personal website for **Anmol Multani**, Mortgage Broker (Clearstone Financial / Mortgage Powered Financial Group), serving PEI, Nova Scotia, and New Brunswick.
 
 Live at **https://anmolmultani.ca**, hosted free on GitHub Pages.
 
@@ -18,7 +18,7 @@ This is a plain static site — HTML, CSS, and vanilla JavaScript. No build step
 | 2 | Client testimonials (Reviews section, homepage) | `REVIEWS` |
 | 3 | Phone / email shown across the site | `CONTACT` |
 | 4 | Where contact-form submissions get emailed (Web3Forms) | `FORM_ACCESS_KEY` |
-| 5 | "Start your application" button target (Vine portal) | `APPLICATION_LINK` |
+| 5 | "Start your application" button target (application portal) | `APPLICATION_LINK` |
 | 6 | "Book a call" button target (Reclaim.ai) | `BOOKING_LINK` |
 | 7 | "Our story" paragraph(s), About section | `ABOUT_TEXT` |
 | 8 | Team bios, photos, titles | `TEAM` |

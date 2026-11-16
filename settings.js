@@ -34,8 +34,8 @@ var CONTACT = { phone: '(902) 919-9487', tel: '+19029199487', email: 'info@anmol
 //    opening the visitor's email app instead.
 var FORM_ACCESS_KEY = '';
 
-// 5) MORTGAGE APPLICATION LINK — paste your Vine application / portal URL here.
-//    (Full applications should run through Vine's secure system, not this site.)
+// 5) MORTGAGE APPLICATION LINK — paste your MPFG application / portal URL here.
+//    (Full applications should run through the brokerage's secure system, not this site.)
 //    Leave '' and the button simply scrolls to the contact section.
 var APPLICATION_LINK = 'https://r.mtg-app.com/anmol';
 
@@ -46,14 +46,14 @@ var BOOKING_LINK = 'https://app.reclaim.ai/m/anmol-clearstonefinancial';
 // 7) YOUR STORY — add or edit paragraphs here anytime, save, refresh.
 //    Each entry becomes its own paragraph in the "Our story" section.
 var ABOUT_TEXT = [
-  'We’re not a bank — we work for you. Through Vine Group’s hub model we serve clients right across Canada, with access to a wide network of lenders, honest advice, and a team that treats your file like our own.'
+  'We’re not a bank — we work for you. Through Mortgage Powered Financial Group (MPFG) we serve clients right across Canada, with access to a wide network of lenders, honest advice, and a team that treats your file like our own.'
 ];
 
 // 8) YOUR TEAM — add, remove, or edit members here. photo is optional;
 //    if left blank or the file is missing, the first letter of the name shows instead.
 var TEAM = [
-  { name: 'Anmol Multani', role: 'COO · Clearstone Financial', photo: 'anmol-headshot.jpg',
-    bio: 'Small-town roots are what led me to PEI — that same close-knit feel, just somewhere new to call home. I hold a bachelor’s and postgraduate diploma in IT, and now spend my time helping clients right across Canada get into their homes through Vine Group’s hub model. Outside of work: the gym, travelling, or creating content.' },
+  { name: 'Anmol Multani', role: 'Mortgage Broker · Clearstone Financial', photo: 'anmol-headshot.jpg',
+    bio: 'Small-town roots are what led me to PEI — that same close-knit feel, just somewhere new to call home. I hold a bachelor’s and postgraduate diploma in IT, and now spend my time helping clients right across Canada get into their homes as a Mortgage Broker with Mortgage Powered Financial Group. Outside of work: the gym, travelling, or creating content.' },
   { name: 'Nicholas Gaudet', role: 'Mortgage Broker & Financial Advisor', photo: 'nicholas.jpg',
     bio: 'President & CEO of Clearstone Financial, guiding clients through every step of their mortgage. Off the clock, he’s a history major at heart who’s rarely without a good book.' }
 ];
