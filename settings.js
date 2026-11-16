@@ -46,14 +46,14 @@ var BOOKING_LINK = 'https://app.reclaim.ai/m/anmol-clearstonefinancial';
 // 7) YOUR STORY — add or edit paragraphs here anytime, save, refresh.
 //    Each entry becomes its own paragraph in the "Our story" section.
 var ABOUT_TEXT = [
-  'We’re not a bank — we work for you. Through Mortgage Powered Financial Group (MPFG) we serve clients right across Canada, with access to a wide network of lenders, honest advice, and a team that treats your file like our own.'
+  'We’re not a bank — we work for you. Based in Charlottetown, we serve clients in PEI and Nova Scotia through Mortgage Powered Financial Group (MPFG), with access to a wide network of lenders, honest advice, and a team that treats your file like our own.'
 ];
 
 // 8) YOUR TEAM — add, remove, or edit members here. photo is optional;
 //    if left blank or the file is missing, the first letter of the name shows instead.
 var TEAM = [
   { name: 'Anmol Multani', role: 'Mortgage Broker · Clearstone Financial', photo: 'anmol-headshot.jpg',
-    bio: 'Small-town roots are what led me to PEI — that same close-knit feel, just somewhere new to call home. I hold a bachelor’s and postgraduate diploma in IT, and now spend my time helping clients right across Canada get into their homes as a Mortgage Broker with Mortgage Powered Financial Group. Outside of work: the gym, travelling, or creating content.' },
+    bio: 'Small-town roots are what led me to PEI — that same close-knit feel, just somewhere new to call home. I hold a bachelor’s and postgraduate diploma in IT, and now spend my time helping clients across PEI get into their homes as a Mortgage Broker with Mortgage Powered Financial Group. Outside of work: the gym, travelling, or creating content.' },
   { name: 'Nicholas Gaudet', role: 'Mortgage Broker & Financial Advisor', photo: 'nicholas.jpg',
     bio: 'President & CEO of Clearstone Financial, guiding clients through every step of their mortgage. Off the clock, he’s a history major at heart who’s rarely without a good book.' }
 ];
