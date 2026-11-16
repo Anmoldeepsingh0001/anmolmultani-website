@@ -6,10 +6,9 @@
 // 1) YOUR RATES — edit any number here, save, refresh. That's it.
 //    cat: 'fixed' or 'variable' (controls which tab shows the row)
 var RATES = [
-  { term: '3-Year Fixed',    cat: 'fixed',    pct: '4.29', note: 'Great if you expect rates to drop at renewal' },
-  { term: '5-Year Fixed',    cat: 'fixed',    pct: '4.29', note: 'Most popular — payment locked in for five years'  },
-  { term: '3-Year Variable', cat: 'variable', pct: '3.6', note: 'Moves with prime; break costs are usually lower'   },
-  { term: '5-Year Variable', cat: 'variable', pct: '3.7', note: 'Long-term flexibility; benefits if prime falls'    }
+  { term: '3-Year Fixed',    cat: 'fixed',    pct: '4.69', note: 'Great if you expect rates to drop at renewal' },
+  { term: '5-Year Fixed',    cat: 'fixed',    pct: '4.74', note: 'Most popular — payment locked in for five years'  },
+  { term: '5-Year Variable', cat: 'variable', pct: '3.95', note: 'Moves with prime; break costs are usually lower'  }
 ];
 
 // 2) YOUR REVIEWS — add or edit here. stars = 1 to 5. Save, refresh.
@@ -40,11 +39,9 @@ var FORM_ACCESS_KEY = '';
 //    Leave '' and the button simply scrolls to the contact section.
 var APPLICATION_LINK = 'https://r.mtg-app.com/anmol';
 
-// 6) BOOKING LINK — paste your Google Calendar appointment scheduling page URL here.
-//    To create one: Google Calendar → Create → Appointment schedule → set your
-//    availability → click "Booking page" → copy that URL and paste it below.
+// 6) BOOKING LINK — your Reclaim.ai scheduling page (opens in a new tab).
 //    Leave '' and the booking page shows your phone/email instead of a calendar.
-var BOOKING_LINK = 'https://calendar.app.google/tehVhbYwSrSFsF5w7';
+var BOOKING_LINK = 'https://app.reclaim.ai/m/anmol-clearstonefinancial';
 
 // 7) YOUR STORY — add or edit paragraphs here anytime, save, refresh.
 //    Each entry becomes its own paragraph in the "Our story" section.

@@ -19,7 +19,7 @@ This is a plain static site — HTML, CSS, and vanilla JavaScript. No build step
 | 3 | Phone / email shown across the site | `CONTACT` |
 | 4 | Where contact-form submissions get emailed (Web3Forms) | `FORM_ACCESS_KEY` |
 | 5 | "Start your application" button target (Vine portal) | `APPLICATION_LINK` |
-| 6 | "Book a call" button target (Google Calendar) | `BOOKING_LINK` |
+| 6 | "Book a call" button target (Reclaim.ai) | `BOOKING_LINK` |
 | 7 | "Our story" paragraph(s), About section | `ABOUT_TEXT` |
 | 8 | Team bios, photos, titles | `TEAM` |
 | 9 | Lender logo marquee (who you work with) | `LENDERS` |
@@ -77,7 +77,7 @@ Every page repeats the same `<header>`/nav/footer markup (there's no templating 
 - **Editable business data**: one file (`settings.js`) drives rates, reviews, team, lenders, contact links, socials — no code edits needed for routine updates
 - **Lender logo marquee**: scrolling strip of partner logos on the homepage, each in a uniform white card; logos with light/white artwork (Strive, RMG) automatically get a dark card instead so they stay visible — controlled by a `dark: true` flag per entry in `LENDERS`
 - **Calculators**: mortgage payment, GDS/TDS affordability/pre-qualification (with the federal stress test), land transfer tax (PEI/NS/NB, each with correct province-specific rules), closing costs
-- **Booking**: "Book a call" button links straight to a real Google Calendar appointment page (a true embedded iframe isn't possible — Google blocks that with `X-Frame-Options`)
+- **Booking**: "Book a call" buttons open the Reclaim.ai scheduling page in a new tab
 - **Contact form**: emails Anmol directly via Web3Forms if `FORM_ACCESS_KEY` is set in `settings.js`; otherwise falls back to opening the visitor's email app
 - **SEO**: meta tags, Open Graph/Twitter cards, JSON-LD structured data (schema.org `FinancialService`), `sitemap.xml`, `robots.txt`
 - **Social links**: Instagram, TikTok, YouTube icons in the footer (rendered only if a URL is set in `SOCIAL`)
