@@ -245,7 +245,7 @@
         body: JSON.stringify({
           email: email,
           _subject: 'Guide request: ' + GUIDE_TITLE,
-          _autoresponse: 'Hi,\n\nThanks for requesting the ' + GUIDE_TITLE + '! Here is your copy:\n' + pdfAbs + '\n\nQuestions? Just reply to this email, or call/text ' + CONTACT.phone + '.\n\n— Anmol Multani, Clearstone Financial',
+          _autoresponse: 'Hi,\n\nThanks for requesting the ' + GUIDE_TITLE + '! Here is your copy:\n' + pdfAbs + '\n\nQuestions? Just reply to this email, or book a call: ' + BOOKING_LINK + '\n\n— Anmol Multani, Clearstone Financial',
           guide: GUIDE_TITLE
         })
       }).then(reveal).catch(reveal);
