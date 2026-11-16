@@ -37,9 +37,23 @@ jobs:
         env:
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
         run: |
-          curl -s "https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,permalink,thumbnail_url,timestamp&access_token=${IG_ACCESS_TOKEN}&limit=4" \
-            | python3 -c "import sys,json; d=json.load(sys.stdin); print(json.dumps({'data': d.get('data', [])}))" > instagram-posts.json
-          cat instagram-posts.json
+          # Write to a temp file first: if Instagram returns an error (expired/invalid
+          # token), print the error and keep the last good feed instead of blanking it.
+          curl -s "https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,permalink,thumbnail_url,timestamp&access_token=${IG_ACCESS_TOKEN}&limit=4" > /tmp/ig.json
+          python3 - <<'PY'
+          import json, sys
+          d = json.load(open('/tmp/ig.json'))
+          if 'error' in d:
+              e = d['error']
+              print(f"::error::Instagram API error {e.get('code')}/{e.get('error_subcode')}: {e.get('message')}")
+              sys.exit(1)
+          posts = d.get('data', [])
+          if not posts:
+              print("::error::Instagram returned no posts — keeping the existing feed.")
+              sys.exit(1)
+          json.dump({'data': posts}, open('instagram-posts.json', 'w'))
+          print(f"Fetched {len(posts)} posts.")
+          PY
 
       - name: Download thumbnails (Instagram's media URLs expire — self-host so the feed doesn't go stale between refreshes)
         run: |
