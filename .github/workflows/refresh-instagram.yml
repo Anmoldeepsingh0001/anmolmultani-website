@@ -46,6 +46,12 @@ jobs:
           if 'error' in d:
               e = d['error']
               print(f"::error::Instagram API error {e.get('code')}/{e.get('error_subcode')}: {e.get('message')}")
+              import os
+              t = os.environ.get('IG_ACCESS_TOKEN', '')
+              # safe diagnostics only — never the full token
+              print(f"Token check: starts with '{t[:4]}', length {len(t)}, "
+                    f"has whitespace={any(ch.isspace() for ch in t)}, has quotes={chr(34) in t or chr(39) in t}, "
+                    f"has '='={'=' in t}")
               sys.exit(1)
           posts = d.get('data', [])
           if not posts:
