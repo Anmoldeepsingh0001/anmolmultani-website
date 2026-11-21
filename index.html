@@ -280,6 +280,33 @@
 </div></section>
 
 
+<!-- SIDE QUEST -->
+<section id="side-quest"><div class="wrap">
+  <div class="eyebrow reveal">Anmol&rsquo;s side quest</div>
+  <h2 class="reveal">Helping PEI save a little, every week.</h2>
+  <p class="lead reveal">Not everything has to be about mortgages. I built a free tool that tracks PEI&rsquo;s regulated pump price and forecasts whether gas is going up or down at the next change &mdash; so you know when to fill up.</p>
+  <div class="card glass reveal" style="margin-top:40px; max-width:640px">
+    <div class="k">Free tool &middot; PEI gas prices</div>
+    <h3 id="sqHeadline">Is gas going up or down this week?</h3>
+    <p id="sqDetail">Today&rsquo;s PEI pump price and a forecast for the next change, updated automatically from public data.</p>
+    <a class="dl-btn" href="pei-gas-prices.html" style="margin-top:14px">See today&rsquo;s price &amp; forecast &rarr;</a>
+  </div>
+</div></section>
+<script>
+(function(){
+  fetch('gas-prices.json', {cache:'no-store'}).then(function(r){ return r.json(); }).then(function(d){
+    var c = d.current, n = d.next; if(!c || !n) return;
+    var day = new Date(n.effective + 'T12:00:00').toLocaleDateString('en-CA', {weekday:'long', month:'short', day:'numeric'});
+    var ch = Number(n.change), dir = ch < 0 ? 'down' : (ch > 0 ? 'up' : 'flat');
+    document.getElementById('sqHeadline').textContent = dir === 'flat'
+      ? 'Gas looks flat for ' + day + '.'
+      : 'Gas looks ' + dir + ' about ' + Math.abs(ch).toFixed(1) + '\u00a2 on ' + day + '.';
+    document.getElementById('sqDetail').textContent = 'Regular is ' + c.min.toFixed(1) + '\u2013' + c.max.toFixed(1) +
+      '\u00a2/L in PEI right now' + (n.official ? '.' : '. The forecast is an estimate until IRAC posts the official price.');
+  }).catch(function(){});
+})();
+</script>
+
 <!-- CONTACT -->
 <section id="contact"><div class="wrap">
   <div class="eyebrow reveal">Get in touch</div>
@@ -322,7 +349,6 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
 <script src="settings.js?v=2"></script>
 <script src="site.js?v=2"></script>
 </body>
