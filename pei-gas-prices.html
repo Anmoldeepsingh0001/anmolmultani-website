@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="favicon-96.png" />
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+<meta name="color-scheme" content="light dark" />
+<title>PEI Gas Prices Today &amp; Next Change Forecast | Anmol Multani</title>
+<meta name="description" content="Today&rsquo;s PEI gas price and a free forecast for the next IRAC price change (every Tuesday and Friday at 12:01 a.m.). Will gas go up or down tonight? Updated automatically." />
+<link rel="canonical" href="https://anmolmultani.ca/pei-gas-prices.html" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Anmol Multani — Clearstone Financial" />
+<meta property="og:title" content="PEI Gas Prices Today &amp; Next Change Forecast | Anmol Multani" />
+<meta property="og:description" content="Today&rsquo;s PEI gas price and a free forecast for the next IRAC price change (every Tuesday and Friday at 12:01 a.m.). Will gas go up or down tonight? Updated automatically." />
+<meta property="og:url" content="https://anmolmultani.ca/pei-gas-prices.html" />
+<meta property="og:image" content="https://anmolmultani.ca/anmol-headshot.jpg" />
+<meta property="og:locale" content="en_CA" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="PEI Gas Prices Today &amp; Next Change Forecast | Anmol Multani" />
+<meta name="twitter:description" content="Today&rsquo;s PEI gas price and a free forecast for the next IRAC price change (every Tuesday and Friday at 12:01 a.m.). Will gas go up or down tonight? Updated automatically." />
+<meta name="twitter:image" content="https://anmolmultani.ca/anmol-headshot.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<noscript><style>.reveal{opacity:1 !important; transform:none !important}</style></noscript>
+<link rel="stylesheet" href="styles.css?v=2" />
+<script>(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<style>
+  /* ---- PEI gas prices page (page-specific) ---- */
+  .gas-glance{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+  @media(max-width:860px){.gas-glance{grid-template-columns:1fr}}
+  .gas-tile{border-radius:22px; padding:26px 28px}
+  .gas-k{font-size:.74rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--muted)}
+  .gas-big{font-size:clamp(2.6rem,6vw,3.6rem); font-weight:600; letter-spacing:-.03em; margin:8px 0 4px; font-variant-numeric:tabular-nums; line-height:1.05}
+  .gas-big small{font-size:1.05rem; font-weight:400; color:var(--muted); letter-spacing:0}
+  .gas-s{font-size:.9rem; color:var(--muted); font-weight:300}
+  .gas-ans{font-size:clamp(1.6rem,3.4vw,2.1rem); font-weight:600; letter-spacing:-.02em; margin:10px 0 6px; line-height:1.15}
+  .gas-chip{display:inline-flex; align-items:center; gap:6px; font-weight:600; font-size:.88rem; padding:3px 10px; border-radius:30px; border:1px solid var(--line); color:var(--ink)}
+  .gas-chip i{width:9px; height:9px; border-radius:50%; display:inline-block}
+  .gas-up{--gas-c:#d03b3b} .gas-down{--gas-c:#0ca30c} .gas-flat{--gas-c:var(--muted)}
+  .gas-chip i{background:var(--gas-c)}
+  .gas-card{border-radius:22px; padding:26px 28px; margin-top:16px}
+  .gas-card h3{font-size:1.05rem; font-weight:600}
+  .gas-row{display:flex; justify-content:space-between; align-items:baseline; gap:12px; flex-wrap:wrap; margin-bottom:10px}
+  .gas-chart{position:relative}
+  .gas-chart svg{display:block; width:100%; height:auto; overflow:visible}
+  .gas-chart text{fill:var(--muted); font-size:11px; font-family:inherit}
+  .gas-tip{position:absolute; pointer-events:none; background:var(--card); border:1px solid var(--line); border-radius:10px; padding:8px 11px; font-size:.82rem; box-shadow:0 8px 24px rgba(0,0,0,.12); display:none; white-space:nowrap; color:var(--ink)}
+  .gas-tip span{color:var(--muted)}
+  .gas-more summary{cursor:pointer; font-weight:600; list-style:none; display:flex; justify-content:space-between; align-items:center}
+  .gas-more summary::-webkit-details-marker{display:none}
+  .gas-more summary .plus{font-size:1.5rem; font-weight:300; color:var(--accent); transition:.25s ease; line-height:1}
+  .gas-more[open] summary .plus{transform:rotate(45deg)}
+  .gas-split{display:grid; grid-template-columns:1fr 1fr; gap:36px; margin-top:22px}
+  @media(max-width:760px){.gas-split{grid-template-columns:1fr}}
+  .gas-split h4{font-size:.95rem; font-weight:600; margin-bottom:10px}
+  .gas-bd{display:grid; grid-template-columns:1fr auto; gap:7px 18px; font-size:.95rem}
+  .gas-bd span{color:var(--muted); font-weight:300}
+  .gas-bd b{font-weight:500; text-align:right; font-variant-numeric:tabular-nums}
+  .gas-bd .tot{border-top:1px solid var(--line); padding-top:8px; color:var(--ink); font-weight:600}
+  .gas-about{flex-direction:column; align-items:stretch}
+  .gas-about-in{display:flex; gap:28px; align-items:flex-start}
+  .gas-about-in p{max-width:640px}
+  .gas-face{width:86px; height:86px; border-radius:50%; object-fit:cover; flex:none}
+  @media(max-width:600px){.gas-about-in{flex-direction:column}}
+  .gas-role{font-size:.92rem; color:var(--ink) !important; font-weight:500 !important; margin-top:4px !important}
+  .gas-contact{display:flex; gap:18px; flex-wrap:wrap; margin-top:18px; font-size:.95rem}
+  .gas-contact a{color:var(--accent); text-decoration:none; font-weight:500}
+  .gas-contact a:hover{text-decoration:underline}
+  .gas-links{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:26px}
+  @media(max-width:900px){.gas-links{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.gas-links{grid-template-columns:1fr}}
+  .gas-link{position:relative; display:flex; flex-direction:column; gap:6px; border-radius:18px; padding:22px 44px 22px 22px; text-decoration:none; color:var(--ink); transition:.3s ease}
+  .gas-link:hover{transform:translateY(-3px)}
+  .gas-link span{color:var(--muted); font-weight:300; font-size:.9rem}
+  .gas-link i{position:absolute; right:20px; top:50%; transform:translateY(-50%); font-style:normal; color:var(--accent); font-size:1.2rem}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "When do gas prices change in PEI?", "acceptedAnswer": {"@type": "Answer", "text": "At 12:01 a.m. every Tuesday and Friday, set by the Island Regulatory and Appeals Commission (IRAC). IRAC can also make an unscheduled change when the market moves sharply."}}, {"@type": "Question", "name": "Why is gas the same price everywhere on PEI?", "acceptedAnswer": {"@type": "Answer", "text": "IRAC sets a minimum and maximum price for every grade, and stations must stay inside that range. The gap is usually only about a cent."}}, {"@type": "Question", "name": "How is the PEI gas price calculated?", "acceptedAnswer": {"@type": "Answer", "text": "IRAC averages the wholesale rack price at the Charlottetown terminal, then adds a wholesale margin, any fuel taxes, the retail margin and 15% HST."}}]}</script>
+</head>
+<body>
+
+<header id="header">
+  <div class="wrap nav">
+    <a href="index.html" class="logo" aria-label="Home"><span class="logo-mark"><span class="depth" style="transform:translate(1px,1px)">AM</span><span class="face">AM</span></span><span class="logo-word">Anmol Multani</span></a>
+    <ul class="menu">
+      <li class="has-drop">
+        <a href="index.html#services" aria-haspopup="true">Services</a>
+        <div class="drop">
+          <a href="index.html#svc-preapproval">Pre-Approval</a>
+          <a href="index.html#svc-purchase">Purchase</a>
+          <a href="index.html#svc-refinance">Refinance</a>
+          <a href="index.html#svc-renewal">Renewal</a>
+          <a href="index.html#svc-debt">Debt Consolidation</a>
+          <a href="smith-manoeuvre.html">Smith Manoeuvre&trade;</a>
+        </div>
+      </li>
+      <li class="has-drop">
+        <a href="guides.html" aria-haspopup="true">Guides</a>
+        <div class="drop">
+          <a href="guides/first-time-buyer.html">First Time Home Buyer</a>
+          <a href="guides/newcomer-to-canada.html">Newcomer to Canada</a>
+          <a href="guides/nurses-healthcare.html">Guide for Nurses</a>
+          <a href="guides/self-employed.html">Self-Employed Guide</a>
+          <a href="guides/pei-first-time-buyer-programs.html">PEI First-Time Buyer Programs</a>
+        </div>
+      </li>
+      <li class="has-drop">
+        <a href="calculators.html" aria-haspopup="true">Calculators</a>
+        <div class="drop">
+          <a href="calculators.html">Mortgage Payment</a>
+          <a href="affordability-calculator.html">Affordability</a>
+          <a href="land-transfer-tax-calculator.html">Land Transfer Tax</a>
+          <a href="closing-cost-calculator.html">Closing Cost</a>
+          <a href="smith-manoeuvre-calculator.html">Smith Manoeuvre</a>
+        </div>
+      </li>
+      <li><a href="index.html#rates">Rates</a></li>
+      <li class="has-drop">
+        <a href="index.html#about" aria-haspopup="true">Company</a>
+        <div class="drop">
+          <a href="index.html#about">About</a>
+          <a href="team.html#team">Team</a>
+          <a href="team.html#reviews">Reviews</a>
+          <a href="why-us.html">Why Work With Us</a>
+        </div>
+      </li>
+      <li><a href="blog.html">Blog</a></li>
+    </ul>
+    <a href="index.html#contact" class="btn primary" style="padding:10px 22px">Get in touch</a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" type="button">
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <button class="hamb" id="hamb" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mm-group">
+    <button class="mm-group-toggle" type="button" aria-expanded="false">Services<span class="mm-chevron">&rsaquo;</span></button>
+    <div class="mm-group-items">
+      <a href="index.html#svc-preapproval">Pre-Approval</a>
+      <a href="index.html#svc-purchase">Purchase</a>
+      <a href="index.html#svc-refinance">Refinance</a>
+      <a href="index.html#svc-renewal">Renewal</a>
+      <a href="index.html#svc-debt">Debt Consolidation</a>
+      <a href="smith-manoeuvre.html">Smith Manoeuvre&trade;</a>
+    </div>
+  </div>
+  <div class="mm-group">
+    <button class="mm-group-toggle" type="button" aria-expanded="false">Guides<span class="mm-chevron">&rsaquo;</span></button>
+    <div class="mm-group-items">
+      <a href="guides/first-time-buyer.html">First Time Home Buyer</a>
+      <a href="guides/newcomer-to-canada.html">Newcomer to Canada</a>
+      <a href="guides/nurses-healthcare.html">Guide for Nurses</a>
+      <a href="guides/self-employed.html">Self-Employed Guide</a>
+      <a href="guides/pei-first-time-buyer-programs.html">PEI First-Time Buyer Programs</a>
+    </div>
+  </div>
+  <div class="mm-group">
+    <button class="mm-group-toggle" type="button" aria-expanded="false">Calculators<span class="mm-chevron">&rsaquo;</span></button>
+    <div class="mm-group-items">
+      <a href="calculators.html">Mortgage Payment</a>
+      <a href="affordability-calculator.html">Affordability</a>
+      <a href="land-transfer-tax-calculator.html">Land Transfer Tax</a>
+      <a href="closing-cost-calculator.html">Closing Cost</a>
+      <a href="smith-manoeuvre-calculator.html">Smith Manoeuvre</a>
+    </div>
+  </div>
+  <a href="index.html#rates">Rates</a>
+  <div class="mm-group">
+    <button class="mm-group-toggle" type="button" aria-expanded="false">Company<span class="mm-chevron">&rsaquo;</span></button>
+    <div class="mm-group-items">
+      <a href="index.html#about">About</a>
+      <a href="team.html#team">Team</a>
+      <a href="team.html#reviews">Reviews</a>
+      <a href="why-us.html">Why Work With Us</a>
+    </div>
+  </div>
+  <a href="blog.html">Blog</a>
+  <a href="careers.html">Careers</a>
+  <a href="feedback.html">Feedback</a>
+  <a href="index.html#contact">Contact</a>
+</div>
+
+<section class="page-hero wrap">
+  <div class="hero-glow"></div>
+  <span class="k-badge">PEI gas prices &middot; Free tool</span>
+  <h1 class="hero-title" style="font-size:clamp(2.2rem,5.5vw,4rem)">Is gas going up or down tonight?</h1>
+  <p class="hero-sub" style="max-width:640px">Today&rsquo;s PEI pump price and a forecast for the next change, in plain English. Updated automatically from public data.</p>
+</section>
+
+<section style="padding-top:0"><div class="wrap">
+
+  <!-- ============ AT A GLANCE ============ -->
+  <div class="gas-glance reveal" id="gasGlance" aria-live="polite">
+    <div class="gas-tile glass">
+      <div class="gas-k">Today in PEI</div>
+      <div class="gas-big" id="gNow">&ndash;</div>
+      <div class="gas-s" id="gNowSub">Regular self-serve, &cent;/L</div>
+    </div>
+    <div class="gas-tile glass">
+      <div class="gas-k" id="gNextLabel">Next change</div>
+      <div class="gas-big" id="gNext">&ndash;</div>
+      <div class="gas-s"><span class="gas-chip" id="gChip"></span> <span id="gNextSub"></span></div>
+    </div>
+    <div class="gas-tile glass gas-answer">
+      <div class="gas-k">Should I fill up today?</div>
+      <div class="gas-ans" id="gAns">&ndash;</div>
+      <div class="gas-s" id="gCountdown"></div>
+    </div>
+  </div>
+
+  <!-- ============ CHART ============ -->
+  <div class="gas-card glass reveal">
+    <div class="gas-row">
+      <h3>PEI regular gas, last 12 months</h3>
+      <span class="gas-s" id="gRange"></span>
+    </div>
+    <div id="gChart" class="gas-chart" role="img" aria-label="Line chart of the PEI minimum self-serve regular gasoline price over the last 12 months"></div>
+    <p class="note" style="margin-top:8px">Minimum self-serve price set by IRAC. Stations can price up to about 1.2&cent; above it.</p>
+  </div>
+
+  <!-- ============ DETAILS (for the curious) ============ -->
+  <details class="gas-card glass gas-more reveal">
+    <summary>See the numbers behind it <span class="plus">+</span></summary>
+    <div class="gas-split">
+      <div>
+        <h4>Where today&rsquo;s price comes from</h4>
+        <div class="gas-bd" id="gBreak"></div>
+      </div>
+      <div>
+        <h4>How the forecast works</h4>
+        <div class="gas-bd" id="gModel"></div>
+        <p class="gas-s" style="margin-top:12px">The forecast follows wholesale gasoline prices and the Canadian dollar through the same window IRAC averages, then applies IRAC&rsquo;s published formula. It&rsquo;s an estimate, not IRAC&rsquo;s decision.</p>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ HOW IT WORKS ============ -->
+  <div class="guide-body reveal" style="max-width:760px;margin-top:70px">
+    <h2>How PEI gas prices work</h2>
+    <p><b>Everyone pays about the same.</b> On PEI, gas prices are regulated by the Island Regulatory and Appeals Commission (IRAC). Every station has to price inside the same narrow band, which is why it&rsquo;s the same in Charlottetown, Summerside and Souris.</p>
+    <p><b>Prices change twice a week.</b> New prices take effect at 12:01 a.m. every Tuesday and Friday, so the change happens at midnight Monday and midnight Thursday. IRAC can also make an unscheduled change when markets move fast.</p>
+    <p><b>It starts with the wholesale &ldquo;rack&rdquo; price.</b> IRAC takes the average wholesale price at the Charlottetown terminal over the last few days, then adds a fixed wholesale margin, any taxes, the station&rsquo;s retail margin, and 15% HST.</p>
+    <p><b>That&rsquo;s why it can be forecast.</b> The wholesale price moves days before the pump does. Roughly, every 1&cent; move in the wholesale average moves the pump price about 1.15&cent;.</p>
+
+    <h2>Frequently asked questions</h2>
+    <div class="faq">
+      <details>
+        <summary>When do gas prices change in PEI?<span class="plus">+</span></summary>
+        <p class="faq-a">At 12:01 a.m. every Tuesday and Friday, set by IRAC. IRAC can also make an unscheduled change (an &ldquo;interruption&rdquo;) when the market moves sharply.</p>
+      </details>
+      <details>
+        <summary>Why is gas the same price everywhere on the Island?<span class="plus">+</span></summary>
+        <p class="faq-a">IRAC sets a minimum and maximum price for every grade, and stations must stay inside that range. The gap is usually only about a cent.</p>
+      </details>
+      <details>
+        <summary>How accurate is this forecast?<span class="plus">+</span></summary>
+        <p class="faq-a" id="gFaqAcc">It&rsquo;s tested against IRAC&rsquo;s actual prices. It&rsquo;s usually within a few cents, and gets the direction right most of the time. Big world events and unscheduled changes can throw it off.</p>
+      </details>
+      <details>
+        <summary>Where does the data come from?<span class="plus">+</span></summary>
+        <p class="faq-a">Official prices come from IRAC&rsquo;s published petroleum price schedules. The forecast uses publicly reported wholesale gasoline futures and the Bank of Canada&rsquo;s exchange rate. This page isn&rsquo;t affiliated with IRAC or any fuel company.</p>
+      </details>
+    </div>
+  </div>
+
+  <!-- ============ ABOUT (side project) ============ -->
+  <div class="book-card glass reveal gas-about">
+    <div class="gas-about-in">
+      <img src="anmol-headshot.jpg" alt="Anmol Multani, Mortgage Broker in Charlottetown" class="gas-face" />
+      <div>
+        <div class="gas-k">A side project by</div>
+        <h3 style="margin-top:6px">Anmol Multani</h3>
+        <p class="gas-role">Mortgage Broker &middot; Clearstone Financial &middot; Charlottetown, PEI</p>
+        <p>By day, I help Islanders buy, renew and refinance their homes. On the side, I build simple, free tools for everyday questions, like &ldquo;should I fill up tonight?&rdquo; This one reads the same public numbers IRAC uses and gives a straight answer. No sign-up, no email, nothing to fill in.</p>
+        <div class="gas-contact">
+          <a href="mailto:info@anmolmultani.ca">info@anmolmultani.ca</a>
+          <a href="index.html#contact" id="gBook">Book a call</a>
+          <a href="team.html#team">About me</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ WHAT I ACTUALLY DO ============ -->
+  <div class="reveal" style="margin-top:70px">
+    <h2 style="font-size:clamp(1.6rem,3.5vw,2.3rem)">Here&rsquo;s what I actually do</h2>
+    <p class="gas-s" style="margin-top:10px;max-width:620px">Mortgages, explained simply. Have a look around. Everything below is free to read.</p>
+    <div class="gas-links">
+      <a href="index.html#services" class="gas-link glass"><b>Mortgages</b><span>Buying, renewing, refinancing and debt consolidation</span><i>&rarr;</i></a>
+      <a href="index.html#rates" class="gas-link glass"><b>Today&rsquo;s mortgage rates</b><span>Current posted rates, updated regularly</span><i>&rarr;</i></a>
+      <a href="calculators.html" class="gas-link glass"><b>Mortgage calculators</b><span>Payment, affordability, closing costs, land transfer tax</span><i>&rarr;</i></a>
+      <a href="guides/pei-first-time-buyer-programs.html" class="gas-link glass"><b>PEI first-time buyer programs</b><span>What Islanders can get help with</span><i>&rarr;</i></a>
+      <a href="guides.html" class="gas-link glass"><b>Plain-English guides</b><span>First-time buyers, newcomers, nurses, self-employed</span><i>&rarr;</i></a>
+      <a href="why-us.html" class="gas-link glass"><b>Why work with a broker</b><span>How it works, step by step</span><i>&rarr;</i></a>
+    </div>
+  </div>
+
+  <p class="note" style="margin-top:28px">The forecast is an estimate based on publicly available data (IRAC price schedules, wholesale gasoline futures and Bank of Canada exchange rates). It may be wrong, and actual prices are set by IRAC. For general information only. Not affiliated with IRAC or any fuel retailer. <span id="gUpd"></span></p>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="fcols">
+    <div><a href="index.html" class="logo" style="color:#fff; margin-bottom:18px"><span class="logo-mark"><span class="depth" style="transform:translate(1px,1px)">AM</span><span class="face">AM</span></span><span class="logo-word">Anmol Multani</span></a><a href="index.html">Clearstone Financial · PEI &amp; Nova Scotia</a></div>
+    <div><a href="index.html#services">Services</a><a href="calculators.html">Calculators</a><a href="index.html#rates">Rates</a><a href="guides.html">Guides</a><a href="pei-gas-prices.html">PEI Gas Prices</a></div>
+    <div><a href="index.html#about">About</a><a href="team.html#team">Team</a><a href="blog.html">Blog</a><a href="why-us.html">Why Work With Us</a><a href="careers.html">Careers</a><a href="feedback.html">Feedback</a><a href="index.html#contact">Contact</a></div>
+    <div><a href="mailto:info@anmolmultani.ca">info@anmolmultani.ca</a><div class="social-icons" id="socialIcons"></div></div>
+  </div>
+  <div class="powered">
+    <span>Powered by</span>
+    <img src="mpfg-logo.png" alt="Mortgage Powered Financial Group" class="plogo" onerror="this.style.display='none'" />
+    <img src="clearstone-logo.png" alt="Clearstone Financial" class="plogo" onerror="this.style.display='none'" />
+    <span class="ptext"><b>Clearstone Financial</b>, locally owned &amp; operated · Mortgages through <b>Mortgage Powered Financial Group</b></span>
+  </div>
+  <div class="fbottom">© 2026 Anmol Multani. All rights reserved. Anmol Multani is licensed in Prince Edward Island; Nova Scotia clients are served by Nicholas Gaudet, licensed in Nova Scotia.</div>
+</div></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="settings.js?v=2"></script>
+<script src="site.js?v=2"></script>
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var f1 = function(x){ return (+x).toFixed(1); };
+  function day(s, opt){ return new Date(s + 'T12:00:00').toLocaleDateString('en-CA', opt || {weekday:'long', month:'short', day:'numeric'}); }
+  // 12:01 a.m. Halifax time on date s, as a timestamp (handles AST/ADT)
+  function changeTime(s){
+    var p = s.split('-').map(Number);
+    for (var off = 3; off <= 4; off++){
+      var t = Date.UTC(p[0], p[1]-1, p[2], off, 1);
+      var h = new Date(t).toLocaleString('en-CA', {timeZone:'America/Halifax', hour:'2-digit', hour12:false});
+      if (h === '00' || h === '24') return t;
+    }
+    return Date.UTC(p[0], p[1]-1, p[2], 4, 1);
+  }
+  function halifaxToday(){ return new Date().toLocaleDateString('en-CA', {timeZone:'America/Halifax'}); }
+
+  try{ if (typeof BOOKING_LINK === 'string' && BOOKING_LINK){ var bk=$('gBook'); bk.href=BOOKING_LINK; bk.target='_blank'; bk.rel='noopener'; } }catch(e){}
+  fetch('gas-prices.json?v=' + Date.now()).then(function(r){ return r.json(); }).then(render).catch(function(){
+    $('gAns').textContent = 'Data is updating, check back shortly.';
+  });
+
+  function render(D){
+    var c = D.current, n = D.next, today = halifaxToday();
+    var stale = n.effective < today;
+    $('gNow').innerHTML = f1(c.min) + '<small> &cent;/L</small>';
+    $('gNowSub').textContent = 'Regular self-serve (' + f1(c.min) + '–' + f1(c.max) + '¢) · since ' + day(c.date, {weekday:'short', month:'short', day:'numeric'});
+
+    var chg = n.change, dir = chg >= 0.5 ? 'up' : chg <= -0.5 ? 'down' : 'flat';
+    $('gNextLabel').textContent = (n.official ? 'Confirmed for ' : 'Forecast for ') + day(n.effective, {weekday:'short', month:'short', day:'numeric'});
+    $('gNext').innerHTML = (n.official ? '' : '~') + f1(n.min) + '<small> &cent;/L</small>';
+    var chip = $('gChip'); chip.className = 'gas-chip gas-' + dir;
+    chip.innerHTML = '<i></i>' + (dir === 'up' ? '▲ Up ' : dir === 'down' ? '▼ Down ' : '■ About the same ') + (dir === 'flat' ? '' : f1(Math.abs(chg)) + '¢');
+    $('gNextSub').textContent = n.official ? 'Set by IRAC' : 'Our estimate';
+
+    var isTonight = n.decision_day === today;
+    var ans;
+    if (stale) ans = 'Waiting for the latest numbers.';
+    else if (dir === 'up') ans = isTonight ? 'Yes, fill up before midnight.' : 'Filling up before ' + day(n.decision_day, {weekday:'long'}) + ' night should save you a bit.';
+    else if (dir === 'down') ans = isTonight ? 'Wait until tomorrow if you can.' : 'No rush. It looks like it&rsquo;s heading down.';
+    else ans = 'No big change expected. Fill up whenever.';
+    $('gAns').innerHTML = ans;
+
+    function tick(){
+      var ms = changeTime(n.effective) - Date.now();
+      if (ms <= 0){ $('gCountdown').textContent = 'New price now in effect.'; return; }
+      var h = Math.floor(ms/3.6e6), d = Math.floor(h/24);
+      $('gCountdown').textContent = 'Next change in ' + (d ? d + ' day' + (d>1?'s ':' ') : '') + (h%24) + ' hr' + ((h%24)===1?'':'s') + ' · 12:01 a.m. ' + day(n.effective, {weekday:'long'});
+    }
+    tick(); setInterval(tick, 60000);
+
+    // breakdown
+    var pre = c.rack + c.margin + c.faa + c.tax, retail = +(c.min/1.15 - pre).toFixed(1), hst = +(c.min - c.min/1.15).toFixed(1);
+    var rows = [['Wholesale (rack) average', c.rack], ['Wholesale margin', c.margin], ['IRAC smoothing adjustment', c.faa], ['Federal &amp; PEI fuel taxes', c.tax], ['Station retail margin', retail], ['HST 15%', hst]];
+    $('gBreak').innerHTML = rows.map(function(r){ return '<span>' + r[0] + '</span><b>' + (r[1] < 0 ? '−' : '') + f1(Math.abs(r[1])) + '¢</b>'; }).join('') +
+      '<span class="tot">Pump price</span><b class="tot">' + f1(c.min) + '¢</b>';
+    var a = D.accuracy;
+    $('gModel').innerHTML = '<span>Estimated wholesale average</span><b>' + f1(n.rack) + '¢</b>' +
+      '<span>Last IRAC wholesale average</span><b>' + f1(c.rack) + '¢</b>' +
+      '<span>Market days counted</span><b>' + n.days_in + ' of ' + n.days_expected + '</b>' +
+      '<span>Typical error (last 12 months)</span><b>±' + a.avg_error_cents + '¢</b>' +
+      '<span>Direction right</span><b>' + a.direction_pct + '% of the time</b>';
+    $('gFaqAcc').innerHTML = 'Tested against IRAC&rsquo;s actual prices over the last 12 months, it was off by about ' + a.avg_error_cents + '&cent; on average, and called the direction right ' + a.direction_pct + '% of the time. Big world events and unscheduled changes can throw it off.';
+    $('gUpd').textContent = 'Last updated ' + D.updated + ' (Atlantic).';
+
+    drawChart(D.history.filter(function(h){ var cut = new Date(); cut.setFullYear(cut.getFullYear()-1); return h[0] >= cut.toISOString().slice(0,10); }));
+  }
+
+  function drawChart(H){
+    var el = $('gChart'); if (!H.length) return;
+    var css = function(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); };
+    var W = el.clientWidth || 900, Ht = W < 560 ? 220 : 280, m = {l:40, r:12, t:12, b:26};
+    var t = function(s){ return new Date(s + 'T12:00:00').getTime(); };
+    var now = Date.now(), x0 = t(H[0][0]), x1 = Math.max(t(H[H.length-1][0]), now);
+    var vs = H.map(function(h){ return h[1]; }), y0 = Math.min.apply(0, vs), y1 = Math.max.apply(0, vs), pad = (y1-y0)*.1 || 3; y0 -= pad; y1 += pad;
+    var X = function(v){ return m.l + (v-x0)/(x1-x0)*(W-m.l-m.r); }, Y = function(v){ return m.t + (1-(v-y0)/(y1-y0))*(Ht-m.t-m.b); };
+    var g = '', step = (y1-y0) > 60 ? 20 : 10;
+    for (var v = Math.ceil(y0/step)*step; v <= y1; v += step) g += '<line x1="'+m.l+'" x2="'+(W-m.r)+'" y1="'+Y(v)+'" y2="'+Y(v)+'" stroke="'+css('--line')+'"/><text x="'+(m.l-8)+'" y="'+(Y(v)+4)+'" text-anchor="end">'+v+'</text>';
+    var d0 = new Date(x0); d0.setDate(1); d0.setMonth(d0.getMonth()+1);
+    for (var d = new Date(d0); d.getTime() <= x1; d.setMonth(d.getMonth() + (W < 560 ? 3 : 2)))
+      g += '<text x="'+X(d.getTime())+'" y="'+(Ht-6)+'" text-anchor="middle">'+d.toLocaleDateString('en-CA',{month:'short'})+'</text>';
+    var p = '';
+    H.forEach(function(h, i){ var x = X(t(h[0])), y = Y(h[1]); p += i ? 'H'+x+'V'+y : 'M'+x+','+y; });
+    p += 'H' + X(x1);
+    var last = H[H.length-1], lx = X(x1), ly = Y(last[1]);
+    el.innerHTML = '<svg viewBox="0 0 '+W+' '+Ht+'">' + g +
+      '<path d="'+p+'" fill="none" stroke="'+css('--accent')+'" stroke-width="2" stroke-linejoin="round"/>' +
+      '<circle cx="'+lx+'" cy="'+ly+'" r="4.5" fill="'+css('--accent')+'" stroke="'+css('--bg')+'" stroke-width="2"/>' +
+      '<line class="xh" y1="'+m.t+'" y2="'+(Ht-m.b)+'" stroke="'+css('--muted')+'" stroke-dasharray="3 3" visibility="hidden"/>' +
+      '<rect x="'+m.l+'" y="'+m.t+'" width="'+(W-m.l-m.r)+'" height="'+(Ht-m.t-m.b)+'" fill="transparent"/></svg><div class="gas-tip"></div>';
+    $('gRange').textContent = 'Low ' + f1(Math.min.apply(0, vs)) + '¢ · High ' + f1(Math.max.apply(0, vs)) + '¢';
+    var svg = el.querySelector('svg'), tip = el.querySelector('.gas-tip'), xh = svg.querySelector('.xh');
+    function move(ev){
+      var r = svg.getBoundingClientRect(), cx = (ev.touches ? ev.touches[0].clientX : ev.clientX);
+      var sx = (cx - r.left) * W / r.width, tm = x0 + (sx-m.l)/(W-m.l-m.r)*(x1-x0), pt = H[0];
+      H.forEach(function(h){ if (t(h[0]) <= tm) pt = h; });
+      var x = X(Math.max(t(pt[0]), x0));
+      xh.setAttribute('x1', sx); xh.setAttribute('x2', sx); xh.setAttribute('visibility', 'visible');
+      tip.innerHTML = '<b>' + f1(pt[1]) + '¢</b> <span>from ' + day(pt[0], {month:'short', day:'numeric', year:'numeric'}) + '</span>';
+      tip.style.display = 'block';
+      var px = (cx - r.left); tip.style.left = Math.min(Math.max(px - tip.offsetWidth/2, 0), r.width - tip.offsetWidth) + 'px'; tip.style.top = '-6px';
+    }
+    svg.addEventListener('mousemove', move); svg.addEventListener('touchmove', move, {passive:true});
+    svg.addEventListener('mouseleave', function(){ tip.style.display = 'none'; xh.setAttribute('visibility', 'hidden'); });
+  }
+  var rt; window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(function(){ fetch('gas-prices.json').then(function(r){return r.json();}).then(function(D){ var cut=new Date(); cut.setFullYear(cut.getFullYear()-1); drawChart(D.history.filter(function(h){return h[0]>=cut.toISOString().slice(0,10);})); }); }, 250); });
+})();
+</script>
+</body>
+</html>

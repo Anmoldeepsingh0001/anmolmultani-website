@@ -1,0 +1,36 @@
+name: Refresh PEI gas prices
+
+# Every 3 hours, Halifax time. Catches the futures close each evening, IRAC's
+# afternoon posting on Monday/Thursday, and the 12:01 a.m. Tuesday/Friday change.
+on:
+  schedule:
+    - cron: '20 */3 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gas-prices
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    env:
+      TZ: America/Halifax
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Update prices and forecast
+        run: python3 gas-data/scripts/gas_page.py
+
+      - name: Commit if anything changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add gas-prices.json gas-data
+          git diff --cached --quiet || git commit -m "Auto-refresh PEI gas prices"
+          git pull --rebase --quiet || true
+          git push
