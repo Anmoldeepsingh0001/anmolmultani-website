@@ -288,6 +288,27 @@
     </div>
   </div>
 
+  <!-- ============ SUGGESTIONS (goes to Anmol's inbox via FormSubmit) ============ -->
+  <div class="reveal" id="suggest" style="margin-top:70px;max-width:760px">
+    <h2 style="font-size:clamp(1.6rem,3.5vw,2.3rem)">What should I build next?</h2>
+    <p class="gas-s" style="margin-top:10px;max-width:620px">Want to see something else on this page, like diesel trends, price alerts or a fill-up cost calculator? Got an idea for another free tool for Islanders? Tell me. It comes straight to my inbox and I read every one.</p>
+    <div class="bookselect" style="margin-top:24px">
+      <select id="sType" aria-label="What is this about?">
+        <option value="Add more to the gas page">Add more to the gas page</option>
+        <option value="Idea for a new free tool">Idea for a new free tool</option>
+        <option value="Something looks wrong">Something looks wrong</option>
+        <option value="Other suggestion">Other suggestion</option>
+      </select>
+    </div>
+    <div class="form" id="sForm">
+      <input type="text" id="sName" placeholder="Name (optional)" />
+      <input type="email" id="sEmail" placeholder="Email (optional, if you'd like a reply)" />
+      <textarea class="full" id="sMsg" placeholder="What would you like to see?"></textarea>
+      <div class="full"><button class="btn primary" id="sSubmit" type="button">Send suggestion</button></div>
+    </div>
+    <div class="thanks" id="sThanks"><b>Thanks, got it.</b><br><span style="color:var(--muted)">Your suggestion is in my inbox. If you left an email, I&rsquo;ll let you know if I build it.</span></div>
+  </div>
+
   <!-- ============ WHAT I ACTUALLY DO ============ -->
   <div class="reveal" style="margin-top:70px">
     <h2 style="font-size:clamp(1.6rem,3.5vw,2.3rem)">Here&rsquo;s what I actually do</h2>
@@ -432,6 +453,42 @@
   }
   var rt; window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(function(){ fetch('gas-prices.json').then(function(r){return r.json();}).then(function(D){ var cut=new Date(); cut.setFullYear(cut.getFullYear()-1); drawChart(D.history.filter(function(h){return h[0]>=cut.toISOString().slice(0,10);})); }); }, 250); });
 })();
+</script>
+<script>
+  // Suggestions form: sends to Anmol's inbox via FormSubmit (same setup as feedback.html)
+  document.getElementById('sSubmit').addEventListener('click', function(){
+    var btn = this;
+    var type  = document.getElementById('sType').value;
+    var name  = document.getElementById('sName').value.trim();
+    var email = document.getElementById('sEmail').value.trim();
+    var msg   = document.getElementById('sMsg').value.trim();
+    if (!msg) { alert('Add a quick note so I know what you\'d like to see.'); return; }
+
+    function done(){ document.getElementById('sForm').style.display = 'none'; document.getElementById('sThanks').style.display = 'block'; }
+    function mailtoFallback(){
+      var body = 'Type: '+type+'\r\nName: '+(name||'(not provided)')+'\r\nEmail: '+(email||'(not provided)')+'\r\n\r\n'+msg;
+      window.location.href = 'mailto:'+CONTACT.email+'?subject='+encodeURIComponent('Gas page: '+type)+'&body='+encodeURIComponent(body);
+    }
+    function reset(){ btn.disabled = false; btn.textContent = 'Send suggestion'; }
+
+    btn.disabled = true; btn.textContent = 'Sending…';
+    fetch('https://formsubmit.co/ajax/' + CONTACT.email, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _subject: 'Gas page suggestion: ' + type,
+        page: 'PEI Gas Prices',
+        type: type,
+        name: name || '(not provided)',
+        email: email || '(not provided)',
+        message: msg,
+        _autoresponse: email ? ('Hi,\n\nThanks for the suggestion for the PEI gas price page. It landed straight in my inbox.\n\nYour note:\n' + msg + '\n\n— Anmol Multani') : undefined
+      })
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(d){ if (d && String(d.success) === 'true') done(); else { reset(); mailtoFallback(); } })
+    .catch(function(){ reset(); mailtoFallback(); });
+  });
 </script>
 </body>
 </html>
