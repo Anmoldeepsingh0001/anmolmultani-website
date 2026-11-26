@@ -1,0 +1,57 @@
+{
+  "updated": "2026-11-26T19:26:49",
+  "items": [
+    {
+      "id": "timberland-6in-boot",
+      "name": "Timberland Men's 6-Inch Premium Waterproof Boot",
+      "details": "Men's, any colour (Wheat preferred)",
+      "size": "9.5",
+      "target": null,
+      "added": "2026-11-26T18:52:54",
+      "active": true,
+      "category": "Shoes",
+      "qty": 1,
+      "best": null,
+      "lead": null,
+      "baseline": null,
+      "baseline_kind": null,
+      "regular": null,
+      "daily": [],
+      "latest": [],
+      "low90": null,
+      "checked": null
+    },
+    {
+      "id": "prada-paradigme",
+      "name": "Prada Paradigme Eau de Parfum",
+      "details": "Men's fragrance, 100 ml (50 ml OK)",
+      "size": "",
+      "target": null,
+      "added": "2026-11-26T18:52:54",
+      "active": true,
+      "category": "Fragrance",
+      "qty": 1,
+      "best": null,
+      "lead": null,
+      "baseline": null,
+      "baseline_kind": null,
+      "regular": null,
+      "daily": [],
+      "latest": [
+        {
+          "item": "prada-paradigme",
+          "ts": "2026-11-26T18:56:05",
+          "price": 179.92,
+          "regular": null,
+          "store": "Maximum Fragrance",
+          "url": "https://maximumfragrance.ca/products/prada-paradigme",
+          "title": "Prada Paradigme Eau de Parfum 100 ml \u2013 in-store pickup only (Mississauga/Toronto), not shipping",
+          "in_stock": false,
+          "verified": true
+        }
+      ],
+      "low90": null,
+      "checked": "2026-11-26T18:56:05"
+    }
+  ]
+}

@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Deal Finder</title>
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{--bg:#0f0f0f;--bg2:#141414;--card:#1a1a1a;--card2:#202020;--line:#2a2a2a;--text:#f5f5f3;--muted:#8f8f8a;--accent:#F2DFAE;--accent2:#e8c877;--good:#7fd69b;--warn:#f0a36b;--r:18px}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 Inter,system-ui,sans-serif;min-height:100vh;
+  background-image:radial-gradient(900px 500px at 85% -10%,rgba(242,223,174,.10),transparent 60%),radial-gradient(700px 400px at -10% 10%,rgba(127,214,155,.05),transparent 60%)}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+button{font:600 14px Inter,sans-serif;cursor:pointer;border:0;border-radius:12px;padding:11px 16px;background:var(--accent);color:#141414;transition:transform .15s,opacity .15s}
+button:hover{transform:translateY(-1px)}button:disabled{opacity:.45;cursor:default;transform:none}
+button.ghost{background:transparent;color:var(--text);border:1px solid var(--line)}button.ghost:hover{border-color:#4a4a4a}
+button.icon{padding:8px 10px;background:var(--card2);color:var(--text);border:1px solid var(--line);font-weight:500;font-size:13px}
+input,select{background:#111;border:1px solid var(--line);color:var(--text);border-radius:11px;padding:11px 12px;font:inherit;width:100%;min-width:0}
+input:focus,select:focus{outline:none;border-color:var(--accent)}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 16px 80px}
+header{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:26px}
+h1{font:400 clamp(44px,7vw,72px)/.95 "Instrument Serif",serif;margin:0;letter-spacing:-.5px}h1 em{color:var(--accent)}
+.kicker{font:600 11px Inter;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.status{display:flex;gap:10px;align-items:center;color:var(--muted);font-size:13px;flex-wrap:wrap}
+.pill{display:inline-flex;align-items:center;gap:7px;padding:6px 11px;border-radius:99px;background:var(--card);border:1px solid var(--line);font-size:12px;color:var(--muted)}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--good)}.dot.live{background:var(--accent);animation:pulse 1.1s infinite}
+@keyframes pulse{50%{opacity:.25}}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.stat{background:linear-gradient(180deg,var(--card),var(--bg2));border:1px solid var(--line);border-radius:var(--r);padding:18px 18px 16px;position:relative;overflow:hidden}
+.stat .l{color:var(--muted);font-size:12px;font-weight:500;letter-spacing:.04em;text-transform:uppercase}
+.stat .v{font:600 clamp(26px,3.4vw,36px)/1.1 Inter;margin-top:8px;font-variant-numeric:tabular-nums}
+.stat .s{color:var(--muted);font-size:12px;margin-top:4px}
+.stat.hero{border-color:rgba(242,223,174,.35);background:linear-gradient(160deg,rgba(242,223,174,.16),var(--card) 55%)}
+.stat.hero .v{color:var(--accent)}
+.panels{display:grid;grid-template-columns:1.1fr 1fr 1.3fr;gap:14px;margin-top:14px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px}
+.panel h3{margin:0 0 12px;font:600 13px Inter;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+.ring{position:relative;height:200px}.ring .mid{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none}
+.ring .mid b{font:400 40px/1 "Instrument Serif",serif;color:var(--accent)}.ring .mid span{font-size:12px;color:var(--muted)}
+.chart{position:relative;height:200px}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:30px 0 14px;flex-wrap:wrap}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{padding:8px 14px;border-radius:99px;background:var(--card);border:1px solid var(--line);color:var(--muted);font:500 13px Inter;cursor:pointer}
+.chip.on{background:var(--accent);color:#141414;border-color:var(--accent)}
+.chip small{opacity:.7;margin-left:4px}
+.cat{font:400 30px/1 "Instrument Serif",serif;margin:26px 0 12px;display:flex;align-items:baseline;gap:12px}
+.cat span{font:500 13px Inter;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px;display:flex;flex-direction:column;gap:10px;position:relative;transition:border-color .2s}
+.card:hover{border-color:#3a3a3a}
+.card.hot{border-color:rgba(242,223,174,.45);box-shadow:0 0 0 1px rgba(242,223,174,.12),0 10px 40px -20px rgba(242,223,174,.35)}
+.card .top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.card h4{margin:0;font:600 16px/1.3 Inter}.card .meta{color:var(--muted);font-size:12.5px;margin-top:3px}
+.price{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.price b{font:700 30px/1 Inter;font-variant-numeric:tabular-nums}.price s{color:var(--muted);font-size:14px}
+.store{font-size:13px;color:var(--muted)}
+.badges{display:flex;gap:6px;flex-wrap:wrap}
+.badge{font:600 11.5px Inter;padding:4px 9px;border-radius:99px;background:rgba(127,214,155,.13);color:var(--good)}
+.badge.gold{background:rgba(242,223,174,.16);color:var(--accent)}.badge.warn{background:rgba(240,163,107,.14);color:var(--warn)}.badge.mute{background:var(--card2);color:var(--muted)}
+.spark{height:56px;position:relative}
+.card .acts{display:flex;gap:8px;margin-top:auto;flex-wrap:wrap}
+.empty{color:var(--muted);text-align:center;border:1px dashed var(--line);border-radius:var(--r);padding:40px 16px}
+.searching{display:flex;align-items:center;gap:8px;color:var(--accent);font-size:13px}
+/* modal + drawer */
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:16px;z-index:20}
+.scrim.on{display:flex}
+.modal{background:var(--bg2);border:1px solid var(--line);border-radius:22px;max-width:760px;width:100%;max-height:90vh;overflow:auto;padding:24px}
+.modal h2{font:400 34px/1.05 "Instrument Serif",serif;margin:0 0 4px}
+.modal .close{float:right}
+.big{height:280px;position:relative;margin:18px 0}
+table{width:100%;border-collapse:collapse;font-size:14px}td,th{padding:10px 6px;border-top:1px solid var(--line);text-align:left}th{color:var(--muted);font-weight:500;font-size:12px}
+td.n{text-align:right;font-variant-numeric:tabular-nums}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:10px}.form .full{grid-column:1/-1}
+label{font-size:12px;color:var(--muted);display:block;margin:0 0 5px}
+.lock{max-width:440px;margin:12vh auto;text-align:center}
+.lock p{color:var(--muted)}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(120px);background:var(--accent);color:#141414;padding:12px 18px;border-radius:12px;font-weight:600;transition:transform .3s;z-index:30}
+.toast.on{transform:translateX(-50%) translateY(0)}
+.fine{color:var(--muted);font-size:12px;margin-top:40px;line-height:1.6}
+.fab{position:fixed;right:20px;bottom:20px;z-index:10;box-shadow:0 10px 30px rgba(0,0,0,.5);border-radius:99px;padding:14px 20px}
+@media (max-width:900px){.stats{grid-template-columns:1fr 1fr}.panels{grid-template-columns:1fr}}
+@media (max-width:520px){.grid{grid-template-columns:1fr}.form{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+<div class="scrim" id="scrim"><div class="modal" id="modal"></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const OWNER = 'Anmoldeepsingh0001', REPO = 'anmolmultani-website', BRANCH = 'main';
+const WATCH = 'deals/data/watchlist.json', SUMMARY = 'deals/data/summary.json', WORKFLOW = 'deal-finder.yml';
+const API = `https://api.github.com/repos/${OWNER}/${REPO}`;
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const money = (n, d = 2) => n == null ? '—' : '$' + Number(n).toLocaleString('en-CA', {minimumFractionDigits: d, maximumFractionDigits: d});
+const store = { get(k) { try { return localStorage.getItem(k); } catch { return null; } }, set(k, v) { try { v == null ? localStorage.removeItem(k) : localStorage.setItem(k, v); } catch {} } };
+const charts = {};
+let token = store.get('df_token'), S = { items: [], updated: null }, W = [], filter = 'All', running = false, pending = {};
+try { pending = JSON.parse(store.get('df_pending') || '{}'); } catch {}
+
+Chart.defaults.color = '#8f8f8a'; Chart.defaults.font.family = 'Inter'; Chart.defaults.borderColor = '#2a2a2a';
+const PALETTE = ['#F2DFAE', '#7fd69b', '#8fb7ff', '#f0a36b', '#d59bf6', '#6fd3d6', '#f27e8f', '#c9c98a'];
+
+function toast(t) { const el = $('#toast'); el.textContent = t; el.classList.add('on'); setTimeout(() => el.classList.remove('on'), 2600); }
+
+// ---------- GitHub ----------
+async function gh(path, opts = {}) {
+  const r = await fetch(API + path, { ...opts, headers: { Authorization: `Bearer ${token}`, Accept: 'application/vnd.github+json', ...(opts.headers || {}) } });
+  if (!r.ok) throw new Error(`${r.status} ${await r.text().catch(() => '')}`.slice(0, 200));
+  return r.status === 204 ? null : r.json();
+}
+async function ghRaw(path) {
+  const r = await fetch(`${API}/contents/${path}?ref=${BRANCH}&t=${Date.now()}`, { headers: { Authorization: `Bearer ${token}`, Accept: 'application/vnd.github.raw' }, cache: 'no-store' });
+  if (r.status === 404) return null;
+  if (!r.ok) throw new Error(r.status);
+  return r.json();
+}
+const b64 = s => btoa(unescape(encodeURIComponent(s)));
+async function saveWatchlist(mutate, msg) {
+  for (let i = 0; i < 3; i++) {
+    const f = await gh(`/contents/${WATCH}?ref=${BRANCH}&t=${Date.now()}`);
+    const list = JSON.parse(decodeURIComponent(escape(atob(f.content.replace(/\n/g, '')))));
+    const next = mutate(list);
+    try {
+      await gh(`/contents/${WATCH}`, { method: 'PUT', body: JSON.stringify({ message: `Deal Finder: ${msg}`, content: b64(JSON.stringify(next, null, 2) + '\n'), sha: f.sha, branch: BRANCH }) });
+      W = next; return;
+    } catch (e) { if (!String(e).startsWith('409')) throw e; }
+  }
+  throw new Error('Could not save, try again');
+}
+async function dispatch(item = '') {
+  await gh(`/actions/workflows/${WORKFLOW}/dispatches`, { method: 'POST', body: JSON.stringify({ ref: BRANCH, inputs: { item } }) });
+}
+async function checkRuns() {
+  try {
+    const r = await gh(`/actions/workflows/${WORKFLOW}/runs?per_page=5`);
+    running = r.workflow_runs.some(x => x.status !== 'completed');
+  } catch { running = false; }
+}
+
+// ---------- data ----------
+async function loadPrivate() {
+  const [s, w] = await Promise.all([ghRaw(SUMMARY), ghRaw(WATCH)]);
+  S = s || { items: [] }; W = w || [];
+  await checkRuns();
+}
+function items() {
+  const byId = Object.fromEntries(S.items.map(i => [i.id, i]));
+  return W.filter(i => i.active !== false).map(w => ({ ...(byId[w.id] || { daily: [], latest: [] }), ...w }));
+}
+function calc(list) {
+  let total = 0, regular = 0, priced = 0, atTarget = 0, low = 0;
+  for (const it of list) {
+    const q = Number(it.qty) || 1, b = it.best;
+    if (!b) continue;
+    priced++; total += b.price * q;
+    const reg = it.regular && it.regular > b.price ? it.regular : b.price;
+    regular += reg * q;
+    if (it.target && b.price <= it.target) atTarget++;
+    if (it.low90 != null && b.price <= it.low90 && (it.daily || []).length > 1) low++;
+  }
+  return { total, regular, save: regular - total, pct: regular ? (regular - total) / regular * 100 : 0, priced, atTarget, low };
+}
+const cats = list => [...new Set(list.map(i => i.category || 'Other'))].sort();
+
+// ---------- views ----------
+function lockView() {
+  $('#app').innerHTML = `<div class="lock">
+    <div class="kicker">Private</div><h1>Deal <em>Finder</em></h1>
+    <p>This list is private. If it's yours, unlock it with your GitHub key.</p>
+    <button onclick="openKey()">Unlock</button></div>`;
+}
+
+async function shareView(id) {
+  const r = await fetch(`data/summary.json?t=${Date.now()}`).then(r => r.ok ? r.json() : { items: [] }).catch(() => ({ items: [] }));
+  const it = r.items.find(i => i.id === id);
+  if (!it || !it.best) { $('#app').innerHTML = `<div class="lock"><h1>Deal <em>Finder</em></h1><p>That deal isn't available any more.</p></div>`; return; }
+  const b = it.best, reg = it.regular && it.regular > b.price ? it.regular : null;
+  $('#app').innerHTML = `<div class="lock" style="max-width:520px;text-align:left">
+    <div class="kicker">A deal from Anmol</div>
+    <h1 style="font-size:46px">${esc(it.name)}</h1>
+    <p>${esc([it.details, it.size && 'Size ' + it.size].filter(Boolean).join(' · '))}</p>
+    <div class="card" style="margin-top:18px">
+      <div class="price"><b>${money(b.price)}</b>${reg ? `<s>${money(reg)}</s>` : ''}</div>
+      <div class="badges">${reg ? `<span class="badge">Save ${money(reg - b.price)} (${Math.round((1 - b.price / reg) * 100)}% off)</span>` : ''}</div>
+      <div class="store">at ${esc(b.store)} · checked ${new Date(b.ts).toLocaleString('en-CA', { dateStyle: 'medium', timeStyle: 'short' })}</div>
+      <div class="acts"><a href="${esc(b.url)}" target="_blank" rel="noopener"><button>View deal at ${esc(b.store)}</button></a></div>
+    </div>
+    <p class="fine">Prices change fast. Check the price and size on the store's page before you buy.</p></div>`;
+}
+
+function mainView() {
+  const all = items(), list = filter === 'All' ? all : all.filter(i => (i.category || 'Other') === filter), c = calc(list);
+  const upd = S.updated ? new Date(S.updated).toLocaleString('en-CA', { dateStyle: 'medium', timeStyle: 'short' }) : 'not yet';
+  $('#app').innerHTML = `
+  <header>
+    <div><div class="kicker">My shopping list</div><h1>Deal <em>Finder</em></h1></div>
+    <div class="status">
+      <span class="pill"><span class="dot ${running ? 'live' : ''}"></span>${running ? 'Claude is checking prices…' : 'Last check ' + upd}</span>
+      <button class="icon" onclick="runAll()" ${running ? 'disabled' : ''}>↻ Check all now</button>
+      <button class="icon" onclick="openKey()">Key</button>
+    </div>
+  </header>
+
+  <section class="stats">
+    <div class="stat"><div class="l">Cart total</div><div class="v">${money(c.total)}</div><div class="s">${c.priced} of ${list.length} items priced</div></div>
+    <div class="stat hero"><div class="l">You save</div><div class="v">${money(c.save)}</div><div class="s">${c.pct.toFixed(0)}% off regular prices</div></div>
+    <div class="stat"><div class="l">At your target</div><div class="v">${c.atTarget}</div><div class="s">ready to buy</div></div>
+    <div class="stat"><div class="l">Lowest in 90 days</div><div class="v">${c.low}</div><div class="s">items at their low</div></div>
+  </section>
+
+  <section class="panels">
+    <div class="panel"><h3>Savings</h3><div class="ring"><canvas id="ring"></canvas><div class="mid"><b>${c.pct.toFixed(0)}%</b><span>saved</span></div></div></div>
+    <div class="panel"><h3>Spend by category</h3><div class="chart"><canvas id="catChart"></canvas></div></div>
+    <div class="panel"><h3>Regular vs deal price</h3><div class="chart"><canvas id="barChart"></canvas></div></div>
+  </section>
+
+  <div class="toolbar">
+    <div class="chips">${['All', ...cats(all)].map(k => `<span class="chip ${k === filter ? 'on' : ''}" onclick="setFilter('${esc(k)}')">${esc(k)}<small>${k === 'All' ? all.length : all.filter(i => (i.category || 'Other') === k).length}</small></span>`).join('')}</div>
+  </div>
+
+  ${list.length ? cats(list).map(k => {
+      const g = list.filter(i => (i.category || 'Other') === k), gc = calc(g);
+      return `<div class="cat">${esc(k)} <span>${money(gc.total)}${gc.save > 0 ? ' · saving ' + money(gc.save) : ''}</span></div><div class="grid">${g.map(card).join('')}</div>`;
+    }).join('') : `<div class="empty">Your list is empty. Tap <b>＋ Add item</b> and type what you want, e.g. "Timberland 6-inch boot, size 9.5".</div>`}
+
+  <p class="fine">Prices are checked twice a day (every 6 hours on Black Friday) by Claude searching Canadian stores. "Unverified" prices came from search results because the store blocked a page check. They never trigger an email. Always confirm price and size on the store's page before buying.</p>
+  <button class="fab" onclick="openAdd()">＋ Add item</button>`;
+  drawCharts(list, c);
+  list.forEach(drawSpark);
+}
+
+function card(it) {
+  const b = it.best, q = Number(it.qty) || 1, reg = b && it.regular && it.regular > b.price ? it.regular : null;
+  const off = reg ? Math.round((1 - b.price / reg) * 100) : 0;
+  const hit = b && it.target && b.price <= it.target;
+  const isLow = b && it.low90 != null && b.price <= it.low90 && (it.daily || []).length > 1;
+  const searching = !b && (running || pending[it.id]);
+  const badges = [
+    hit && '<span class="badge gold">At your target</span>',
+    off >= 15 && `<span class="badge">${off}% off</span>`, off > 0 && off < 15 && `<span class="badge mute">${off}% off</span>`,
+    isLow && '<span class="badge gold">90-day low</span>',
+    it.lead && `<span class="badge warn">Unverified: ${money(it.lead.price)} at ${esc(it.lead.store)}</span>`,
+    it.target && !hit && `<span class="badge mute">Target ${money(it.target)}</span>`,
+  ].filter(Boolean).join('');
+  return `<div class="card ${hit || off >= 15 ? 'hot' : ''}">
+    <div class="top"><div><h4>${esc(it.name)}</h4><div class="meta">${esc([it.details, it.size && 'Size ' + it.size, q > 1 && '×' + q].filter(Boolean).join(' · ')) || '&nbsp;'}</div></div></div>
+    ${b ? `<div class="price"><b>${money(b.price)}</b>${reg ? `<s>${money(reg)}</s>` : ''}</div>
+           <div class="store">at <a href="${esc(b.url)}" target="_blank" rel="noopener">${esc(b.store)}</a>${reg ? ` · save ${money((reg - b.price) * q)}` : ''}</div>`
+        : searching ? `<div class="searching"><span class="dot live"></span>Searching stores…</div>`
+        : `<div class="store">${it.lead ? 'Only unverified prices so far' : 'No confirmed price yet'}</div>`}
+    ${badges ? `<div class="badges">${badges}</div>` : ''}
+    ${(it.daily || []).length > 1 ? `<div class="spark"><canvas id="sp-${it.id}"></canvas></div>` : ''}
+    <div class="acts">
+      <button class="icon" onclick="openItem('${it.id}')">Details</button>
+      ${b ? `<button class="icon" onclick="share('${it.id}')">Share</button>` : ''}
+      <button class="icon" onclick="searchOne('${it.id}')" ${running ? 'disabled' : ''}>Search now</button>
+    </div></div>`;
+}
+
+function drawCharts(list, c) {
+  Object.values(charts).forEach(ch => ch.destroy());
+  const tip = { callbacks: { label: x => ' ' + money(x.parsed.y ?? x.parsed) } };
+  charts.ring = new Chart($('#ring'), { type: 'doughnut', data: { labels: ['You pay', 'You save'], datasets: [{ data: [c.total || 1, Math.max(c.save, 0)], backgroundColor: ['#2e2e2e', '#F2DFAE'], borderWidth: 0 }] },
+    options: { cutout: '78%', maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: tip } } });
+  const ks = cats(list), spend = ks.map(k => calc(list.filter(i => (i.category || 'Other') === k)).total);
+  charts.cat = new Chart($('#catChart'), { type: 'doughnut', data: { labels: ks, datasets: [{ data: spend.some(Boolean) ? spend : ks.map(() => 1), backgroundColor: PALETTE, borderWidth: 0 }] },
+    options: { cutout: '62%', maintainAspectRatio: false, plugins: { legend: { position: 'right', labels: { boxWidth: 10, usePointStyle: true } }, tooltip: tip } } });
+  const priced = list.filter(i => i.best).slice(0, 8);
+  charts.bar = new Chart($('#barChart'), { type: 'bar', data: { labels: priced.map(i => i.name.length > 18 ? i.name.slice(0, 17) + '…' : i.name),
+      datasets: [{ label: 'Regular', data: priced.map(i => (i.regular && i.regular > i.best.price ? i.regular : i.best.price)), backgroundColor: '#3a3a3a', borderRadius: 6 },
+                 { label: 'Deal', data: priced.map(i => i.best.price), backgroundColor: '#F2DFAE', borderRadius: 6 }] },
+    options: { indexAxis: 'y', maintainAspectRatio: false, plugins: { legend: { labels: { boxWidth: 10 } }, tooltip: { callbacks: { label: x => ` ${x.dataset.label}: ${money(x.parsed.x)}` } } },
+      scales: { x: { ticks: { callback: v => '$' + v } }, y: { grid: { display: false } } } } });
+}
+function drawSpark(it) {
+  const el = document.getElementById('sp-' + it.id); if (!el) return;
+  charts['sp' + it.id] = new Chart(el, { type: 'line', data: { labels: it.daily.map(d => d.date), datasets: [{ data: it.daily.map(d => d.price), borderColor: '#F2DFAE', backgroundColor: 'rgba(242,223,174,.12)', fill: true, tension: .35, pointRadius: 0, borderWidth: 2 }] },
+    options: { maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { enabled: false } }, scales: { x: { display: false }, y: { display: false } } } });
+}
+
+// ---------- modals ----------
+function modal(html) { $('#modal').innerHTML = html; $('#scrim').classList.add('on'); }
+function closeModal() { $('#scrim').classList.remove('on'); charts.big?.destroy(); }
+$('#scrim').addEventListener('click', e => { if (e.target.id === 'scrim') closeModal(); });
+
+function openItem(id) {
+  const it = items().find(i => i.id === id); if (!it) return;
+  modal(`<button class="icon close" onclick="closeModal()">✕</button>
+    <div class="kicker">${esc(it.category || 'Other')}</div><h2>${esc(it.name)}</h2>
+    <div class="meta" style="color:var(--muted)">${esc([it.details, it.size && 'Size ' + it.size].filter(Boolean).join(' · '))}</div>
+    ${(it.daily || []).length ? '<div class="big"><canvas id="big"></canvas></div>' : '<p class="empty" style="margin:18px 0">The 90-day price chart fills in with every check.</p>'}
+    ${(it.latest || []).length ? `<table><tr><th>Store (latest check)</th><th></th><th class="n">Price</th></tr>${it.latest.map(r => `<tr>
+      <td><a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.store)}</a><div style="color:var(--muted);font-size:12px">${esc(r.title || '')}</div></td>
+      <td>${r.in_stock === false ? '<span class="badge mute">Unavailable</span>' : ''}${r.verified === false ? '<span class="badge warn">Unverified</span>' : ''}</td>
+      <td class="n">${money(r.price)}${r.regular ? `<div style="color:var(--muted);font-size:12px"><s>${money(r.regular)}</s></div>` : ''}</td></tr>`).join('')}</table>` : ''}
+    <div class="form" style="margin-top:20px">
+      <div><label>Buy at (target $)</label><input id="e-target" type="number" step="0.01" value="${it.target ?? ''}"></div>
+      <div><label>Quantity</label><input id="e-qty" type="number" min="1" value="${it.qty || 1}"></div>
+      <div class="full" style="display:flex;gap:8px;flex-wrap:wrap">
+        <button onclick="saveItem('${id}')">Save</button>
+        <button class="ghost" onclick="removeItem('${id}')">Remove from list</button>
+      </div>
+    </div>`);
+  if ((it.daily || []).length) {
+    const ds = [{ label: 'Lowest price', data: it.daily.map(d => d.price), borderColor: '#F2DFAE', backgroundColor: 'rgba(242,223,174,.12)', fill: true, tension: .3, pointRadius: 3 }];
+    if (it.target) ds.push({ label: 'Your target', data: it.daily.map(() => it.target), borderColor: '#7fd69b', borderDash: [6, 6], pointRadius: 0 });
+    charts.big = new Chart($('#big'), { type: 'line', data: { labels: it.daily.map(d => d.date.slice(5)), datasets: ds },
+      options: { maintainAspectRatio: false, plugins: { tooltip: { callbacks: { label: x => ` ${money(x.parsed.y)}${x.datasetIndex === 0 ? ' · ' + it.daily[x.dataIndex].store : ''}` } } }, scales: { y: { ticks: { callback: v => '$' + v } } } } });
+  }
+}
+
+function openAdd() {
+  const existing = cats(items());
+  modal(`<button class="icon close" onclick="closeModal()">✕</button>
+    <div class="kicker">New item</div><h2>What are you shopping for?</h2>
+    <p style="color:var(--muted);margin-top:6px">Be specific: brand, model, colour, size or volume. Claude starts searching as soon as you add it (about 5–10 minutes).</p>
+    <form class="form" id="addForm" style="margin-top:16px">
+      <div class="full"><label>Product</label><input name="name" required maxlength="120" placeholder="e.g. Timberland 6-inch Premium Waterproof Boot"></div>
+      <div class="full"><label>Details</label><input name="details" maxlength="160" placeholder="Colour / version / volume, e.g. Wheat, men's"></div>
+      <div><label>Size</label><input name="size" maxlength="20" placeholder="9.5"></div>
+      <div><label>Category</label><input name="category" list="catlist" maxlength="30" placeholder="Shoes" required><datalist id="catlist">${[...new Set([...existing, 'Shoes', 'Clothing', 'Fragrance', 'Tech', 'Home', 'Gifts'])].map(k => `<option value="${esc(k)}">`).join('')}</datalist></div>
+      <div><label>Buy at $ (optional)</label><input name="target" type="number" step="0.01" min="0"></div>
+      <div><label>Quantity</label><input name="qty" type="number" min="1" value="1"></div>
+      <div class="full"><button id="addBtn">Add & find deals</button></div>
+    </form>`);
+  $('#addForm').addEventListener('submit', addItem);
+}
+
+function openKey() {
+  modal(`<button class="icon close" onclick="closeModal()">✕</button>
+    <div class="kicker">Your key</div><h2>Unlock Deal Finder</h2>
+    <p style="color:var(--muted)">Paste a GitHub fine-grained token for the <b>${REPO}</b> repo with <b>Contents: Read and write</b> and <b>Actions: Read and write</b>. It's saved only in this browser.
+    <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">Create one on GitHub</a>.</p>
+    <div class="form"><div class="full"><input id="tok" type="password" placeholder="github_pat_…" autocomplete="off"></div>
+    <div class="full" style="display:flex;gap:8px"><button onclick="saveKey()">Unlock</button>${token ? '<button class="ghost" onclick="forget()">Lock this browser</button>' : ''}</div></div>`);
+}
+
+// ---------- actions ----------
+async function saveKey() {
+  const t = $('#tok').value.trim(); if (!t) return;
+  token = t;
+  try { await gh(''); store.set('df_token', t); closeModal(); toast('Unlocked'); boot(); }
+  catch { token = store.get('df_token'); toast('That key did not work'); }
+}
+function forget() { store.set('df_token', null); token = null; closeModal(); boot(); }
+function setFilter(k) { filter = k; mainView(); }
+const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40) || 'item';
+
+async function addItem(e) {
+  e.preventDefault();
+  const f = Object.fromEntries(new FormData(e.target)); $('#addBtn').disabled = true;
+  try {
+    let id;
+    await saveWatchlist(list => {
+      id = slug(f.name); let n = 2; while (list.some(i => i.id === id)) id = slug(f.name) + '-' + n++;
+      return [...list, { id, name: f.name.trim(), details: (f.details || '').trim(), size: (f.size || '').trim(), category: (f.category || 'Other').trim(),
+        target: f.target ? Number(f.target) : null, qty: Number(f.qty) || 1, added: new Date().toISOString().slice(0, 19), active: true }];
+    }, `add ${f.name}`);
+    await new Promise(r => setTimeout(r, 1500)); // let the commit land before the run checks out
+    await dispatch(id); pending[id] = Date.now(); store.set('df_pending', JSON.stringify(pending));
+    running = true; closeModal(); mainView(); toast('Added. Claude is searching');
+  } catch (err) { toast('Error: ' + err.message); $('#addBtn').disabled = false; }
+}
+async function saveItem(id) {
+  const t = $('#e-target').value, q = $('#e-qty').value;
+  try { await saveWatchlist(l => l.map(i => i.id === id ? { ...i, target: t ? Number(t) : null, qty: Number(q) || 1 } : i), `update ${id}`); closeModal(); mainView(); toast('Saved'); }
+  catch (err) { toast('Error: ' + err.message); }
+}
+async function removeItem(id) {
+  if (!confirm('Remove this item from your list?')) return;
+  try { await saveWatchlist(l => l.map(i => i.id === id ? { ...i, active: false } : i), `remove ${id}`); closeModal(); mainView(); toast('Removed'); }
+  catch (err) { toast('Error: ' + err.message); }
+}
+async function searchOne(id) { try { await dispatch(id); running = true; mainView(); toast('Searching. Results in about 5–10 minutes'); } catch (err) { toast('Error: ' + err.message); } }
+async function runAll() { try { await dispatch(''); running = true; mainView(); toast('Checking every item'); } catch (err) { toast('Error: ' + err.message); } }
+async function share(id) {
+  const it = items().find(i => i.id === id), url = `${location.origin}${location.pathname}?deal=${encodeURIComponent(id)}`;
+  const text = `${it.name}: ${money(it.best.price)} at ${it.best.store}`;
+  try { if (navigator.share) { await navigator.share({ title: 'Deal', text, url }); return; } } catch { return; }
+  try { await navigator.clipboard.writeText(`${text} ${url}`); toast('Link copied'); } catch { prompt('Copy this link', url); }
+}
+
+// ---------- boot ----------
+async function boot() {
+  const deal = new URLSearchParams(location.search).get('deal');
+  if (deal) return shareView(deal);
+  if (!token) return lockView();
+  try { await loadPrivate(); } catch (e) { $('#app').innerHTML = `<div class="lock"><h1>Deal <em>Finder</em></h1><p>Couldn't load your list (${esc(e.message)}).</p><button onclick="openKey()">Update key</button></div>`; return; }
+  for (const [k, t] of Object.entries(pending)) if (S.items.find(i => i.id === k && i.checked) || Date.now() - t > 3600e3) delete pending[k];
+  store.set('df_pending', JSON.stringify(pending));
+  mainView();
+}
+boot();
+setInterval(async () => { if (token && !new URLSearchParams(location.search).get('deal') && !$('#scrim').classList.contains('on')) { const was = JSON.stringify(S) + running; await loadPrivate().catch(() => {}); if (JSON.stringify(S) + running !== was) mainView(); } }, 45000);
+</script>
+</body>
+</html>

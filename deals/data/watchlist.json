@@ -1,0 +1,24 @@
+[
+  {
+    "id": "timberland-6in-boot",
+    "name": "Timberland Men's 6-Inch Premium Waterproof Boot",
+    "details": "Men's, any colour (Wheat preferred)",
+    "size": "9.5",
+    "target": null,
+    "added": "2026-11-26T18:52:54",
+    "active": true,
+    "category": "Shoes",
+    "qty": 1
+  },
+  {
+    "id": "prada-paradigme",
+    "name": "Prada Paradigme Eau de Parfum",
+    "details": "Men's fragrance, 100 ml (50 ml OK)",
+    "size": "",
+    "target": null,
+    "added": "2026-11-26T18:52:54",
+    "active": true,
+    "category": "Fragrance",
+    "qty": 1
+  }
+]
