@@ -30,12 +30,16 @@
   });
   root.querySelectorAll('input[type=range]').forEach(function(s){ s.addEventListener('input', calc); });
 
-  // Approximate share of appraised value by age of the YOUNGEST owner, then
-  // trimmed for condos and rural properties. Real offers depend on the lender.
+  // Share of appraised value (low end of range) by age of the YOUNGEST owner.
+  // Calibrated Nov 2026 to HomeEquity Bank quotes for a $450k house in Stratford, PEI:
+  // 60 -> 26.1%, 70 -> 35.7%, 80 -> 51.4%; condo at 70 -> 27.7% (x0.776).
+  // The top of their range is always 10% above the low end. Ages past 80 are held flat
+  // (no data yet), and the rural factor is a placeholder until we have a rural quote.
   function reversePct(age){
-    var p = Math.min(0.55, Math.max(0.20, 0.20 + (age - 55) * 0.01));
-    if(homeType === 'condo') p -= 0.05;
-    if(area === 'rural') p -= 0.05;
+    var d = Math.min(age, 80) - 60;
+    var p = (26.11 + 0.6455 * d + 0.03105 * d * d) / 100;
+    if(homeType === 'condo') p *= 0.776;
+    if(area === 'rural') p *= 0.85;
     return Math.max(0.10, p);
   }
   function fill(s){ s.style.setProperty('--p', ((s.value - s.min) / (s.max - s.min) * 100) + '%'); }
@@ -51,15 +55,17 @@
       var a1 = +$('ecAge').value, a2El = $('ecAge2'), age = a1;
       $('ecAgeV').textContent = a1 + (a1 >= 95 ? '+' : '');
       if(a2El){ $('ecAge2V').textContent = a2El.value + (+a2El.value >= 95 ? '+' : ''); if(owners > 1) age = Math.min(a1, +a2El.value); }
-      var pct = reversePct(age), amt = val * pct, cash = Math.max(0, amt - owe);
-      head = 'You could get up to';
-      big = money(amt);
-      rows = [['Share of home value', 'about ' + Math.round(pct * 100) + '%'],
-              ['Based on youngest owner’s age', age],
+      var pct = reversePct(age), r500 = function(n){ return Math.round(n / 500) * 500; };
+      var lo = r500(val * pct), hi = Math.round(lo * 1.1 / 50) * 50, cashLo = Math.max(0, lo - owe), cashHi = Math.max(0, hi - owe);
+      var fmt = function(n){ return '$' + n.toLocaleString('en-CA'); };
+      head = 'You may be eligible for';
+      big = fmt(lo) + '&ndash;' + fmt(hi);
+      rows = [['Share of home value', Math.round(pct * 100) + '&ndash;' + Math.round(pct * 110) + '%'],
+              ['Based on youngest owner\u2019s age', age],
               ['Pays off what you owe', owe ? '&minus;' + money(owe) : '$0'],
-              ['Tax-free cash left for you', money(cash)]];
-      note = owe > amt ? 'What you owe is more than this estimate. Let’s talk: a partial paydown or another option may work better.'
-                       : 'No regular mortgage payments required. Interest is added to the balance and repaid when you sell or move.';
+              ['Tax-free cash left for you', cashHi ? fmt(r500(cashLo)) + '&ndash;' + fmt(r500(cashHi)) : '$0']];
+      note = owe > hi ? 'What you owe is more than this estimate. Let\u2019s talk: a partial paydown or another option may work better.'
+                      : 'No regular mortgage payments required. Interest is added to the balance and repaid when you sell or move.';
     } else {
       var limit = Math.max(0, Math.min(val * 0.80 - owe, val * 0.65));
       head = 'Estimated home equity available';
