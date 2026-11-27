@@ -52,7 +52,7 @@ var ABOUT_TEXT = [
 // 8) YOUR TEAM — add, remove, or edit members here. photo is optional;
 //    if left blank or the file is missing, the first letter of the name shows instead.
 var TEAM = [
-  { name: 'Anmol Multani', role: 'Mortgage Broker · Clearstone Financial', photo: 'anmol-headshot.jpg',
+  { name: 'Anmol Multani', role: 'Mortgage Broker · Clearstone Financial', photo: 'anmol-face.jpg',
     bio: 'Small-town roots are what led me to PEI — that same close-knit feel, just somewhere new to call home. I hold a bachelor’s and postgraduate diploma in IT, and now spend my time helping clients across PEI get into their homes as a Mortgage Broker with Mortgage Powered Financial Group. Outside of work: the gym, travelling, or creating content.' },
   { name: 'Nicholas Gaudet', role: 'Mortgage Broker & Financial Advisor', photo: 'nicholas.jpg',
     bio: 'President & CEO of Clearstone Financial, guiding clients through every step of their mortgage. Off the clock, he’s a history major at heart who’s rarely without a good book.' }
