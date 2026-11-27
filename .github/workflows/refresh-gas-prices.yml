@@ -1,10 +1,13 @@
 name: Refresh PEI gas prices
 
-# Every 3 hours, Halifax time. Catches the futures close each evening, IRAC's
-# afternoon posting on Monday/Thursday, and the 12:01 a.m. Tuesday/Friday change.
+# Hourly (GitHub skips some scheduled runs when it's busy, so we ask often), plus
+# extra tries right after IRAC usually posts (Mon/Thu afternoon) and just after the
+# 12:01 a.m. Tuesday/Friday change. Times are UTC; Halifax is UTC-4 (UTC-3 in summer).
 on:
   schedule:
-    - cron: '20 */3 * * *'
+    - cron: '7 * * * *'
+    - cron: '37 19-23 * * 1,4'
+    - cron: '37 4,5 * * 2,5'
   workflow_dispatch: {}
 
 permissions:

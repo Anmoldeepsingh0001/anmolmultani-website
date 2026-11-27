@@ -370,6 +370,16 @@
 
   function render(D){
     var c = D.current, n = D.next, today = halifaxToday();
+    // Fallback if the scheduled refresh is late: once an IRAC-confirmed price has taken
+    // effect, show it as today's price and roll "next" to the following Tue/Fri.
+    var rolled = false;
+    if (n.official && Date.now() >= changeTime(n.effective)){
+      c = {date:n.effective, min:n.min, max:n.max, diesel:null, rack:n.rack, faa:c.faa, tax:c.tax, margin:c.margin};
+      var nd = new Date(n.effective + 'T12:00:00'); do { nd.setDate(nd.getDate()+1); } while ([2,5].indexOf(nd.getDay()) < 0);
+      var nds = nd.toISOString().slice(0,10), dd = new Date(nd); dd.setDate(dd.getDate()-1);
+      n = {effective:nds, decision_day:dd.toISOString().slice(0,10), official:false, min:c.min, max:c.max, change:0, rack:c.rack, days_in:0, days_expected:0};
+      rolled = true;
+    }
     var stale = n.effective < today;
     $('gNow').innerHTML = f1(c.min) + '<small> &cent;/L</small>';
     $('gNowSub').textContent = 'Regular self-serve (' + f1(c.min) + '–' + f1(c.max) + '¢) · since ' + day(c.date, {weekday:'short', month:'short', day:'numeric'});
@@ -382,8 +392,12 @@
     $('gNextSub').textContent = n.official ? 'Set by IRAC' : 'Our estimate';
 
     var isTonight = n.decision_day === today;
+    if (rolled){
+      $('gNext').innerHTML = '<small>Updating&hellip;</small>'; chip.className = 'gas-chip gas-flat'; chip.innerHTML = '<i></i>Forecast coming shortly';
+      $('gNextSub').textContent = '';
+    }
     var ans;
-    if (stale) ans = 'Waiting for the latest numbers.';
+    if (stale || rolled) ans = rolled ? 'New price is in. The next forecast is on its way.' : 'Waiting for the latest numbers.';
     else if (dir === 'up') ans = isTonight ? 'Yes, fill up before midnight.' : 'Filling up before ' + day(n.decision_day, {weekday:'long'}) + ' night should save you a bit.';
     else if (dir === 'down') ans = isTonight ? 'Wait until tomorrow if you can.' : 'No rush. It looks like it&rsquo;s heading down.';
     else ans = 'No big change expected. Fill up whenever.';
