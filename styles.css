@@ -692,3 +692,8 @@
   .rv-faq summary::-webkit-details-marker{display:none}
   .rv-faq p{color:var(--muted); font-weight:300; line-height:1.7; margin-top:12px}
   @media(max-width:900px){.rv-hero-grid, .rv-split, .rv-cols{grid-template-columns:1fr; gap:30px}}
+  .sv-facts{display:grid; gap:16px}
+  .sv-fact{background:var(--card); border:1px solid var(--line); border-radius:20px; padding:24px 26px; display:flex; flex-direction:column; gap:6px}
+  .sv-fact b{font-size:clamp(1.7rem,3.4vw,2.3rem); font-weight:600; letter-spacing:-.02em; color:var(--accent); line-height:1.1}
+  .sv-fact span{color:var(--muted); font-weight:300}
+  .qc-chips[data-pick] .qc-chip{padding:8px 16px}

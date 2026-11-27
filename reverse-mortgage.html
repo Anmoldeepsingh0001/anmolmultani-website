@@ -27,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 <noscript><style>.reveal{opacity:1 !important; transform:none !important}</style></noscript>
-<link rel="stylesheet" href="styles.css?v=4" />
+<link rel="stylesheet" href="styles.css?v=5" />
 <script>(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <script type="application/ld+json">
 {
@@ -134,12 +134,13 @@
       <li class="has-drop">
         <a href="index.html#services" aria-haspopup="true">Services</a>
         <div class="drop">
-          <a href="index.html#svc-preapproval">Pre-Approval</a>
-          <a href="index.html#svc-purchase">Purchase</a>
-          <a href="index.html#svc-refinance">Refinance</a>
-          <a href="index.html#svc-renewal">Renewal</a>
-          <a href="index.html#svc-debt">Debt Consolidation</a>
+          <a href="pre-approval.html">Pre-Approval</a>
+          <a href="home-purchase.html">Purchase</a>
+          <a href="refinance.html">Refinance</a>
+          <a href="mortgage-renewal.html">Renewal</a>
+          <a href="debt-consolidation.html">Debt Consolidation</a>
           <a href="reverse-mortgage.html">Reverse Mortgage</a>
+          <a href="home-equity-line-of-credit.html">Home Equity Line</a>
           <a href="smith-manoeuvre.html">Smith Manoeuvre&trade;</a>
         </div>
       </li>
@@ -161,6 +162,7 @@
           <a href="land-transfer-tax-calculator.html">Land Transfer Tax</a>
           <a href="closing-cost-calculator.html">Closing Cost</a>
           <a href="smith-manoeuvre-calculator.html">Smith Manoeuvre</a>
+          <a href="reverse-mortgage-calculator.html">Reverse Mortgage</a>
         </div>
       </li>
       <li><a href="pei-gas-prices.html">Gas Prices</a></li>
@@ -189,12 +191,13 @@
   <div class="mm-group">
     <button class="mm-group-toggle" type="button" aria-expanded="false">Services<span class="mm-chevron">&rsaquo;</span></button>
     <div class="mm-group-items">
-      <a href="index.html#svc-preapproval">Pre-Approval</a>
-      <a href="index.html#svc-purchase">Purchase</a>
-      <a href="index.html#svc-refinance">Refinance</a>
-      <a href="index.html#svc-renewal">Renewal</a>
-      <a href="index.html#svc-debt">Debt Consolidation</a>
+      <a href="pre-approval.html">Pre-Approval</a>
+      <a href="home-purchase.html">Purchase</a>
+      <a href="refinance.html">Refinance</a>
+      <a href="mortgage-renewal.html">Renewal</a>
+      <a href="debt-consolidation.html">Debt Consolidation</a>
       <a href="reverse-mortgage.html">Reverse Mortgage</a>
+      <a href="home-equity-line-of-credit.html">Home Equity Line</a>
       <a href="smith-manoeuvre.html">Smith Manoeuvre&trade;</a>
     </div>
   </div>
@@ -216,6 +219,7 @@
       <a href="land-transfer-tax-calculator.html">Land Transfer Tax</a>
       <a href="closing-cost-calculator.html">Closing Cost</a>
       <a href="smith-manoeuvre-calculator.html">Smith Manoeuvre</a>
+      <a href="reverse-mortgage-calculator.html">Reverse Mortgage</a>
     </div>
   </div>
   <a href="pei-gas-prices.html">PEI Gas Prices</a>
@@ -252,31 +256,7 @@
   <div class="wrap">
     <div class="eyebrow reveal">Quick estimate</div>
     <h2 class="reveal">How much could you get?</h2>
-    <div class="qc glass reveal" id="equityCalc">
-      <div class="qc-tabs" role="tablist">
-        <button type="button" class="qc-tab on" data-mode="reverse" role="tab" aria-selected="true">Reverse mortgage (55+)</button>
-        <button type="button" class="qc-tab" data-mode="heloc" role="tab" aria-selected="false">Home equity line</button>
-      </div>
-      <div class="qc-grid">
-        <div class="qc-inputs">
-          <div class="qc-field" data-show="reverse"><div class="qc-lbl"><label for="ecAge">Age of youngest owner</label><output id="ecAgeV"></output></div>
-            <input type="range" id="ecAge" min="55" max="95" step="1" value="68" /></div>
-          <div class="qc-field"><div class="qc-lbl"><label for="ecValue">Home value</label><output id="ecValueV"></output></div>
-            <input type="range" id="ecValue" min="150000" max="1500000" step="10000" value="450000" /></div>
-          <div class="qc-field"><div class="qc-lbl"><label for="ecOwe">Mortgage or debts on the home</label><output id="ecOweV"></output></div>
-            <input type="range" id="ecOwe" min="0" max="800000" step="5000" value="40000" /></div>
-        </div>
-        <div class="qc-out">
-          <div class="qc-out-lbl" id="ecHead">Estimated reverse mortgage</div>
-          <div class="qc-pay rv-big" id="ecBig">$0</div>
-          <div class="qc-rows" id="ecRows"></div>
-          <p class="qc-note" id="ecNote"></p>
-          <a class="btn primary qc-cta" data-apply>Get my exact amount</a>
-          <a class="btn ghost qc-cta" data-book target="_blank" rel="noopener">Talk it through first</a>
-        </div>
-      </div>
-      <p class="qc-disc">Rough estimate only, not an offer or approval. Reverse mortgage amounts depend on the lender, your age, the property&rsquo;s type, location and appraised value. Home equity lines must qualify on income and credit. For planning and discussion only. Not legal, tax, or accounting advice.</p>
-    </div>
+    <div class="qc glass reveal" id="equityCalc" data-mode="reverse"><div class="qc-tabs" role="tablist"><button type="button" class="qc-tab on" data-mode="reverse" role="tab">Reverse mortgage (55+)</button><button type="button" class="qc-tab" data-mode="heloc" role="tab">Home equity line</button></div><div class="qc-grid"><div class="qc-inputs"><div class="qc-field" data-show="reverse"><div class="qc-lbl"><span>Homeowners</span></div><div class="qc-chips" data-pick="owners"><button type="button" class="qc-chip on" data-v="1">Just me</button><button type="button" class="qc-chip" data-v="2">Two of us</button></div></div><div class="qc-field" data-show="reverse"><div class="qc-lbl"><label for="ecAge">Your age</label><output id="ecAgeV"></output></div><input type="range" id="ecAge" min="55" max="95" step="1" value="68" /></div><div id="ecAge2f" hidden><div class="qc-field" data-show="reverse"><div class="qc-lbl"><label for="ecAge2">Other owner&rsquo;s age</label><output id="ecAge2V"></output></div><input type="range" id="ecAge2" min="55" max="95" step="1" value="66" /></div></div><div class="qc-field" data-show="reverse"><div class="qc-lbl"><span>Home type</span></div><div class="qc-chips" data-pick="type"><button type="button" class="qc-chip on" data-v="house">House</button><button type="button" class="qc-chip" data-v="condo">Condo or townhouse</button></div></div><div class="qc-field" data-show="reverse"><div class="qc-lbl"><span>Location</span></div><div class="qc-chips" data-pick="area"><button type="button" class="qc-chip on" data-v="urban">City or town</button><button type="button" class="qc-chip" data-v="rural">Rural</button></div></div><div class="qc-field"><div class="qc-lbl"><label for="ecValue">Home value</label><output id="ecValueV"></output></div><input type="range" id="ecValue" min="150000" max="1500000" step="10000" value="450000" /></div><div class="qc-field"><div class="qc-lbl"><label for="ecOwe">Mortgage or debts on the home</label><output id="ecOweV"></output></div><input type="range" id="ecOwe" min="0" max="800000" step="5000" value="40000" /></div></div><div class="qc-out"><div class="qc-out-lbl" id="ecHead">You could get up to</div><div class="qc-pay rv-big" id="ecBig">$0</div><div class="qc-rows" id="ecRows"></div><p class="qc-note" id="ecNote"></p><a class="btn primary qc-cta" data-apply>Get my exact amount</a><a class="btn ghost qc-cta" data-book target="_blank" rel="noopener">Talk it through first</a></div></div><p class="qc-disc">Rough estimate only, not an offer or approval. Reverse mortgage amounts are set by the lender based on the youngest owner&rsquo;s age, the property&rsquo;s type, location and appraised value. Home equity lines must qualify on income and credit. For planning and discussion only. Not legal, tax, or accounting advice.</p></div>
   </div>
 </section>
 
@@ -395,6 +375,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="settings.js?v=3"></script>
 <script src="site.js?v=2"></script>
-<script src="equity-calc.js?v=1"></script>
+<script src="equity-calc.js?v=2"></script>
 </body>
 </html>

@@ -8,7 +8,11 @@
   var rateIdx = 0;
   rates.forEach(function(r, i){ if(/5-year fixed/i.test(r.term)) rateIdx = i; });
 
-  var mode = 'buy';
+  var mode = root.dataset.mode || 'buy';
+  function showMode(){
+    root.querySelectorAll('.qc-tab').forEach(function(x){ var on = x.dataset.mode === mode; x.classList.toggle('on', on); x.setAttribute('aria-selected', on); });
+    root.querySelectorAll('[data-show]').forEach(function(el){ el.hidden = el.dataset.show.split(' ').indexOf(mode) < 0; });
+  }
   var $ = function(id){ return document.getElementById(id); };
   var money = function(n){ return '$' + Math.round(n).toLocaleString('en-CA'); };
 
@@ -27,10 +31,7 @@
   // ---- mode tabs
   root.querySelectorAll('.qc-tab').forEach(function(t){
     t.addEventListener('click', function(){
-      mode = t.dataset.mode;
-      root.querySelectorAll('.qc-tab').forEach(function(x){ x.classList.toggle('on', x === t); x.setAttribute('aria-selected', x === t); });
-      root.querySelectorAll('[data-show]').forEach(function(el){ el.hidden = el.dataset.show.split(' ').indexOf(mode) < 0; });
-      calc();
+      mode = t.dataset.mode; showMode(); calc();
     });
   });
 
@@ -98,5 +99,5 @@
     $('qcNote').textContent = note;
     root.querySelectorAll('input[type=range]').forEach(fill);
   }
-  calc();
+  showMode(); calc();
 })();

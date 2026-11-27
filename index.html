@@ -34,7 +34,7 @@
 <!-- Inter is only the FALLBACK for non-Apple devices. Apple devices render real SF Pro via the system stack. -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 <noscript><style>.reveal{opacity:1 !important; transform:none !important}</style></noscript>
-<link rel="stylesheet" href="styles.css?v=4" />
+<link rel="stylesheet" href="styles.css?v=5" />
 <script>(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <script type="application/ld+json">
 {
@@ -80,12 +80,13 @@
       <li class="has-drop">
         <a href="#services" data-scroll aria-haspopup="true">Services</a>
         <div class="drop">
-          <a href="#svc-preapproval" data-scroll>Pre-Approval</a>
-          <a href="#svc-purchase" data-scroll>Purchase</a>
-          <a href="#svc-refinance" data-scroll>Refinance</a>
-          <a href="#svc-renewal" data-scroll>Renewal</a>
-          <a href="#svc-debt" data-scroll>Debt Consolidation</a>
+          <a href="pre-approval.html">Pre-Approval</a>
+          <a href="home-purchase.html">Purchase</a>
+          <a href="refinance.html">Refinance</a>
+          <a href="mortgage-renewal.html">Renewal</a>
+          <a href="debt-consolidation.html">Debt Consolidation</a>
           <a href="reverse-mortgage.html">Reverse Mortgage</a>
+          <a href="home-equity-line-of-credit.html">Home Equity Line</a>
           <a href="smith-manoeuvre.html">Smith Manoeuvre&trade;</a>
           <!-- DEACTIVATED (re-enable when ready):
           <a href="#svc-insurance" data-scroll>Insurance</a>
@@ -111,6 +112,7 @@
           <a href="land-transfer-tax-calculator.html">Land Transfer Tax</a>
           <a href="closing-cost-calculator.html">Closing Cost</a>
           <a href="smith-manoeuvre-calculator.html">Smith Manoeuvre</a>
+          <a href="reverse-mortgage-calculator.html">Reverse Mortgage</a>
         </div>
       </li>
       <li><a href="pei-gas-prices.html">Gas Prices</a></li>
@@ -139,12 +141,13 @@
   <div class="mm-group">
     <button class="mm-group-toggle" type="button" aria-expanded="false">Services<span class="mm-chevron">&rsaquo;</span></button>
     <div class="mm-group-items">
-      <a href="#svc-preapproval" data-scroll>Pre-Approval</a>
-      <a href="#svc-purchase" data-scroll>Purchase</a>
-      <a href="#svc-refinance" data-scroll>Refinance</a>
-      <a href="#svc-renewal" data-scroll>Renewal</a>
-      <a href="#svc-debt" data-scroll>Debt Consolidation</a>
+      <a href="pre-approval.html">Pre-Approval</a>
+      <a href="home-purchase.html">Purchase</a>
+      <a href="refinance.html">Refinance</a>
+      <a href="mortgage-renewal.html">Renewal</a>
+      <a href="debt-consolidation.html">Debt Consolidation</a>
       <a href="reverse-mortgage.html">Reverse Mortgage</a>
+      <a href="home-equity-line-of-credit.html">Home Equity Line</a>
       <a href="smith-manoeuvre.html">Smith Manoeuvre&trade;</a>
     </div>
   </div>
@@ -166,6 +169,7 @@
       <a href="land-transfer-tax-calculator.html">Land Transfer Tax</a>
       <a href="closing-cost-calculator.html">Closing Cost</a>
       <a href="smith-manoeuvre-calculator.html">Smith Manoeuvre</a>
+      <a href="reverse-mortgage-calculator.html">Reverse Mortgage</a>
     </div>
   </div>
   <a href="pei-gas-prices.html">PEI Gas Prices</a>
@@ -285,11 +289,13 @@
   <div class="eyebrow reveal">What we do</div>
   <h2 class="reveal">Built for every stage.</h2>
   <div class="grid3">
-    <div class="card glass reveal" id="svc-preapproval"><div class="k">Mortgage</div><h3>Pre-Approval</h3><p>Know your budget before you shop. We confirm what you qualify for and hold a rate so you can make offers with confidence.</p></div>
-    <div class="card glass reveal" id="svc-purchase"><div class="k">Mortgage</div><h3>Purchase</h3><p>From first home to next. We line up the right lender and the sharpest rate across our partner network.</p></div>
-    <div class="card glass reveal" id="svc-refinance"><div class="k">Mortgage</div><h3>Refinance</h3><p>Unlock equity, consolidate debt, or lower your payment by restructuring your existing mortgage.</p></div>
-    <div class="card glass reveal" id="svc-renewal"><div class="k">Mortgage</div><h3>Renewal</h3><p>Don&rsquo;t auto-sign with your bank. We shop your renewal across our lenders to keep you on the best terms.</p></div>
-    <div class="card glass reveal" id="svc-debt"><div class="k">Mortgage</div><h3>Debt Consolidation</h3><p>Roll high-interest debt into your mortgage and simplify everything into one lower monthly payment.</p></div>
+    <div class="card glass reveal" id="svc-preapproval"><div class="k">Mortgage</div><h3>Pre-Approval</h3><p>Know your budget before you shop. We confirm what you qualify for and hold a rate so you can make offers with confidence.</p><a class="dl-btn" href="pre-approval.html" style="margin-top:14px">Learn more →</a></div>
+    <div class="card glass reveal" id="svc-purchase"><div class="k">Mortgage</div><h3>Purchase</h3><p>From first home to next. We line up the right lender and the sharpest rate across our partner network.</p><a class="dl-btn" href="home-purchase.html" style="margin-top:14px">Learn more →</a></div>
+    <div class="card glass reveal" id="svc-refinance"><div class="k">Mortgage</div><h3>Refinance</h3><p>Unlock equity, consolidate debt, or lower your payment by restructuring your existing mortgage.</p><a class="dl-btn" href="refinance.html" style="margin-top:14px">Learn more →</a></div>
+    <div class="card glass reveal" id="svc-renewal"><div class="k">Mortgage</div><h3>Renewal</h3><p>Don&rsquo;t auto-sign with your bank. We shop your renewal across our lenders to keep you on the best terms.</p><a class="dl-btn" href="mortgage-renewal.html" style="margin-top:14px">Learn more →</a></div>
+    <div class="card glass reveal" id="svc-debt"><div class="k">Mortgage</div><h3>Debt Consolidation</h3><p>Roll high-interest debt into your mortgage and simplify everything into one lower monthly payment.</p><a class="dl-btn" href="debt-consolidation.html" style="margin-top:14px">Learn more →</a></div>
+    <div class="card glass reveal" id="svc-reverse"><div class="k">55+</div><h3>Reverse Mortgage</h3><p>Turn home equity into tax-free cash in retirement with no monthly mortgage payments, and stay in the home you love.</p><a class="dl-btn" href="reverse-mortgage.html" style="margin-top:14px">Learn more →</a></div>
+    <div class="card glass reveal" id="svc-heloc"><div class="k">Equity</div><h3>Home Equity Line of Credit</h3><p>Borrow against your home as you need it and pay interest only on what you use. Ideal for renovations or a safety net.</p><a class="dl-btn" href="home-equity-line-of-credit.html" style="margin-top:14px">Learn more →</a></div>
     <div class="card glass reveal" id="svc-smith"><div class="k">Strategy</div><h3>Smith Manoeuvre&trade;</h3><p>Gradually convert your mortgage into tax-deductible debt while building an investment portfolio. Certified expertise on our team.</p><a class="dl-btn" href="smith-manoeuvre.html" style="margin-top:14px">Learn more →</a></div>
     <div class="card glass reveal" id="svc-pei-programs"><div class="k">PEI</div><h3>First-Time Buyer Programs</h3><p>Up to $17,500 toward your down payment, up to $2,500 toward closing costs, and $0 land transfer tax. See what you qualify for.</p><a class="dl-btn" href="guides/pei-first-time-buyer-programs.html" style="margin-top:14px">Learn more →</a></div>
     <!-- DEACTIVATED (re-enable when ready):
@@ -406,7 +412,6 @@
   <div class="signature-badge reveal">
     <div class="sig-photo"><img src="anmol-face.jpg" alt="Anmol Multani" onerror="this.parentElement.parentElement.style.display='none'"></div>
     <div><div class="sig-name">Anmol Multani</div><div class="sig-role">Mortgage Broker &middot; Clearstone Financial</div></div>
-    <div class="card glass reveal" id="svc-reverse"><div class="k">55+</div><h3>Reverse Mortgage</h3><p>Turn home equity into tax-free cash in retirement with no monthly mortgage payments, and stay in the home you love.</p><a class="dl-btn" href="reverse-mortgage.html" style="margin-top:14px">Learn more →</a></div>
   </div>
 
   <div class="contact-details reveal">
@@ -443,6 +448,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="settings.js?v=3"></script>
 <script src="site.js?v=2"></script>
-<script src="quick-calc.js?v=1"></script>
+<script src="quick-calc.js?v=2"></script>
 </body>
 </html>
