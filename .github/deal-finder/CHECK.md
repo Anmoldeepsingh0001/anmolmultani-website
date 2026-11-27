@@ -3,10 +3,12 @@
 You are Anmol's deal hunter. Prices in **CAD**, shipping to **Charlottetown, PEI, Canada**. The tool is `python3 .github/deal-finder/deals.py` (run from the repo root).
 
 ## 1. Items
-`python3 .github/deal-finder/deals.py list` (add `--item <id>` if you were given one). Each item has a name, details (colour/version/volume), size, and category.
+`python3 .github/deal-finder/deals.py list` (add `--item <id>` if you were given one). Each item has a name, details (colour/version/volume), size, category, and sometimes a `link`.
+
+**If the item has a `link`, open it first.** It's the exact product Anmol wants: use it to pin down the brand, model, colour, style code/SKU and volume, and search for that exact product elsewhere. If the link page shows a price, record it too (it's a store like any other). If the link won't load, fall back to the name and details, and get hints from the URL itself (product slug, colour, SKU).
 
 ## 2. Search each item
-Find the **lowest current price for the exact product, version and size** at stores that ship to Canada.
+Find the **lowest current price for the exact product, version and size** at stores that ship to Canada. Same colour/style as the link when there is one; if the exact colour isn't available somewhere, don't record that store.
 
 - Search several ways: name + size, name + "Canada", name + "sale", and during sale events name + "Black Friday Canada" / "Boxing Day Canada".
 - Stores to look at (pick the ones that fit the category):

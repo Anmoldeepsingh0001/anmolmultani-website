@@ -201,8 +201,8 @@ function mainView() {
   <header>
     <div><div class="kicker">My shopping list</div><h1>Deal <em>Finder</em></h1></div>
     <div class="status">
-      <span class="pill"><span class="dot ${running ? 'live' : ''}"></span>${running ? 'Claude is checking prices…' : 'Last check ' + upd}</span>
-      <button class="icon" onclick="runAll()" ${running ? 'disabled' : ''}>↻ Check all now</button>
+      <span class="pill"><span class="dot ${running ? 'live' : ''}"></span>${running ? 'Claude is searching stores…' : 'Last check ' + upd}</span>
+      <button class="icon" onclick="runAll()" ${running ? 'disabled' : ''}>↻ Search all</button>
       <button class="icon" onclick="openKey()">Key</button>
     </div>
   </header>
@@ -210,7 +210,7 @@ function mainView() {
   <section class="stats">
     <div class="stat"><div class="l">Cart total</div><div class="v">${money(c.total)}</div><div class="s">${c.priced} of ${list.length} items priced</div></div>
     <div class="stat hero"><div class="l">You save</div><div class="v">${money(c.save)}</div><div class="s">${c.pct.toFixed(0)}% off regular prices</div></div>
-    <div class="stat"><div class="l">At your target</div><div class="v">${c.atTarget}</div><div class="s">ready to buy</div></div>
+    <div class="stat"><div class="l">Items</div><div class="v">${list.length}</div><div class="s">on your list</div></div>
     <div class="stat"><div class="l">Lowest in 90 days</div><div class="v">${c.low}</div><div class="s">items at their low</div></div>
   </section>
 
@@ -229,7 +229,7 @@ function mainView() {
       return `<div class="cat">${esc(k)} <span>${money(gc.total)}${gc.save > 0 ? ' · saving ' + money(gc.save) : ''}</span></div><div class="grid">${g.map(card).join('')}</div>`;
     }).join('') : `<div class="empty">Your list is empty. Tap <b>＋ Add item</b> and type what you want, e.g. "Timberland 6-inch boot, size 9.5".</div>`}
 
-  <p class="fine">Prices are checked twice a day (every 6 hours on Black Friday) by Claude searching Canadian stores. "Unverified" prices came from search results because the store blocked a page check. They never trigger an email. Always confirm price and size on the store's page before buying.</p>
+  <p class="fine">Prices update when you hit Search. Claude searches Canadian stores and each search adds a point to the price history. "Unverified" means the price came from a search result because the store blocked a page check. Always confirm price and size on the store's page before buying.</p>
   <button class="fab" onclick="openAdd()">＋ Add item</button>`;
   drawCharts(list, c);
   list.forEach(drawSpark);
@@ -238,18 +238,16 @@ function mainView() {
 function card(it) {
   const b = it.best, q = Number(it.qty) || 1, reg = b && it.regular && it.regular > b.price ? it.regular : null;
   const off = reg ? Math.round((1 - b.price / reg) * 100) : 0;
-  const hit = b && it.target && b.price <= it.target;
+  const hit = false;
   const isLow = b && it.low90 != null && b.price <= it.low90 && (it.daily || []).length > 1;
   const searching = !b && (running || pending[it.id]);
   const badges = [
-    hit && '<span class="badge gold">At your target</span>',
     off >= 15 && `<span class="badge">${off}% off</span>`, off > 0 && off < 15 && `<span class="badge mute">${off}% off</span>`,
     isLow && '<span class="badge gold">90-day low</span>',
     it.lead && `<span class="badge warn">Unverified: ${money(it.lead.price)} at ${esc(it.lead.store)}</span>`,
-    it.target && !hit && `<span class="badge mute">Target ${money(it.target)}</span>`,
   ].filter(Boolean).join('');
   return `<div class="card ${hit || off >= 15 ? 'hot' : ''}">
-    <div class="top"><div><h4>${esc(it.name)}</h4><div class="meta">${esc([it.details, it.size && 'Size ' + it.size, q > 1 && '×' + q].filter(Boolean).join(' · ')) || '&nbsp;'}</div></div></div>
+    <div class="top"><div><h4>${esc(it.name)}</h4><div class="meta">${esc([it.details, it.size && 'Size ' + it.size, q > 1 && '×' + q].filter(Boolean).join(' · ')) || '&nbsp;'}${it.link ? ` · <a href="${esc(it.link)}" target="_blank" rel="noopener">your link</a>` : ''}</div></div></div>
     ${b ? `<div class="price"><b>${money(b.price)}</b>${reg ? `<s>${money(reg)}</s>` : ''}</div>
            <div class="store">at <a href="${esc(b.url)}" target="_blank" rel="noopener">${esc(b.store)}</a>${reg ? ` · save ${money((reg - b.price) * q)}` : ''}</div>`
         : searching ? `<div class="searching"><span class="dot live"></span>Searching stores…</div>`
@@ -259,7 +257,7 @@ function card(it) {
     <div class="acts">
       <button class="icon" onclick="openItem('${it.id}')">Details</button>
       ${b ? `<button class="icon" onclick="share('${it.id}')">Share</button>` : ''}
-      <button class="icon" onclick="searchOne('${it.id}')" ${running ? 'disabled' : ''}>Search now</button>
+      <button class="icon" onclick="searchOne('${it.id}')" ${running ? 'disabled' : ''}>Search</button>
     </div></div>`;
 }
 
@@ -300,7 +298,7 @@ function openItem(id) {
       <td>${r.in_stock === false ? '<span class="badge mute">Unavailable</span>' : ''}${r.verified === false ? '<span class="badge warn">Unverified</span>' : ''}</td>
       <td class="n">${money(r.price)}${r.regular ? `<div style="color:var(--muted);font-size:12px"><s>${money(r.regular)}</s></div>` : ''}</td></tr>`).join('')}</table>` : ''}
     <div class="form" style="margin-top:20px">
-      <div><label>Buy at (target $)</label><input id="e-target" type="number" step="0.01" value="${it.target ?? ''}"></div>
+      <div class="full"><label>Product link (the exact one you want)</label><input id="e-link" type="url" value="${esc(it.link || '')}" placeholder="https://…"></div>
       <div><label>Quantity</label><input id="e-qty" type="number" min="1" value="${it.qty || 1}"></div>
       <div class="full" style="display:flex;gap:8px;flex-wrap:wrap">
         <button onclick="saveItem('${id}')">Save</button>
@@ -309,7 +307,6 @@ function openItem(id) {
     </div>`);
   if ((it.daily || []).length) {
     const ds = [{ label: 'Lowest price', data: it.daily.map(d => d.price), borderColor: '#F2DFAE', backgroundColor: 'rgba(242,223,174,.12)', fill: true, tension: .3, pointRadius: 3 }];
-    if (it.target) ds.push({ label: 'Your target', data: it.daily.map(() => it.target), borderColor: '#7fd69b', borderDash: [6, 6], pointRadius: 0 });
     charts.big = new Chart($('#big'), { type: 'line', data: { labels: it.daily.map(d => d.date.slice(5)), datasets: ds },
       options: { maintainAspectRatio: false, plugins: { tooltip: { callbacks: { label: x => ` ${money(x.parsed.y)}${x.datasetIndex === 0 ? ' · ' + it.daily[x.dataIndex].store : ''}` } } }, scales: { y: { ticks: { callback: v => '$' + v } } } } });
   }
@@ -319,15 +316,15 @@ function openAdd() {
   const existing = cats(items());
   modal(`<button class="icon close" onclick="closeModal()">✕</button>
     <div class="kicker">New item</div><h2>What are you shopping for?</h2>
-    <p style="color:var(--muted);margin-top:6px">Be specific: brand, model, colour, size or volume. Claude starts searching as soon as you add it (about 5–10 minutes).</p>
+    <p style="color:var(--muted);margin-top:6px">Paste a link to the exact product (any store) so Claude knows the colour and model, or just type it. Then hit <b>Search</b>.</p>
     <form class="form" id="addForm" style="margin-top:16px">
-      <div class="full"><label>Product</label><input name="name" required maxlength="120" placeholder="e.g. Timberland 6-inch Premium Waterproof Boot"></div>
+      <div class="full"><label>Product link</label><input name="link" type="url" maxlength="600" placeholder="https://www.timberland.ca/…"></div>
+      <div class="full"><label>Product name</label><input name="name" maxlength="120" placeholder="e.g. Timberland 6-inch Premium Waterproof Boot (optional if you pasted a link)"></div>
       <div class="full"><label>Details</label><input name="details" maxlength="160" placeholder="Colour / version / volume, e.g. Wheat, men's"></div>
       <div><label>Size</label><input name="size" maxlength="20" placeholder="9.5"></div>
       <div><label>Category</label><input name="category" list="catlist" maxlength="30" placeholder="Shoes" required><datalist id="catlist">${[...new Set([...existing, 'Shoes', 'Clothing', 'Fragrance', 'Tech', 'Home', 'Gifts'])].map(k => `<option value="${esc(k)}">`).join('')}</datalist></div>
-      <div><label>Buy at $ (optional)</label><input name="target" type="number" step="0.01" min="0"></div>
-      <div><label>Quantity</label><input name="qty" type="number" min="1" value="1"></div>
-      <div class="full"><button id="addBtn">Add & find deals</button></div>
+      <div class="full"><label>Quantity</label><input name="qty" type="number" min="1" value="1"></div>
+      <div class="full" style="display:flex;gap:8px;flex-wrap:wrap"><button id="addBtn" name="go" value="search">Add & search now</button><button class="ghost" id="addOnly" name="go" value="add">Just add</button></div>
     </form>`);
   $('#addForm').addEventListener('submit', addItem);
 }
@@ -350,26 +347,36 @@ async function saveKey() {
 }
 function forget() { store.set('df_token', null); token = null; closeModal(); boot(); }
 function setFilter(k) { filter = k; mainView(); }
+function nameFromLink(u) {
+  try { const x = new URL(u), seg = x.pathname.split('/').filter(p => p && !/^(p|dp|product|products|en|en-ca|ca)$/i.test(p) && !/^\d+$/.test(p) && !/\.html?$/.test(p) || /[a-z]-[a-z]/i.test(p)).sort((a, b) => b.length - a.length)[0] || x.hostname;
+    return decodeURIComponent(seg).replace(/\.html?$/, '').replace(/[-_+]+/g, ' ').replace(/\b\w/g, c => c.toUpperCase()).slice(0, 100); } catch { return 'New item'; }
+}
 const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40) || 'item';
 
 async function addItem(e) {
   e.preventDefault();
-  const f = Object.fromEntries(new FormData(e.target)); $('#addBtn').disabled = true;
+  const f = Object.fromEntries(new FormData(e.target)), go = e.submitter?.value || 'search';
+  f.link = (f.link || '').trim();
+  if (!f.name.trim() && !f.link) { toast('Paste a link or type a product name'); return; }
+  if (!f.name.trim()) f.name = nameFromLink(f.link);
+  $('#addBtn').disabled = true;
   try {
     let id;
     await saveWatchlist(list => {
       id = slug(f.name); let n = 2; while (list.some(i => i.id === id)) id = slug(f.name) + '-' + n++;
-      return [...list, { id, name: f.name.trim(), details: (f.details || '').trim(), size: (f.size || '').trim(), category: (f.category || 'Other').trim(),
-        target: f.target ? Number(f.target) : null, qty: Number(f.qty) || 1, added: new Date().toISOString().slice(0, 19), active: true }];
+      return [...list, { id, name: f.name.trim(), link: f.link, details: (f.details || '').trim(), size: (f.size || '').trim(), category: (f.category || 'Other').trim(),
+        qty: Number(f.qty) || 1, added: new Date().toISOString().slice(0, 19), active: true }];
     }, `add ${f.name}`);
-    await new Promise(r => setTimeout(r, 1500)); // let the commit land before the run checks out
-    await dispatch(id); pending[id] = Date.now(); store.set('df_pending', JSON.stringify(pending));
-    running = true; closeModal(); mainView(); toast('Added. Claude is searching');
+    if (go === 'search') {
+      await new Promise(r => setTimeout(r, 1500)); // let the commit land before the run checks out
+      await dispatch(id); pending[id] = Date.now(); store.set('df_pending', JSON.stringify(pending)); running = true;
+    }
+    closeModal(); mainView(); toast(go === 'search' ? 'Added. Claude is searching (5–10 min)' : 'Added to your list');
   } catch (err) { toast('Error: ' + err.message); $('#addBtn').disabled = false; }
 }
 async function saveItem(id) {
-  const t = $('#e-target').value, q = $('#e-qty').value;
-  try { await saveWatchlist(l => l.map(i => i.id === id ? { ...i, target: t ? Number(t) : null, qty: Number(q) || 1 } : i), `update ${id}`); closeModal(); mainView(); toast('Saved'); }
+  const k = $('#e-link').value.trim(), q = $('#e-qty').value;
+  try { await saveWatchlist(l => l.map(i => i.id === id ? { ...i, link: k, qty: Number(q) || 1 } : i), `update ${id}`); closeModal(); mainView(); toast('Saved'); }
   catch (err) { toast('Error: ' + err.message); }
 }
 async function removeItem(id) {
