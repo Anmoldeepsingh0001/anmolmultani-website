@@ -579,3 +579,43 @@
     *{animation:none !important; transition:none !important}
     .reveal{opacity:1; transform:none}
   }
+
+  /* ===================== HOMEPAGE QUICK CALCULATOR ===================== */
+  .qc-section{padding:40px 0 100px}
+  .qc-section h2{margin-bottom:36px}
+  .qc{border-radius:28px; padding:28px}
+  .qc-tabs{display:inline-flex; gap:4px; padding:4px; border-radius:40px; background:var(--bg-alt); border:1px solid var(--line); margin-bottom:26px}
+  .qc-tab{border:0; background:transparent; color:var(--muted); font:inherit; font-size:.92rem; font-weight:500; padding:9px 22px; border-radius:40px; cursor:pointer; transition:.25s}
+  .qc-tab.on{background:var(--card); color:var(--ink); box-shadow:0 2px 10px rgba(0,0,0,.08)}
+  .qc-grid{display:grid; grid-template-columns:1.25fr 1fr; gap:36px; align-items:start}
+  .qc-field{margin-bottom:26px}
+  .qc-lbl{display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin-bottom:12px; font-size:.95rem}
+  .qc-lbl label, .qc-lbl span{color:var(--muted)}
+  .qc-lbl output{font-weight:600; font-size:1.15rem; font-variant-numeric:tabular-nums; color:var(--ink)}
+  .qc-min{display:block; margin-top:8px; color:var(--muted); font-size:.8rem}
+  .qc input[type=range]{-webkit-appearance:none; appearance:none; width:100%; height:6px; border-radius:6px; outline:none; cursor:pointer;
+    background:linear-gradient(to right, var(--accent) 0, var(--accent) var(--p,50%), var(--line) var(--p,50%), var(--line) 100%)}
+  .qc input[type=range]::-webkit-slider-thumb{-webkit-appearance:none; width:24px; height:24px; border-radius:50%; background:#fff; border:2px solid var(--accent); box-shadow:0 2px 8px rgba(0,0,0,.2)}
+  .qc input[type=range]::-moz-range-thumb{width:22px; height:22px; border-radius:50%; background:#fff; border:2px solid var(--accent); box-shadow:0 2px 8px rgba(0,0,0,.2)}
+  .qc input[type=range]:focus-visible::-webkit-slider-thumb{outline:3px solid var(--glow)}
+  .qc-chips{display:flex; flex-wrap:wrap; gap:8px}
+  .qc-chip{border:1px solid var(--line); background:transparent; color:var(--ink); font:inherit; font-size:.86rem; padding:8px 14px; border-radius:30px; cursor:pointer; transition:.2s}
+  .qc-chip b{font-weight:600}
+  .qc-chip.on{border-color:var(--accent); background:var(--accent); color:#fff}
+  .qc-out{background:var(--panel); color:var(--panel-ink); border-radius:22px; padding:30px 28px}
+  .qc-out-lbl{color:var(--panel-muted); font-size:.85rem; letter-spacing:.04em}
+  .qc-pay{font-size:clamp(2.6rem,6vw,3.6rem); font-weight:600; letter-spacing:-.03em; line-height:1.1; margin:6px 0 4px; font-variant-numeric:tabular-nums}
+  .qc-pay small{font-size:1.1rem; font-weight:400; color:var(--panel-muted); margin-left:4px}
+  .qc-cap{color:var(--panel-muted); font-size:.85rem; margin-bottom:22px}
+  .qc-rows div{display:flex; justify-content:space-between; padding:11px 0; border-top:1px solid var(--panel-line); font-size:.92rem}
+  .qc-rows span{color:var(--panel-muted)}
+  .qc-rows b{font-weight:600; font-variant-numeric:tabular-nums}
+  .qc-note{color:var(--panel-muted); font-size:.82rem; margin:14px 0 20px; min-height:1em}
+  .qc-cta{display:block; text-align:center; margin-top:10px}
+  .qc-out .btn.ghost{color:var(--panel-ink); border-color:var(--panel-line)}
+  .qc-out .btn.ghost:hover{border-color:var(--panel-ink)}
+  .qc-disc{color:var(--muted); font-size:.76rem; margin-top:22px; line-height:1.5}
+  @media(max-width:820px){.qc-grid{grid-template-columns:1fr; gap:10px} .qc{padding:20px 16px} .qc-tab{padding:9px 16px}}
+  .flegal{display:flex; flex-wrap:wrap; gap:8px 22px; align-items:center; padding-top:18px; margin-top:18px; border-top:1px solid var(--panel-line); font-size:.8rem; color:var(--panel-muted)}
+  .flegal a{color:inherit; opacity:.8; text-decoration:none} .flegal a:hover{opacity:1; text-decoration:underline}
+  .flegal span{opacity:.6; flex-basis:100%}

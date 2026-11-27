@@ -10,9 +10,11 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 <meta name="color-scheme" content="light dark" />
 <title>Anmol Multani | Mortgage Broker in Charlottetown, PEI — Clearstone Financial</title>
-<meta name="description" content="Mortgage broker in Charlottetown, PEI. Purchases, pre-approvals, renewals and refinances with access to a wide lender network. Nova Scotia clients served by our NS-licensed broker. Book a free call." />
+<meta name="description" content="Mortgage broker in Charlottetown, PEI. Slide the calculator to see your payment, then apply online. Purchases, renewals and refinances with 50+ lenders." />
 <meta name="keywords" content="mortgage broker PEI, mortgage broker Charlottetown, mortgage broker Prince Edward Island, mortgage broker Nova Scotia, PEI first time home buyer, mortgage renewal PEI, mortgage refinance PEI, Anmol Multani, Clearstone Financial" />
 <link rel="canonical" href="https://anmolmultani.ca/" />
+<meta name="geo.region" content="CA-PE" />
+<meta name="geo.placename" content="Charlottetown" />
 
 <!-- Open Graph / social sharing -->
 <meta property="og:type" content="website" />
@@ -32,7 +34,7 @@
 <!-- Inter is only the FALLBACK for non-Apple devices. Apple devices render real SF Pro via the system stack. -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 <noscript><style>.reveal{opacity:1 !important; transform:none !important}</style></noscript>
-<link rel="stylesheet" href="styles.css?v=2" />
+<link rel="stylesheet" href="styles.css?v=3" />
 <script>(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <script type="application/ld+json">
 {
@@ -54,7 +56,7 @@
   ],
   "parentOrganization": { "@type": "Organization", "name": "Clearstone Financial" },
   "employee": [
-    { "@type": "Person", "name": "Anmol Multani", "jobTitle": "Mortgage Broker", "image": "https://anmolmultani.ca/anmol-headshot.jpg", "description": "Licensed in Prince Edward Island." },
+    { "@type": "Person", "name": "Anmol Multani", "jobTitle": "Mortgage Broker", "image": "https://anmolmultani.ca/anmol-headshot.jpg", "description": "Mortgage Broker in Prince Edward Island with Mortgage Powered Financial Group Inc." },
     { "@type": "Person", "name": "Nicholas Gaudet", "jobTitle": "President & CEO", "image": "https://anmolmultani.ca/nicholas.jpg", "description": "Licensed in Nova Scotia." }
   ],
   "potentialAction": { "@type": "ReserveAction", "name": "Book a call", "target": "https://app.reclaim.ai/m/anmol-clearstonefinancial" },
@@ -64,6 +66,9 @@
     "https://www.youtube.com/@anmol.finance"
   ]
 }
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","name":"Anmol Multani, Mortgage Broker","url":"https://anmolmultani.ca/","inLanguage":"en-CA"}
 </script>
 </head>
 <body>
@@ -107,6 +112,7 @@
           <a href="smith-manoeuvre-calculator.html">Smith Manoeuvre</a>
         </div>
       </li>
+      <li><a href="pei-gas-prices.html">Gas Prices</a></li>
       <li><a href="#rates" data-scroll>Rates</a></li>
       <li class="has-drop">
         <a href="#about" data-scroll aria-haspopup="true">Company</a>
@@ -160,6 +166,7 @@
       <a href="smith-manoeuvre-calculator.html">Smith Manoeuvre</a>
     </div>
   </div>
+  <a href="pei-gas-prices.html">PEI Gas Prices</a>
   <a href="#rates" data-scroll>Rates</a>
   <div class="mm-group">
     <button class="mm-group-toggle" type="button" aria-expanded="false">Company<span class="mm-chevron">&rsaquo;</span></button>
@@ -191,6 +198,52 @@
     <div class="hero-cta">
       <a class="btn primary" data-apply>Start your application</a>
       <a class="btn ghost" data-book target="_blank" rel="noopener">Book a call</a>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK CALCULATOR -->
+<section class="qc-section" id="quick-calc">
+  <div class="wrap">
+    <div class="eyebrow reveal">Try it live</div>
+    <h2 class="reveal">Slide the numbers. See your payment.</h2>
+    <div class="qc glass reveal" id="quickCalc">
+      <div class="qc-tabs" role="tablist">
+        <button type="button" class="qc-tab on" data-mode="buy" role="tab" aria-selected="true">Buy</button>
+        <button type="button" class="qc-tab" data-mode="refi" role="tab" aria-selected="false">Refinance</button>
+        <button type="button" class="qc-tab" data-mode="renew" role="tab" aria-selected="false">Renew</button>
+      </div>
+      <div class="qc-grid">
+        <div class="qc-inputs">
+          <div class="qc-field" data-show="buy"><div class="qc-lbl"><label for="qcPrice">Home price</label><output id="qcPriceV"></output></div>
+            <input type="range" id="qcPrice" min="100000" max="1500000" step="5000" value="400000" /></div>
+          <div class="qc-field" data-show="buy"><div class="qc-lbl"><label for="qcDown">Down payment</label><output id="qcDownV"></output></div>
+            <input type="range" id="qcDown" min="5" max="50" step="0.5" value="10" />
+            <small class="qc-min" id="qcMinNote"></small></div>
+          <div class="qc-field" data-show="refi" hidden><div class="qc-lbl"><label for="qcValue">Home value</label><output id="qcValueV"></output></div>
+            <input type="range" id="qcValue" min="150000" max="2000000" step="5000" value="450000" /></div>
+          <div class="qc-field" data-show="refi" hidden><div class="qc-lbl"><label for="qcOwing">New mortgage amount</label><output id="qcOwingV"></output></div>
+            <input type="range" id="qcOwing" min="50000" max="360000" step="5000" value="280000" /></div>
+          <div class="qc-field" data-show="renew" hidden><div class="qc-lbl"><label for="qcBal">Mortgage balance</label><output id="qcBalV"></output></div>
+            <input type="range" id="qcBal" min="50000" max="1200000" step="5000" value="300000" /></div>
+          <div class="qc-field"><div class="qc-lbl"><label for="qcAmort">Amortization</label><output id="qcAmortV"></output></div>
+            <input type="range" id="qcAmort" min="5" max="30" step="1" value="25" /></div>
+          <div class="qc-field"><div class="qc-lbl"><span>Rate</span></div><div class="qc-chips" id="qcRates"></div></div>
+        </div>
+        <div class="qc-out">
+          <div class="qc-out-lbl">Your monthly payment</div>
+          <div class="qc-pay"><span id="qcPay">$0</span><small>/mo</small></div>
+          <div class="qc-cap" id="qcPayCap"></div>
+          <div class="qc-rows">
+            <div><span>Mortgage amount</span><b id="qcLoan"></b></div>
+            <div><span id="qcIntL">Interest over term</span><b id="qcInt"></b></div>
+          </div>
+          <p class="qc-note" id="qcNote"></p>
+          <a class="btn primary qc-cta" data-apply>Start my application</a>
+          <a class="btn ghost qc-cta" data-book target="_blank" rel="noopener">Talk it through first</a>
+        </div>
+      </div>
+      <p class="qc-disc">Estimates only. Rates are for illustration, change often and are subject to lender approval (OAC); insured and uninsured rates can differ. For planning and discussion only. Not legal, tax, or accounting advice.</p>
     </div>
   </div>
 </section>
@@ -345,12 +398,14 @@
     <img src="clearstone-logo.png" alt="Clearstone Financial" class="plogo" onerror="this.style.display='none'" />
     <span class="ptext"><b>Clearstone Financial</b>, locally owned &amp; operated · Mortgages through <b>Mortgage Powered Financial Group</b></span>
   </div>
-  <div class="fbottom">© 2026 Anmol Multani. All rights reserved. Anmol Multani is licensed in Prince Edward Island; Nova Scotia clients are served by Nicholas Gaudet, licensed in Nova Scotia.</div>
+  <div class="flegal"><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Use</a><a href="disclosures.html">Disclosures &amp; Complaints</a><span>For planning and discussion only. Not legal, tax, or accounting advice.</span></div>
+  <div class="fbottom">© 2026 Anmol Multani. All rights reserved. Anmol Multani is a Mortgage Broker in Prince Edward Island with Mortgage Powered Financial Group Inc. (FSRA brokerage licence #13720). Nova Scotia clients are served by Nicholas Gaudet, licensed in Nova Scotia.</div>
 </div></footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="settings.js?v=2"></script>
 <script src="site.js?v=2"></script>
+<script src="quick-calc.js?v=1"></script>
 </body>
 </html>

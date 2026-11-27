@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://anmolmultani.ca/</loc><lastmod>2026-11-16</lastmod><priority>1.0</priority></url>
+  <url><loc>https://anmolmultani.ca/</loc><lastmod>2026-11-27</lastmod><priority>1.0</priority></url>
   <url><loc>https://anmolmultani.ca/guides.html</loc><lastmod>2026-11-16</lastmod><priority>0.8</priority></url>
   <url><loc>https://anmolmultani.ca/guides/first-time-buyer.html</loc><lastmod>2026-11-16</lastmod><priority>0.8</priority></url>
   <url><loc>https://anmolmultani.ca/guides/newcomer-to-canada.html</loc><lastmod>2026-11-16</lastmod><priority>0.8</priority></url>
@@ -19,4 +19,7 @@
   <url><loc>https://anmolmultani.ca/smith-manoeuvre.html</loc><lastmod>2026-11-16</lastmod><priority>0.8</priority></url>
   <url><loc>https://anmolmultani.ca/smith-manoeuvre-calculator.html</loc><lastmod>2026-11-16</lastmod><priority>0.8</priority></url>
   <url><loc>https://anmolmultani.ca/pei-gas-prices.html</loc><lastmod>2026-11-21</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://anmolmultani.ca/privacy.html</loc><lastmod>2026-11-27</lastmod><priority>0.3</priority></url>
+  <url><loc>https://anmolmultani.ca/terms.html</loc><lastmod>2026-11-27</lastmod><priority>0.3</priority></url>
+  <url><loc>https://anmolmultani.ca/disclosures.html</loc><lastmod>2026-11-27</lastmod><priority>0.3</priority></url>
 </urlset>
