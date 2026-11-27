@@ -33,6 +33,9 @@ STATE = os.path.join(DATA, "state.json")
 UA = {"User-Agent": "Mozilla/5.0 (Macintosh; PEI gas tracker; personal use)"}
 L_PER_GAL = 3.785411784
 HST = 0.15
+# Futures overshoot the local rack a little: only pass through 90% of the predicted rack move.
+# Backtest 2024-2026: avg miss 2.21 -> 2.14 c/L, direction accuracy unchanged or better.
+DAMP = 0.9
 
 IRAC_FIELDS = ["date", "reg_rack", "mid_rack", "prem_rack", "dsl_rack",
                "reg_wm", "reg_faa", "mid_faa", "prem_faa", "dsl_faa",
@@ -250,8 +253,8 @@ def build_model(irac, market):
     # walk-forward backtest: basis = previous period's (rack - futures); predict the CHANGE
     rerr, perr, dir_hits, dir_n = [], [], 0, 0
     for i in range(1, len(pts)):
-        pred_rack = pts[i]["rbob"] + pts[i - 1]["basis"]
         prev = by_date[pts[i - 1]["date"]]
+        pred_rack = float(prev["reg_rack"]) + DAMP * (pts[i]["rbob"] + pts[i - 1]["basis"] - float(prev["reg_rack"]))
         pred_pump = change_pump(prev, pred_rack, by_date[pts[i]["date"]])
         pts[i]["pred_rack"] = round(pred_rack, 1)
         pts[i]["pred_pump"] = pred_pump
@@ -299,7 +302,7 @@ def predict(irac, market, manual):
     m, n = mean_in(mk, a, b)
     expected_days = sum(1 for k in range((b - a).days + 1) if (a + dt.timedelta(days=k)).weekday() < 5)
     basis = pts[-1]["basis"] if pts and pts[-1]["date"] == last["date"] else (pts[-1]["basis"] if pts else 0.0)
-    model_rack = (m + basis) if m is not None else float(last["reg_rack"])
+    model_rack = (float(last["reg_rack"]) + DAMP * (m + basis - float(last["reg_rack"]))) if m is not None else float(last["reg_rack"])
     # manual Petro-Canada rack entries inside the rack window (rack days = close days + 1)
     ra, rb_ = a + dt.timedelta(days=1), b + dt.timedelta(days=1)
     man = [float(r["reg_rack"]) for r in manual if ra.isoformat() <= r["date"] <= rb_.isoformat()]
