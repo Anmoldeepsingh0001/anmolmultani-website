@@ -334,7 +334,7 @@ function openKey() {
     <div class="kicker">Your key</div><h2>Unlock Deal Finder</h2>
     <p style="color:var(--muted)">Paste a GitHub fine-grained token for the <b>${REPO}</b> repo with <b>Contents: Read and write</b> and <b>Actions: Read and write</b>. It's saved only in this browser.
     <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">Create one on GitHub</a>.</p>
-    <div class="form"><div class="full"><input id="tok" type="password" placeholder="github_pat_…" autocomplete="off"></div>
+    <div class="form"><div class="full" style="display:flex;gap:8px"><input id="tok" type="password" placeholder="Paste your key here (⌘V)" autocomplete="off" spellcheck="false"><button type="button" class="icon" onclick="const t=$('#tok');t.type=t.type==='password'?'text':'password';this.textContent=t.type==='password'?'Show':'Hide'">Show</button></div>
     <div class="full" style="display:flex;gap:8px"><button onclick="saveKey()">Unlock</button>${token ? '<button class="ghost" onclick="forget()">Lock this browser</button>' : ''}</div></div>`);
 }
 
