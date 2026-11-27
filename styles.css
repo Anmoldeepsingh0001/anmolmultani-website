@@ -619,3 +619,76 @@
   .flegal{display:flex; flex-wrap:wrap; gap:8px 22px; align-items:center; padding-top:18px; margin-top:18px; border-top:1px solid var(--panel-line); font-size:.8rem; color:var(--panel-muted)}
   .flegal a{color:inherit; opacity:.8; text-decoration:none} .flegal a:hover{opacity:1; text-decoration:underline}
   .flegal span{opacity:.6; flex-basis:100%}
+
+  /* ===================== HERO BACKGROUND VIDEO ===================== */
+  #home > .hero-video{position:absolute; z-index:-1; top:0; bottom:0; left:50%; width:100vw; transform:translateX(-50%); overflow:hidden; pointer-events:none}
+  .hero-video video{width:100%; height:100%; object-fit:cover; opacity:.55}
+  .hero-video::after{content:''; position:absolute; inset:0;
+    background:linear-gradient(90deg, var(--bg) 0%, color-mix(in srgb, var(--bg) 82%, transparent) 45%, color-mix(in srgb, var(--bg) 35%, transparent) 100%),
+               linear-gradient(0deg, var(--bg) 0%, transparent 30%)}
+  @media(max-width:900px){.hero-video::after{background:linear-gradient(0deg, var(--bg) 8%, color-mix(in srgb, var(--bg) 75%, transparent) 100%)}}
+  @media (prefers-reduced-motion: reduce){.hero-video video{display:none} .hero-video{background:url(img/hero-coast-poster.jpg) center/cover; opacity:.4}}
+
+  /* ===================== ROADMAP ===================== */
+  .roadmap .rm-sub{color:var(--muted); font-weight:300; font-size:1.1rem; margin-top:16px; max-width:560px}
+  .rm-track{list-style:none; margin:60px 0 0; padding:0; display:grid; grid-template-columns:repeat(3,1fr); gap:56px 40px; position:relative; counter-reset:rm}
+  .rm-step::after{content:''; position:absolute; top:22px; left:60px; right:-34px; height:2px; background:repeating-linear-gradient(90deg, var(--accent) 0 12px, transparent 12px 22px); opacity:.5}
+  .rm-step:nth-child(3n)::after, .rm-step:last-child::after{display:none}
+  .rm-step{position:relative; padding-top:62px}
+  .rm-num{position:absolute; top:0; left:0; width:46px; height:46px; border-radius:50%; display:grid; place-items:center; font-weight:600; font-size:.9rem; color:#fff; background:var(--accent); box-shadow:0 0 0 8px var(--bg), 0 10px 26px rgba(0,102,204,.35)}
+  .alt .rm-num{box-shadow:0 0 0 8px var(--bg-alt), 0 10px 26px rgba(0,102,204,.35)}
+  .rm-step h3{font-size:1.25rem; font-weight:600; letter-spacing:-.01em; margin-bottom:8px}
+  .rm-step p{color:var(--muted); font-weight:300; font-size:.97rem; line-height:1.6}
+  .rm-step:last-child .rm-num{background:linear-gradient(135deg,var(--accent),#34c759)}
+  .rm-cta{display:flex; gap:14px; flex-wrap:wrap; margin-top:56px}
+  @media(max-width:900px){
+    .rm-track{grid-template-columns:1fr; gap:34px; padding-left:66px}
+    .rm-track::before{content:''; position:absolute; left:22px; top:10px; bottom:10px; width:2px; background:repeating-linear-gradient(180deg, var(--accent) 0 12px, transparent 12px 22px); opacity:.5}
+    .rm-step::after{display:none}
+    .rm-step{padding-top:0} .rm-num{left:-66px}
+  }
+
+  /* ===================== ATLANTIC MAP ===================== */
+  .atl-grid{display:grid; grid-template-columns:1fr 1.25fr; gap:60px; align-items:center}
+  .atl-copy p{color:var(--muted); font-weight:300; font-size:1.05rem; line-height:1.7; margin-top:20px}
+  .atl-legend{list-style:none; padding:0; margin-top:26px; display:grid; gap:12px; font-size:.95rem}
+  .atl-legend i{display:inline-block; width:12px; height:12px; border-radius:3px; margin-right:10px; background:var(--accent); vertical-align:-1px}
+  .atl-map{width:100%; height:auto; display:block; -webkit-mask-image:radial-gradient(ellipse 60% 62% at 58% 54%, #000 52%, transparent 100%); mask-image:radial-gradient(ellipse 60% 62% at 58% 54%, #000 52%, transparent 100%)}
+  .atl-map .m-ctx{fill:var(--line); stroke:none}
+  .atl-map .m-nb{fill:color-mix(in srgb, var(--accent) 22%, var(--bg-alt)); stroke:var(--bg-alt); stroke-width:1.5}
+  .atl-map .m-on{fill:var(--accent); stroke:var(--bg-alt); stroke-width:1.5}
+  .atl-map .m-pei{filter:drop-shadow(0 0 14px color-mix(in srgb, var(--accent) 70%, transparent))}
+  .atl-map .m-pin circle{fill:#fff; stroke:var(--ink); stroke-width:4; r:9}
+  .atl-map .m-pin .m-pulse{fill:none; stroke:#fff; stroke-width:2; transform-box:fill-box; transform-origin:center; animation:map-pulse 2.4s ease-out infinite}
+  .atl-map text{font:600 34px/1 Inter, -apple-system, system-ui, sans-serif; fill:var(--ink); paint-order:stroke; stroke:var(--bg-alt); stroke-width:8px; stroke-linejoin:round}
+  .atl-map .m-lbl{font-size:22px; letter-spacing:.2em; fill:var(--muted); font-weight:600}
+  @keyframes map-pulse{from{transform:scale(1); opacity:.9} to{transform:scale(3.2); opacity:0}}
+  @media (prefers-reduced-motion: reduce){.atl-map .m-pulse{animation:none; display:none}}
+  @media(max-width:900px){.atl-grid{grid-template-columns:1fr; gap:30px}}
+
+  /* ===================== REVERSE MORTGAGE PAGE ===================== */
+  .rv-hero-grid{display:grid; grid-template-columns:1.1fr 1fr; gap:56px; align-items:center; position:relative; z-index:1}
+  .rv-photo{margin:0; border-radius:24px; overflow:hidden; box-shadow:0 40px 90px -24px rgba(0,0,0,.35); border:1px solid var(--glass-border); aspect-ratio:3/2}
+  .rv-photo img{width:100%; height:100%; object-fit:cover; display:block}
+  .rv-split{display:grid; grid-template-columns:1fr 1.1fr; gap:60px; align-items:center}
+  .rv-list{list-style:none; padding:0; margin-top:22px; display:grid; gap:14px}
+  .rv-list li{position:relative; padding-left:28px; color:var(--muted); font-weight:300; line-height:1.6}
+  .rv-list li::before{content:''; position:absolute; left:0; top:.55em; width:12px; height:12px; border-radius:50%; background:var(--accent); opacity:.85}
+  .rv-list li b{color:var(--ink); font-weight:600}
+  .rv-cols{display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:44px}
+  .rv-cols .card:hover{transform:none}
+  .rv-cols .card:last-child .rv-list li::before{background:#ff9f0a}
+  .rv-big{font-size:clamp(1.7rem,3.2vw,2.3rem); margin-bottom:18px; white-space:nowrap}
+  .rv-table{margin-top:40px; overflow-x:auto; border-radius:18px; border:1px solid var(--line); background:var(--card)}
+  .rv-table table{width:100%; border-collapse:collapse; min-width:620px; font-size:.95rem}
+  .rv-table th, .rv-table td{padding:16px 18px; text-align:left; border-bottom:1px solid var(--line)}
+  .rv-table thead th{font-weight:600; color:var(--accent); font-size:.85rem; letter-spacing:.04em}
+  .rv-table tbody th{font-weight:500; color:var(--ink)} .rv-table td{color:var(--muted); font-weight:300}
+  .rv-table tr:last-child th, .rv-table tr:last-child td{border-bottom:0}
+  .rv-faq{margin-top:34px} .rv-faq details{border-top:1px solid var(--line); padding:20px 0}
+  .rv-faq details:last-child{border-bottom:1px solid var(--line)}
+  .rv-faq summary{cursor:pointer; font-weight:600; font-size:1.08rem; list-style:none; display:flex; justify-content:space-between; gap:16px}
+  .rv-faq summary::after{content:'+'; color:var(--accent); font-size:1.4rem; line-height:1} .rv-faq details[open] summary::after{content:'\2013'}
+  .rv-faq summary::-webkit-details-marker{display:none}
+  .rv-faq p{color:var(--muted); font-weight:300; line-height:1.7; margin-top:12px}
+  @media(max-width:900px){.rv-hero-grid, .rv-split, .rv-cols{grid-template-columns:1fr; gap:30px}}
